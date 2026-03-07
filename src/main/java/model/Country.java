@@ -1,11 +1,11 @@
 package model;
 
 public class Country {
-    private String name;
-    private String code;
-    private String capital;
-    private int population;
-    private int area;
+    private final String name;
+    private final String code;
+    private final String capital;
+    private final int population;
+    private final int area;
     // facts werde ich wrs string[] machen aber noch nicht sicher
 
 
