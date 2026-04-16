@@ -12,5 +12,5 @@ module _2dhif.geomaster {
     requires com.almasb.fxgl.all;
 
     opens _2dhif.geomaster to javafx.fxml;
-    exports _2dhif.geomaster;
+    exports ;
 }
