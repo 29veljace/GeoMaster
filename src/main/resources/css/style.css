@@ -1,0 +1,29 @@
+.button{
+    -fx-pref-width: 350px;
+    -fx-pref-height: 80px;
+    -fx-font-size: 20px;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-background-color: rgba(45, 174, 169, 0.5);
+    -fx-font-color: black:
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-color-radius: 15;
+    -fx-background-radius: 15;
+}
+.button:hover{
+    -fx-background-color: rgba(45, 174, 169, 0.8);
+}
+#willkommen{
+    -fx-font-size: 150px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+#info{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+#borderpane{
+    -fx-background-color: rgba(168, 221, 217, 0.5);
+}

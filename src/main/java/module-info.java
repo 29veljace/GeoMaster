@@ -11,6 +11,6 @@ module _2dhif.geomaster {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens _2dhif.geomaster to javafx.fxml;
-    // exports ;
+    opens App to javafx.fxml;
+    exports App;
 }
