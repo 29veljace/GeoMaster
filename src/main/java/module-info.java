@@ -10,6 +10,7 @@ module _2dhif.geomaster {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens App to javafx.fxml;
     exports App;

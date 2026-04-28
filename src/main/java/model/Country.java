@@ -6,15 +6,21 @@ public class Country {
     private final String capital;
     private final int population;
     private final int area;
-    // facts werde ich wrs string[] machen aber noch nicht sicher
+    private final double avgHight;
+    private final double bip;
+    private final double highestPoint;
+    private final double avgTemperature;
 
-
-    public Country(String name, String code, String capital, int population, int area) {
+    public Country(String name, String code, String capital, int population, int area, double avgHight, double bip, double highestPoint, double avgTemperature) {
         this.name = name;
         this.code = code;
         this.capital = capital;
         this.population = population;
         this.area = area;
+        this.avgHight = avgHight;
+        this.bip = bip;
+        this.highestPoint = highestPoint;
+        this.avgTemperature = avgTemperature;
     }
 
     public String getName() {
