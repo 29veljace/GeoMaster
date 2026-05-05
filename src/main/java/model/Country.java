@@ -1,6 +1,9 @@
 package model;
 
+import javafx.scene.image.Image;
+
 public class Country {
+    private final int id;
     private final String name;
     private final String code;
     private final String capital;
@@ -10,8 +13,12 @@ public class Country {
     private final double bip;
     private final double highestPoint;
     private final double avgTemperature;
+    private final Image flag;
 
-    public Country(String name, String code, String capital, int population, int area, double avgHight, double bip, double highestPoint, double avgTemperature) {
+
+
+    public Country(int id,String name, String code, String capital, int population, int area, double avgHight, double bip, double highestPoint, double avgTemperature,Image flag) {
+        this.id = id;
         this.name = name;
         this.code = code;
         this.capital = capital;
@@ -21,6 +28,7 @@ public class Country {
         this.bip = bip;
         this.highestPoint = highestPoint;
         this.avgTemperature = avgTemperature;
+        this.flag = flag;
     }
 
     public String getName() {
