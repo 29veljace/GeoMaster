@@ -23,15 +23,17 @@ DROP TABLE IF EXISTS `country`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `country` (
+  `id` int NOT NULL,
   `name` varchar(70) DEFAULT NULL,
   `code` char(2) DEFAULT NULL,
   `capital` varchar(70) DEFAULT NULL,
   `population` int DEFAULT NULL,
   `area` int DEFAULT NULL,
-  `avgHight` double DEFAULT NULL,
+  `avgHeight` double DEFAULT NULL,
   `bip` double DEFAULT NULL,
-  `highestPoint` double DEFAULT NULL,
-  `avgTemperature` double DEFAULT NULL
+  `avgTemperature` double DEFAULT NULL,
+  `path` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-28  9:31:07
+-- Dump completed on 2026-05-05  9:23:16

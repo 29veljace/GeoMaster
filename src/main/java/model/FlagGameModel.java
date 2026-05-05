@@ -2,6 +2,8 @@ package model;
 
 
 
+import javafx.scene.image.Image;
+
 import java.sql.*;
 import java.util.Random;
 
@@ -39,14 +41,24 @@ public class FlagGameModel {
         int id;
         String name, code, capital;
         int population, area;
-        double avgHight, bip, highestPoint, avgTemperature;
+        double avgHeight, bip, avgTemperature;
+        Image image;
         try {
            id = getData().getInt("id");
            name = getData().getString("name");
            code = getData().getString("code");
+           capital = getData().getString("capital");
+           population = getData().getInt("population");
+           area = getData().getInt("area");
+           avgHeight = getData().getInt("avgHeight");
+           bip = getData().getInt("bip");
+           avgTemperature = getData().getInt("avgTemperature");
+           image = new Image(getData().getString("path"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        country = new Country(id,name,code,capital,population,area,avgHeight,bip,avgTemperature,image);
+        return country;
     }
 
 
