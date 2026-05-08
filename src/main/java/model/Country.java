@@ -77,7 +77,7 @@ public class Country {
     public Image getOutline() {
         if (outline == null) {
             outline = new Image(
-                    getClass().getResourceAsStream("/outlines/" + code + ".png"))
+                    getClass().getResourceAsStream("/outlines/" + code + ".png"));
         }
         return outline;
     }
