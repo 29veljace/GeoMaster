@@ -1,6 +1,6 @@
 package controller;
 
-import View.FlagGameView;
+import view.FlagGameView;
 import model.FlagGameModel;
 
 public class FlagGameController {
