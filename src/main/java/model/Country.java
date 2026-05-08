@@ -31,7 +31,9 @@ public class Country {
     }
 
     public Image getFlag() {
-        return flag;
+        return new Image(
+                getClass().getResourceAsStream("/flags/" + code + ".png")
+        );
     }
 
     public Country(int id, String name, String code, String capital, int population, int area, double avgHeight, double bip, double avgTemperature, Image flag) {
