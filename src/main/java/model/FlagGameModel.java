@@ -43,6 +43,7 @@ public class FlagGameModel {
         int population, area;
         double avgHeight, bip, avgTemperature;
         Image image;
+        Image outline;
         try {
            id = getData().getInt("id");
            name = getData().getString("name");
@@ -54,10 +55,11 @@ public class FlagGameModel {
            bip = getData().getInt("bip");
            avgTemperature = getData().getInt("avgTemperature");
            image = new Image(getData().getString("path"));
+           outline = new Image(getData().getString("outlinePath"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        country = new Country(id,name,code,capital,population,area,avgHeight,bip,avgTemperature,image);
+        country = new Country(id,name,code,capital,population,area,avgHeight,bip,avgTemperature,image,outline);
         return country;
     }
 
