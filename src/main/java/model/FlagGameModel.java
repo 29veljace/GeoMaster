@@ -9,9 +9,10 @@ import java.util.Random;
 
 public class FlagGameModel {
     // /database/migrations/002_add_orders.sql !!!
+    private Connection connection;
 
     public Connection connect() {
-        Connection connection;
+
         try {
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/?user=GeoMaster&password=hihi_haha_Weihnachtsstunde");
         } catch (SQLException e) {
@@ -54,8 +55,9 @@ public class FlagGameModel {
            avgHeight = getData().getInt("avgHeight");
            bip = getData().getInt("bip");
            avgTemperature = getData().getInt("avgTemperature");
-           image = new Image(getData().getString("path"));
-           outline = new Image(getData().getString("outlinePath"));
+           image = new Image(getData().getString("path1"));
+           outline = new Image(getData().getString("path2"));
+            connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -16,7 +16,6 @@ public class Country {
     private Image outline;
 
     public Country(int id, String name, String code, String capital, int population, int area, double avgHeight, double bip, double avgTemperature, Image flag, Image outline) {
-        this.outline = outline;
         this.id = id;
         this.name = name;
         this.code = code;
@@ -27,6 +26,7 @@ public class Country {
         this.bip = bip;
         this.avgTemperature = avgTemperature;
         this.flag = flag;
+        this.outline = outline;
     }
 
     public int getId() {
@@ -44,7 +44,7 @@ public class Country {
     public double getAvgTemperature() {
         return avgTemperature;
     }
-
+/*
     public Image getFlag() {
         if (flag == null) {
             flag = new Image(
@@ -53,7 +53,7 @@ public class Country {
         }
         return flag;
     }
-
+*/
     public String getName() {
         return name;
     }
@@ -73,7 +73,7 @@ public class Country {
     public String getCode() {
         return code;
     }
-
+/*
     public Image getOutline() {
         if (outline == null) {
             outline = new Image(
@@ -81,4 +81,6 @@ public class Country {
         }
         return outline;
     }
+    */
+
 }
