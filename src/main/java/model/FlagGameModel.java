@@ -28,7 +28,7 @@ public class FlagGameModel {
             throw new RuntimeException(e);
         }
         Random random = new Random();
-        random.nextInt(190);
+        random.nextInt(192);
         ResultSet resultSet;
         try {
              resultSet = statement.executeQuery("Select * from country where id = " + random);

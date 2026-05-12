@@ -1,5 +1,6 @@
 package app;
 
+import view.FlagGameView;
 import view.MainMenuView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,14 +20,15 @@ public class GeoTriviaApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         MainMenuView mainMenuView = new MainMenuView();
-        //FlagGameView flagGameView = new FlagGameView(stage);
+        FlagGameView flagGameView = new FlagGameView(stage);
         //MainMenuController mainMenuController = new MainMenuController(mainMenuView, stage);
 
         Scene mainScene = new Scene(mainMenuView.getBorderPane());
+        Scene flagGameScene = new Scene(flagGameView.getBorderPane());
 
         mainScene.getStylesheets().addAll(getClass().getResource("/css/style.css").toExternalForm());
 
-        stage.setScene(mainScene);
+        stage.setScene(flagGameScene);
         stage.setMaximized(true);
         stage.setTitle("GeoMaster");
         stage.show();
