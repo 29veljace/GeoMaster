@@ -19,6 +19,13 @@ public class FlagGameView {
 
     public FlagGameView(Stage stage) {
         imageView = new ImageView();
+        imageView.setFitWidth(200);
+        imageView.setFitHeight(150);
+        imageView.setPreserveRatio(true);
+        HBox hBox = new HBox(imageView);
+        hBox.setAlignment(Pos.CENTER);
+
+
         button1 = new Button();
         button2 = new Button();
         button3 = new Button();
@@ -29,12 +36,13 @@ public class FlagGameView {
         VBox vBox2 = new VBox(button3,button4);
         vBox2.setAlignment(Pos.CENTER);
         vBox2.setSpacing(30);
-        HBox hBox = new HBox(vBox1,vBox2);
-        hBox.setAlignment(Pos.CENTER);
+        HBox hBox2 = new HBox(vBox1,vBox2);
+        hBox2.setAlignment(Pos.CENTER);
         hBox.setSpacing(30);
+        VBox vBox = new VBox(hBox,hBox2);
+        vBox.setAlignment(Pos.CENTER);
         borderPane = new BorderPane();
-        borderPane.setCenter(hBox);
-        borderPane.setTop(imageView);
+        borderPane.setCenter(vBox);
     }
 
     public ImageView getImageView() {
