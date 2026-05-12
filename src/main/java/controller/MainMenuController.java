@@ -1,10 +1,11 @@
 package controller;
 
-import View.FlagGameView;
-import View.MainMenuView;
+import view.FlagGameView;
+import view.MainMenuView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.FlagGameModel;
+
 
 public class MainMenuController {
     // modusauswahl, startet das spiel
@@ -12,18 +13,19 @@ public class MainMenuController {
     private Stage stage;
 
 
-    private FlagGameView view = new FlagGameView();
+    private FlagGameView view = new FlagGameView(stage);
     private FlagGameModel model = new FlagGameModel();
     private FlagGameController controller = new FlagGameController(view,model);
 
     public MainMenuController(MainMenuView menuView, Stage stage){
         mainMenuView = menuView;
         this.stage = stage;
-        initEvents();
+//        initEvents();
     }
-    public void initEvents(){
+/*    public void initEvents(){
         mainMenuView.getSpiel1().setOnAction(actionEvent -> {
-                stage.setScene(new Scene(controller.getFlagGameView()));
+            stage.setScene(new Scene(controller.getFlagGameView()));
         });
     }
+    */
 }
