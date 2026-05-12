@@ -1,8 +1,8 @@
 package controller;
 
+import javafx.scene.Scene;
 import view.FlagGameView;
 import view.MainMenuView;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.FlagGameModel;
 
@@ -20,12 +20,12 @@ public class MainMenuController {
     public MainMenuController(MainMenuView menuView, Stage stage){
         mainMenuView = menuView;
         this.stage = stage;
-//        initEvents();
+       initEvents();
     }
-/*    public void initEvents(){
-        mainMenuView.getSpiel1().setOnAction(actionEvent -> {
-            stage.setScene(new Scene(controller.getFlagGameView()));
+    public void initEvents(){
+        mainMenuView.getFlagGuessing().setOnAction(actionEvent -> {
+            stage.setScene(new Scene(controller.getFlagGameView().getBorderPane()));
         });
     }
-    */
+
 }

@@ -1,6 +1,7 @@
 package app;
 
 import controller.FlagGameController;
+import controller.MainMenuController;
 import javafx.scene.image.Image;
 import model.FlagGameModel;
 import view.FlagGameView;
@@ -26,14 +27,14 @@ public class GeoTriviaApp extends Application {
         FlagGameView flagGameView = new FlagGameView(stage);
         FlagGameModel flagGameModel = new FlagGameModel();
         FlagGameController flagGameController = new FlagGameController(flagGameView,flagGameModel);
-        //MainMenuController mainMenuController = new MainMenuController(mainMenuView, stage);
+        MainMenuController mainMenuController = new MainMenuController(mainMenuView, stage);
 
         Scene mainScene = new Scene(mainMenuView.getBorderPane());
         Scene flagGameScene = new Scene(flagGameView.getBorderPane());
 
         mainScene.getStylesheets().addAll(getClass().getResource("/css/style.css").toExternalForm());
 
-        stage.setScene(flagGameScene);
+        stage.setScene(mainScene);
         stage.setMaximized(true);
         stage.setTitle("GeoMaster");
         stage.getIcons().add(
