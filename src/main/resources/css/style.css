@@ -1,13 +1,23 @@
+/*
+TODO
+1. Titel-Text anpassen (Gradient)
+2. Secondary UI-Elements (z.B. transparente Weltkarte im Hintergrund)
+3. Neue Fonts ausprobieren
+ */
 #borderpane {
-    -fx-background-color: linear-gradient(to bottom right, #e0f2f1, #a8ddd9);
+    -fx-background-color: linear-gradient(to bottom right,
+    #eef9f8 0%,
+    #d4f0ed 35%,
+    #b7e4df 70%,
+    #95d1cb 100%);
 }
 
 #willkommen {
-    -fx-font-size: 120px;
+    -fx-font-size: 96px;
     -fx-font-weight: bold;
     -fx-font-family: "Segoe UI", "Arial";
     -fx-text-fill: #1a3a3a;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 18, 0.2, 0, 6);
 }
 
 #info {
@@ -21,20 +31,27 @@
     -fx-pref-height: 80px;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-background-color: #2daea9;
+    -fx-background-color:
+            linear-gradient(to bottom,
+            #39bdb7,
+            #249d98);
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-width: 1px;
+    -fx-border-radius: 12;
+
     -fx-text-fill: white;
     -fx-background-radius: 12;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
 }
 
 .button:hover {
+    -fx-translate-y: -2px;
     -fx-background-color: #3ec4be;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0, 0, 6);
     -fx-cursor: hand;
 }
 
 .button:pressed {
-    -fx-scale-x: 0.95;
-    -fx-scale-y: 0.95;
-    -fx-background-color: #1f8a85;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }
