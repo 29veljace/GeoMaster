@@ -1,5 +1,6 @@
 package app;
 
+import javafx.scene.image.Image;
 import view.FlagGameView;
 import view.MainMenuView;
 import javafx.application.Application;
@@ -28,9 +29,12 @@ public class GeoTriviaApp extends Application {
 
         mainScene.getStylesheets().addAll(getClass().getResource("/css/style.css").toExternalForm());
 
-        stage.setScene(flagGameScene);
+        stage.setScene(mainScene);
         stage.setMaximized(true);
         stage.setTitle("GeoMaster");
+        stage.getIcons().add(
+                new Image(getClass().getResourceAsStream("/icon.png"))
+        );
         stage.show();
     }
 }
