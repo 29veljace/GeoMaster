@@ -6,26 +6,33 @@ import javafx.scene.layout.*;
 import javafx.scene.text.*;
 
 public class MainMenuView {
-    public final Button spiel1;
-    public final Button spiel2;
-    public final Button spiel3;
-    public final Button spiel4;
+    /*
+    TODO
+    1. Animationen ausprobieren
+    mehr in resources/css/style.css
+     */
+    public final Button flagGuessing;
+    public final Button outlineGuessing;
+    public final Button factsGame;
+    public final Button higherLower;
+    public final Button capitalGame;
     public final Text willkommen;
     public final Text info;
     private BorderPane borderPane = new BorderPane();
 
     public MainMenuView(){
-        spiel1 = new Button("Flaggen erraten");
-        spiel2 = new Button("Länderumrisse erkennen");
-        spiel3 = new Button("Viele Fakten => ein Land");
-        spiel4 = new Button("Higher Or Lower");
-        willkommen = new Text("Geomaster");
+        flagGuessing = new Button("Flaggen erraten");
+        outlineGuessing = new Button("Länderumrisse erkennen");
+        factsGame = new Button("Viele Fakten => ein Land");
+        higherLower = new Button("Higher Or Lower");
+        capitalGame = new Button("Hauptstädte erraten");
+        willkommen = new Text("GeoMaster");
         willkommen.setId("willkommen");
         info = new Text("Wählen Sie einen der Spielmodi aus");
         info.setId("info");
-        HBox hBox1 = new HBox(spiel1,spiel2);
+        HBox hBox1 = new HBox(flagGuessing, outlineGuessing);
         hBox1.setAlignment(Pos.CENTER);
-        HBox hBox2 = new HBox(spiel4,spiel3);
+        HBox hBox2 = new HBox(higherLower, factsGame, capitalGame);
         hBox2.setAlignment(Pos.CENTER);
         VBox vBox = new VBox(willkommen,info,hBox1,hBox2);
         vBox.setAlignment(Pos.CENTER);
@@ -37,20 +44,20 @@ public class MainMenuView {
         borderPane.setId("borderpane");
     }
 
-    public Button getSpiel1() {
-        return spiel1;
+    public Button getFlagGuessing() {
+        return flagGuessing;
     }
 
-    public Button getSpiel2() {
-        return spiel2;
+    public Button getOutlineGuessing() {
+        return outlineGuessing;
     }
 
-    public Button getSpiel3() {
-        return spiel3;
+    public Button getFactsGame() {
+        return factsGame;
     }
 
-    public Button getSpiel4() {
-        return spiel4;
+    public Button getHigherLower() {
+        return higherLower;
     }
 
     public Text getWillkommen() {
