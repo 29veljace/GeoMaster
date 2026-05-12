@@ -4,6 +4,7 @@ package model;
 
 import javafx.scene.image.Image;
 
+import java.io.File;
 import java.sql.*;
 import java.util.Random;
 
@@ -11,53 +12,69 @@ public class FlagGameModel {
     // /database/migrations/002_add_orders.sql !!!
     private Connection connection;
 
-    public Connection connect() {
+    public void connect() {
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/?user=GeoMaster&password=hihi_haha_Weihnachtsstunde");
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://127.0.0.1:3306/geoMaster",
+                    "GeoMaster",
+                    "hihi_haha_Weihnachtsstunde"
+            );
+            this.connection = connection;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        return connection;
     }
     public ResultSet getData(){
         Statement statement;
         try {
-            statement = connect().createStatement();
+            statement = connection.createStatement();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         Random random = new Random();
-        random.nextInt(192);
+        int i = random.nextInt(192);
         ResultSet resultSet;
         try {
-             resultSet = statement.executeQuery("Select * from country where id = " + random);
+             resultSet = statement.executeQuery("Select * from country where id = " + i + ";");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return resultSet;
     }
     public Country getCountry(){
+        ResultSet resultSet = getData();
         Country country;
         int id;
         String name, code, capital;
-        int population, area;
-        double avgHeight, bip, avgTemperature;
+        long population, area, bip;
+        double avgHeight,avgTemperature;
         Image image;
         Image outline;
         try {
-           id = getData().getInt("id");
-           name = getData().getString("name");
-           code = getData().getString("code");
-           capital = getData().getString("capital");
-           population = getData().getInt("population");
-           area = getData().getInt("area");
-           avgHeight = getData().getInt("avgHeight");
-           bip = getData().getInt("bip");
-           avgTemperature = getData().getInt("avgTemperature");
-           image = new Image(getData().getString("path1"));
-           outline = new Image(getData().getString("path2"));
-            connection.close();
+            resultSet.next();
+           id = resultSet.getInt("id");
+
+           name = resultSet.getString("name");
+
+           code = resultSet.getString("code");
+
+           capital = resultSet.getString("capital");
+
+           population = resultSet.getLong("population");
+
+           area = resultSet.getLong("area");
+
+           avgHeight = resultSet.getInt("avgHeight");
+
+           bip = resultSet.getLong("bip");
+
+           avgTemperature = resultSet.getInt("avgTemperature");
+           String path1 = resultSet.getString("path1");
+           image = new Image(getClass().getResourceAsStream("/" + path1));
+           String path2 = resultSet.getString("path2");
+           outline = new Image(getClass().getResourceAsStream("/" + path2));
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -65,5 +82,7 @@ public class FlagGameModel {
         return country;
     }
 
-
+    public Connection getConnection() {
+        return connection;
+    }
 }

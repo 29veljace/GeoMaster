@@ -7,15 +7,15 @@ public class Country {
     private String name;
     private String code;
     private String capital;
-    private int population;
-    private int area;
+    private long population;
+    private long area;
     private double avgHeight;
-    private double bip;
+    private long bip;
     private double avgTemperature;
     private Image flag;
     private Image outline;
 
-    public Country(int id, String name, String code, String capital, int population, int area, double avgHeight, double bip, double avgTemperature, Image flag, Image outline) {
+    public Country(int id, String name, String code, String capital, long population, long area, double avgHeight, long bip, double avgTemperature, Image flag, Image outline) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -58,11 +58,11 @@ public class Country {
         return name;
     }
 
-    public int getArea() {
+    public long getArea() {
         return area;
     }
 
-    public int getPopulation() {
+    public long getPopulation() {
         return population;
     }
 
@@ -83,4 +83,11 @@ public class Country {
     }
     */
 
+    public Image getFlag() {
+        return flag;
+    }
+
+    public Image getOutline() {
+        return outline;
+    }
 }
