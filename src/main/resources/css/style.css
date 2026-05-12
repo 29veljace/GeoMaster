@@ -1,29 +1,40 @@
-.button{
+#borderpane {
+    -fx-background-color: linear-gradient(to bottom right, #e0f2f1, #a8ddd9);
+}
+
+#willkommen {
+    -fx-font-size: 120px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI", "Arial";
+    -fx-text-fill: #1a3a3a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+
+#info {
+    -fx-font-size: 26px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #3a5a5a;
+}
+
+.button {
     -fx-pref-width: 350px;
     -fx-pref-height: 80px;
-    -fx-font-size: 20px;
-    -fx-border-color: black;
-    -fx-border-width: 2;
-    -fx-background-color: rgba(45, 174, 169, 0.5);
-    -fx-font-color: black:
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-    -fx-color-radius: 15;
-    -fx-background-radius: 15;
-}
-.button:hover{
-    -fx-background-color: rgba(45, 174, 169, 0.8);
-}
-#willkommen{
-    -fx-font-size: 150px;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-background-color: #2daea9;
+    -fx-text-fill: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
 }
-#info{
-    -fx-font-size: 30px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+
+.button:hover {
+    -fx-background-color: #3ec4be;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0, 0, 6);
+    -fx-cursor: hand;
 }
-#borderpane{
-    -fx-background-color: rgba(168, 221, 217, 0.5);
+
+.button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color: #1f8a85;
 }
