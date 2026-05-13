@@ -23,7 +23,7 @@ public class MainMenuView {
     public MainMenuView(){
         flagGuessing = new Button("Flaggen erraten");
         outlineGuessing = new Button("Länderumrisse erkennen");
-        factsGame = new Button("Viele Fakten => ein Land");
+        factsGame = new Button("Viele Fakten → ein Land");
         higherLower = new Button("Higher Or Lower");
         capitalGame = new Button("Hauptstädte erraten");
         willkommen = new Text("GeoMaster");
