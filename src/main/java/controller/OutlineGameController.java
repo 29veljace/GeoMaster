@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.Random;
 
 public class OutlineGameController {
-    // controller für das flag game
     private OutlineGameView outlineGameView;
     private OutlineGameModel outlineGameModel;
 
@@ -40,21 +39,25 @@ public class OutlineGameController {
                 outlineGameView.getButton2().setText(wrong1.getName());
                 outlineGameView.getButton3().setText(wrong2.getName());
                 outlineGameView.getButton4().setText(wrong3.getName());
+                break;
             case 1:
                 outlineGameView.getButton1().setText(wrong1.getName());
                 outlineGameView.getButton2().setText(c.getName());
                 outlineGameView.getButton3().setText(wrong2.getName());
                 outlineGameView.getButton4().setText(wrong3.getName());
+                break;
             case 2:
                 outlineGameView.getButton1().setText(wrong1.getName());
                 outlineGameView.getButton2().setText(wrong2.getName());
                 outlineGameView.getButton3().setText(c.getName());
                 outlineGameView.getButton4().setText(wrong3.getName());
+                break;
             case 3:
                 outlineGameView.getButton1().setText(wrong1.getName());
                 outlineGameView.getButton2().setText(wrong2.getName());
                 outlineGameView.getButton3().setText(wrong3.getName());
                 outlineGameView.getButton4().setText(c.getName());
+                break;
         }
 
     }
