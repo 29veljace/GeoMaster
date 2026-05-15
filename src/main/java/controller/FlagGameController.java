@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.scene.image.ImageView;
 import model.Country;
 import view.FlagGameView;
 import model.FlagGameModel;
@@ -16,10 +15,10 @@ public class FlagGameController {
     public FlagGameController(FlagGameView view,FlagGameModel model){
         flagGameView = view;
         flagGameModel = model;
-        intEvents();
+        initEvents();
     }
 
-    public void intEvents(){
+    public void initEvents(){
         flagGameModel.connect();
         Country c = flagGameModel.getCountry();
         Country wrong1 = flagGameModel.getCountry();

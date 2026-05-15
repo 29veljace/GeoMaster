@@ -1,31 +1,36 @@
 package controller;
 
 import javafx.scene.Scene;
-import view.FlagGameView;
-import view.MainMenuView;
+import view.*;
 import javafx.stage.Stage;
-import model.FlagGameModel;
+import model.*;
+import util.*;
 
 
 public class MainMenuController {
-    // modusauswahl, startet das spiel
     private MainMenuView mainMenuView;
     private Stage stage;
 
-
-    private FlagGameView view = new FlagGameView(stage);
-    private FlagGameModel model = new FlagGameModel();
-    private FlagGameController controller = new FlagGameController(view,model);
-
-    public MainMenuController(MainMenuView menuView, Stage stage){
+    public MainMenuController(MainMenuView menuView, Stage stage) {
         mainMenuView = menuView;
         this.stage = stage;
-       initEvents();
+        initEvents();
     }
     public void initEvents(){
-        mainMenuView.getFlagGuessing().setOnAction(actionEvent -> {
-            stage.setScene(new Scene(controller.getFlagGameView().getBorderPane()));
+        mainMenuView.getFlagGuessing().setOnAction(_ -> {
+            SceneManager.switchView(GameMode.FLAG_GAME);
+        });
+        mainMenuView.getOutlineGuessing().setOnAction(_ -> {
+            SceneManager.switchView(GameMode.OUTLINE_GAME);
+        });
+        mainMenuView.getFactsGame().setOnAction(_ -> {
+            SceneManager.switchView(GameMode.FACTS_GAME);
+        });
+        mainMenuView.getCapitalGame().setOnAction(_ -> {
+            SceneManager.switchView(GameMode.CAPITAL_GAME);
+        });
+        mainMenuView.getHigherLower().setOnAction(_ -> {
+            SceneManager.switchView(GameMode.HIGHER_LOWER);
         });
     }
-
 }

@@ -1,5 +1,11 @@
 package model;
 
 public enum GameMode {
-    // enum zur definition des game modes
+    MAIN_MENU,
+    FLAG_GAME,
+    CAPITAL_GAME,
+    OUTLINE_GAME,
+    HIGHER_LOWER,
+    FACTS_GAME,
+    GAME_OVER
 }

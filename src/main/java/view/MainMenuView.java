@@ -71,4 +71,8 @@ public class MainMenuView {
     public BorderPane getBorderPane() {
         return borderPane;
     }
+
+    public Button getCapitalGame() {
+        return capitalGame;
+    }
 }

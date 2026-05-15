@@ -1,40 +1,27 @@
 package app;
 
-import controller.FlagGameController;
-import controller.MainMenuController;
+import controller.*;
 import javafx.scene.image.Image;
-import model.FlagGameModel;
-import view.FlagGameView;
-import view.MainMenuView;
+import model.GameMode;
+import view.*;
+import util.*;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GeoTriviaApp extends Application {
-    // einstiegspunkt
-    // scenemanager initalisation
-    // hauptmenü
-
-
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
-
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
+        SceneManager.init(stage);
         MainMenuView mainMenuView = new MainMenuView();
-        FlagGameView flagGameView = new FlagGameView(stage);
-        FlagGameModel flagGameModel = new FlagGameModel();
-        FlagGameController flagGameController = new FlagGameController(flagGameView,flagGameModel);
-        MainMenuController mainMenuController = new MainMenuController(mainMenuView, stage);
-
-        Scene mainScene = new Scene(mainMenuView.getBorderPane());
-        Scene flagGameScene = new Scene(flagGameView.getBorderPane());
-
-        mainScene.getStylesheets().addAll(getClass().getResource("/css/style.css").toExternalForm());
-
-        stage.setScene(mainScene);
+        new MainMenuController(mainMenuView, stage);
+        SceneManager.getScene().getStylesheets().add(
+                getClass().getResource("/css/style.css").toExternalForm()
+        );
+        SceneManager.switchView(GameMode.MAIN_MENU);
         stage.setMaximized(true);
         stage.setTitle("GeoMaster");
         stage.getIcons().add(

@@ -17,7 +17,7 @@ public class FlagGameView {
     private Button button4;
     private BorderPane borderPane;
 
-    public FlagGameView(Stage stage) {
+    public FlagGameView() {
         imageView = new ImageView();
         imageView.setFitWidth(200);
         imageView.setFitHeight(150);
