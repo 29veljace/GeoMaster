@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import util.HighScoreManager;
 import util.SceneManager;
 import view.FlagGameView;
 
@@ -10,6 +11,7 @@ import java.util.Random;
 public class FlagGameController {
     private FlagGameView flagGameView;
     private FlagGameModel flagGameModel;
+    private int score = 0;
 
     public FlagGameController(FlagGameView view, FlagGameModel model) {
         flagGameView = view;
@@ -89,11 +91,18 @@ public class FlagGameController {
     }
 
     public void correctAnswer() {
+        score++;
         buildQuestion();
     }
 
-    public void wrongAnswer(){
+    public void wrongAnswer() {
+        saveHighScore();
         SceneManager.switchView(GameMode.GAME_OVER);
+    }
+
+    public void saveHighScore() {
+        HighScoreManager.saveFlagHighScore(score);
+        score = 0;
     }
 
     public FlagGameView getFlagGameView() {
