@@ -1,8 +1,7 @@
 package controller;
 
 import model.*;
-import util.HighScoreManager;
-import util.SceneManager;
+import util.*;
 import view.FlagGameView;
 
 import java.sql.SQLException;
@@ -96,6 +95,7 @@ public class FlagGameController {
     }
 
     public void wrongAnswer() {
+        GameSession.setCurrentGame(GameMode.FLAG_GAME, score);
         saveHighScore();
         SceneManager.switchView(GameMode.GAME_OVER);
     }

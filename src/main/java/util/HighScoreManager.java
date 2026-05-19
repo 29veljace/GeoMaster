@@ -87,7 +87,7 @@ public class HighScoreManager {
 
     private static void save(Properties props) {
         try (FileOutputStream out = new FileOutputStream(PATH)) {
-            props.store(out,"");
+            props.store(out,null);
         } catch (IOException e) {
             throw new RuntimeException("Fehler beim Speichern der Highscores", e);
         }

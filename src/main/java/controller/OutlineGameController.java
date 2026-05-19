@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import util.GameSession;
 import util.HighScoreManager;
 import util.SceneManager;
 import view.OutlineGameView;
@@ -95,12 +96,13 @@ public class OutlineGameController {
     }
 
     public void wrongAnswer(){
+        GameSession.setCurrentGame(GameMode.OUTLINE_GAME,score);
         saveHighScore();
         SceneManager.switchView(GameMode.GAME_OVER);
     }
 
     public void saveHighScore() {
-        HighScoreManager.saveFlagHighScore(score);
+        HighScoreManager.saveOutlineHighScore(score);
         score = 0;
     }
 
