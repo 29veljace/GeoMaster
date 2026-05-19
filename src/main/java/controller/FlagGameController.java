@@ -29,7 +29,7 @@ public class FlagGameController {
                 b = true;
             }
         }
-        Country wrong2 = flagGameModel.getCountry();#
+        Country wrong2 = flagGameModel.getCountry();
         b = true;
         while (b) {
             b = false;
@@ -42,7 +42,7 @@ public class FlagGameController {
         b = true;
         while (b){
             b = false;
-            if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() = wrong1.getId()) {
+            if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
                 wrong2 = flagGameModel.getCountry();
                 b = true;
             }
