@@ -43,7 +43,7 @@ public class FlagGameController {
         while (b){
             b = false;
             if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
-                wrong2 = flagGameModel.getCountry();
+                wrong3 = flagGameModel.getCountry();
                 b = true;
             }
         }

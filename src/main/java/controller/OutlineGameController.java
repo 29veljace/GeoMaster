@@ -19,10 +19,34 @@ public class OutlineGameController {
 
     public void buildQuestion(){
         outlineGameModel.connect();
+        boolean b = true;
         Country c = outlineGameModel.getCountry();
         Country wrong1 = outlineGameModel.getCountry();
+        while (b) {
+            b = false;
+            if (wrong1.getId() == c.getId()) {
+                wrong1 = outlineGameModel.getCountry();
+                b = true;
+            }
+        }
         Country wrong2 = outlineGameModel.getCountry();
+        b = true;
+        while (b) {
+            b = false;
+            if (wrong2.getId() == c.getId() || wrong1.getId() == wrong2.getId()) {
+                wrong2 = outlineGameModel.getCountry();
+                b = true;
+            }
+        }
         Country wrong3 = outlineGameModel.getCountry();
+        b = true;
+        while (b){
+            b = false;
+            if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
+                wrong3 = outlineGameModel.getCountry();
+                b = true;
+            }
+        }
         try {
             outlineGameModel.getConnection().close();
         } catch (SQLException e) {
