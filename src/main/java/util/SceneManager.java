@@ -23,7 +23,7 @@ public class SceneManager {
         switch (mode) {
             case MAIN_MENU -> {
                 MainMenuView view = new MainMenuView();
-                new MainMenuController(view,stage);
+                new MainMenuController(view, stage);
                 root.getChildren().setAll(view.getBorderPane());
             }
             case FLAG_GAME -> {
@@ -43,12 +43,18 @@ public class SceneManager {
             }
             case OUTLINE_GAME -> {
                 OutlineGameView view = new OutlineGameView();
-                new OutlineGameController(view,new OutlineGameModel());
+                new OutlineGameController(view, new OutlineGameModel());
                 root.getChildren().setAll(view.getBorderPane());
             }
-            case GAME_OVER    -> root.getChildren().setAll(new GameOverView(stage).getBorderPane());
+            case GAME_OVER -> {
+                GameOverView view = new GameOverView(stage);
+                new GameOverController(view);
+                root.getChildren().setAll(view.getBorderPane());
+            }
         }
     }
 
-    public static Scene getScene() { return scene; }
+    public static Scene getScene() {
+        return scene;
+    }
 }

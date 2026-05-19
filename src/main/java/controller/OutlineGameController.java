@@ -1,6 +1,8 @@
 package controller;
 
 import model.*;
+import util.GameSession;
+import util.HighScoreManager;
 import util.SceneManager;
 import view.OutlineGameView;
 
@@ -10,6 +12,7 @@ import java.util.Random;
 public class OutlineGameController {
     private OutlineGameView outlineGameView;
     private OutlineGameModel outlineGameModel;
+    private int score;
 
     public OutlineGameController(OutlineGameView view, OutlineGameModel model){
         outlineGameView = view;
@@ -112,11 +115,19 @@ public class OutlineGameController {
     }
 
     public void correctAnswer(){
+        score++;
         buildQuestion();
     }
 
     public void wrongAnswer(){
+        GameSession.setCurrentGame(GameMode.OUTLINE_GAME,score);
+        saveHighScore();
         SceneManager.switchView(GameMode.GAME_OVER);
+    }
+
+    public void saveHighScore() {
+        HighScoreManager.saveOutlineHighScore(score);
+        score = 0;
     }
 
     public OutlineGameView getOutlineGameView() {
