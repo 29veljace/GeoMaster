@@ -1,5 +1,6 @@
 package view;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -41,6 +42,7 @@ public class FlagGameView {
         hBox.setSpacing(30);
         VBox vBox = new VBox(hBox,hBox2);
         vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(60);
         borderPane = new BorderPane();
         borderPane.setCenter(vBox);
     }

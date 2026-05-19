@@ -38,6 +38,7 @@ public class OutlineGameView {
         hBox2.setAlignment(Pos.CENTER);
         hBox.setSpacing(30);
         VBox vBox = new VBox(hBox,hBox2);
+        vBox.setSpacing(60);
         vBox.setAlignment(Pos.CENTER);
         borderPane = new BorderPane();
         borderPane.setCenter(vBox);

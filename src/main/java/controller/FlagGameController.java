@@ -18,11 +18,35 @@ public class FlagGameController {
     }
 
     public void buildQuestion() {
+        boolean b = true;
         flagGameModel.connect();
         Country c = flagGameModel.getCountry();
         Country wrong1 = flagGameModel.getCountry();
-        Country wrong2 = flagGameModel.getCountry();
+        while (b) {
+            b = false;
+            if (wrong1.getId() == c.getId()) {
+                wrong1 = flagGameModel.getCountry();
+                b = true;
+            }
+        }
+        Country wrong2 = flagGameModel.getCountry();#
+        b = true;
+        while (b) {
+            b = false;
+            if (wrong2.getId() == c.getId() || wrong1.getId() == wrong2.getId()) {
+                wrong2 = flagGameModel.getCountry();
+                b = true;
+            }
+        }
         Country wrong3 = flagGameModel.getCountry();
+        b = true;
+        while (b){
+            b = false;
+            if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() = wrong1.getId()) {
+                wrong2 = flagGameModel.getCountry();
+                b = true;
+            }
+        }
         try {
             flagGameModel.getConnection().close();
         } catch (SQLException e) {
