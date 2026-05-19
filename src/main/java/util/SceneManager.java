@@ -38,7 +38,7 @@ public class SceneManager {
             }
             case HIGHER_LOWER -> {
                 HigherLowerView view = new HigherLowerView(stage);
-                new HigherLowerController();
+                new HigherLowerController(view, new HigherLowerModel());
                 root.getChildren().setAll(view.getBorderPane());
             }
             case OUTLINE_GAME -> {
