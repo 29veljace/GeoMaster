@@ -11,12 +11,12 @@ import javafx.stage.*;
 
 public class FlagGameView {
 
-    private ImageView imageView;
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-    private BorderPane borderPane;
+    private final ImageView imageView;
+    private final Button button1;
+    private final Button button2;
+    private final Button button3;
+    private final Button button4;
+    private final BorderPane borderPane;
 
     public FlagGameView() {
         imageView = new ImageView();
@@ -39,6 +39,7 @@ public class FlagGameView {
         vBox2.setSpacing(30);
         HBox hBox2 = new HBox(vBox1,vBox2);
         hBox2.setAlignment(Pos.CENTER);
+        hBox2.setSpacing(30);
         hBox.setSpacing(30);
         VBox vBox = new VBox(hBox,hBox2);
         vBox.setAlignment(Pos.CENTER);
