@@ -12,7 +12,6 @@ module _2dhif.geomaster {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires javafx.graphics;
-    requires _2dhif.geomaster;
 
     opens app        to javafx.fxml;
     opens controller to javafx.fxml;

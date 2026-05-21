@@ -25,7 +25,13 @@ public class HigherLowerView {
        hBox.setSpacing(100);
        hBox.setAlignment(Pos.CENTER);
        imageView1 = new ImageView();
+       imageView1.setFitWidth(200);
+       imageView1.setFitHeight(150);
+       imageView1.setPreserveRatio(true);
        imageView2 = new ImageView();
+       imageView2.setFitWidth(200);
+       imageView2.setFitHeight(150);
+       imageView2.setPreserveRatio(true);
        HBox hBox1 = new HBox(imageView1,imageView2);
        hBox1.setAlignment(Pos.CENTER);
        hBox1.setSpacing(100);
