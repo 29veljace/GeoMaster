@@ -46,14 +46,22 @@ public class HigherLowerController {
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
-                }else {
+                }else if(c1.getPopulation() < c2.getPopulation()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         correctAnswer();
                     });
+                }else{
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
                 }
+                break;
             case 1:
                 higherLowerView.getLabel().setText("AREA");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
@@ -67,14 +75,22 @@ public class HigherLowerController {
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
-                }else {
+                }else if(c1.getArea() < c2.getArea()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         correctAnswer();
                     });
+                }else{
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
                 }
+                break;
             case 2:
                 higherLowerView.getLabel().setText("AVERAGE HEIGHT");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
@@ -88,14 +104,22 @@ public class HigherLowerController {
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
-                }else {
+                }else if(c1.getAvgHeight() < c2.getAvgHeight()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         correctAnswer();
                     });
+                }else{
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
                 }
+                break;
             case 3:
                 higherLowerView.getLabel().setText("BIP");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
@@ -109,14 +133,22 @@ public class HigherLowerController {
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
-                }else {
+                }else if(c1.getBip() < c2.getBip()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         correctAnswer();
                     });
+                }else{
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
                 }
+                break;
             case 4:
                 higherLowerView.getLabel().setText("AVERAGE TEMPERATURE");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
@@ -130,14 +162,22 @@ public class HigherLowerController {
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
-                }else {
+                }else if(c1.getAvgTemperature() < c2.getAvgTemperature()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         correctAnswer();
                     });
+                }else{
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
                 }
+                break;
         }
     }
     public void correctAnswer(){
