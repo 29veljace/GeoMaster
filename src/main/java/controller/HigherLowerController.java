@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.Random;
 
 public class HigherLowerController {
-    // TODO schau nach unten
     HigherLowerModel higherLowerModel;
     HigherLowerView higherLowerView;
     private int score;
@@ -38,7 +37,7 @@ public class HigherLowerController {
         int i = random.nextInt(5);
         switch (i){
             case 0:
-                higherLowerView.getLabel().setText("POPULATION");
+                higherLowerView.getLabel().setText("Welches Land hat die größere Bevölkerung?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName());
@@ -67,7 +66,7 @@ public class HigherLowerController {
                 }
                 break;
             case 1:
-                higherLowerView.getLabel().setText("AREA");
+                higherLowerView.getLabel().setText("Welches Land ist größer?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName());
@@ -96,7 +95,7 @@ public class HigherLowerController {
                 }
                 break;
             case 2:
-                higherLowerView.getLabel().setText("AVERAGE HEIGHT");
+                higherLowerView.getLabel().setText("Welches Land hat die größeren Menschen?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName());
@@ -125,7 +124,7 @@ public class HigherLowerController {
                 }
                 break;
             case 3:
-                higherLowerView.getLabel().setText("BIP");
+                higherLowerView.getLabel().setText("Welches Land hat das größere BIP?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName());
@@ -154,7 +153,7 @@ public class HigherLowerController {
                 }
                 break;
             case 4:
-                higherLowerView.getLabel().setText("AVERAGE TEMPERATURE");
+                higherLowerView.getLabel().setText("In welchem Land ist es heißer?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName());
