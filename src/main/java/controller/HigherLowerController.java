@@ -3,15 +3,18 @@ package controller;
 import model.Country;
 import model.GameMode;
 import model.HigherLowerModel;
+import util.GameSession;
+import util.HighScoreManager;
 import util.SceneManager;
 import view.HigherLowerView;
 
 import java.util.Random;
 
 public class HigherLowerController {
-    // controller für das higher/lower spiel
+    // TODO schau nach unten
     HigherLowerModel higherLowerModel;
     HigherLowerView higherLowerView;
+    private int score;
 
     public HigherLowerController(HigherLowerView view, HigherLowerModel model){
         higherLowerModel = model;
@@ -142,9 +145,17 @@ public class HigherLowerController {
     }
     public void correctAnswer(){
         buildQuestion();
+        score++;
     }
 
     public void wrongAnswer(){
+        GameSession.setCurrentGame(GameMode.HIGHER_LOWER, score);
+        saveHighScore();
         SceneManager.switchView(GameMode.GAME_OVER);
+    }
+
+    public void saveHighScore() {
+        HighScoreManager.saveHLHighScore(score);
+        score = 0;
     }
 }
