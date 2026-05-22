@@ -46,6 +46,11 @@ public class SceneManager {
                 new OutlineGameController(view, new OutlineGameModel());
                 root.getChildren().setAll(view.getBorderPane());
             }
+            case CAPITAL_GAME -> {
+                CapitalGameView view = new CapitalGameView();
+                new CapitalGameController(view,new CapitalGameModel());
+                root.getChildren().setAll(view.getBorderPane());
+            }
             case GAME_OVER -> {
                 GameOverView view = new GameOverView(stage);
                 new GameOverController(view);

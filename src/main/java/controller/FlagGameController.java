@@ -110,7 +110,11 @@ public class FlagGameController {
                 flagGameView.getButton4().setOnAction(_ -> correctAnswer());
                 break;
         }
-
+        try {
+            flagGameModel.getConnection().close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void correctAnswer() {

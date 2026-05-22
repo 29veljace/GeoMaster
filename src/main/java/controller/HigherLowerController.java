@@ -8,6 +8,7 @@ import util.HighScoreManager;
 import util.SceneManager;
 import view.HigherLowerView;
 
+import java.sql.SQLException;
 import java.util.Random;
 
 public class HigherLowerController {
@@ -181,6 +182,11 @@ public class HigherLowerController {
                     });
                 }
                 break;
+        }
+        try {
+            higherLowerModel.getConnection().close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
     public void correctAnswer(){
