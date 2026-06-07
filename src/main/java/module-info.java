@@ -20,4 +20,5 @@ module _2dhif.geomaster {
     exports app;
     exports controller;
     exports model;
+    exports view;
 }

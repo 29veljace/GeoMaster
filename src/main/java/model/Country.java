@@ -44,16 +44,7 @@ public class Country {
     public double getAvgTemperature() {
         return avgTemperature;
     }
-/*
-    public Image getFlag() {
-        if (flag == null) {
-            flag = new Image(
-                    getClass().getResourceAsStream("/flags/" + code + ".png")
-            );
-        }
-        return flag;
-    }
-*/
+
     public String getName() {
         return name;
     }
@@ -73,15 +64,6 @@ public class Country {
     public String getCode() {
         return code;
     }
-/*
-    public Image getOutline() {
-        if (outline == null) {
-            outline = new Image(
-                    getClass().getResourceAsStream("/outlines/" + code + ".png"));
-        }
-        return outline;
-    }
-    */
 
     public Image getFlag() {
         return flag;
