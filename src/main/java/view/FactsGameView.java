@@ -25,6 +25,7 @@ public class FactsGameView {
     private final Label status;
     private final VBox vBox;
     private final HBox hBox;
+    private final GridPane gridPane;
 
     public FactsGameView() {
         btn1 = new Button();
@@ -44,7 +45,7 @@ public class FactsGameView {
         btn15 = new Button();
         btn16 = new Button();
         status = new Label("Wähle die zusammengehörigen Fakten aus");
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
         gridPane.add(btn1,0,0);
         gridPane.add(btn2,1,0);
         gridPane.add(btn3,2,0);
@@ -167,5 +168,9 @@ public class FactsGameView {
 
     public HBox gethBox() {
         return hBox;
+    }
+
+    public GridPane getGridPane() {
+        return gridPane;
     }
 }

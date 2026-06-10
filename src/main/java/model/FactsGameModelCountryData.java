@@ -11,14 +11,15 @@ public class FactsGameModelCountryData {
     public void connect() {
 
         try {
-            Connection connection = DriverManager.getConnection(
+            this.connection = DriverManager.getConnection(
                     "jdbc:mysql://127.0.0.1:3306/geoMaster",
                     "GeoMaster",
                     "hihi_haha_Weihnachtsstunde"
             );
-            this.connection = connection;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error Code: " + e.getErrorCode());
+            System.out.println("SQL State: " + e.getSQLState());
+            System.out.println("Message: " + e.getMessage());
         }
     }
     public ResultSet getData(){
@@ -76,5 +77,9 @@ public class FactsGameModelCountryData {
         }
         country = new Country(id,name,code,capital,population,area,avgHeight,bip,avgTemperature,image,outline);
         return country;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }

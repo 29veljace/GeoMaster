@@ -4,7 +4,6 @@ package model;
 
 import javafx.scene.image.Image;
 
-import java.io.File;
 import java.sql.*;
 import java.util.Random;
 
@@ -15,12 +14,11 @@ public class FlagGameModel {
     public void connect() {
 
         try {
-            Connection connection = DriverManager.getConnection(
+            this.connection = DriverManager.getConnection(
                     "jdbc:mysql://127.0.0.1:3306/geoMaster",
                     "GeoMaster",
                     "hihi_haha_Weihnachtsstunde"
             );
-            this.connection = connection;
         } catch (SQLException e) {
             e.printStackTrace();
         }

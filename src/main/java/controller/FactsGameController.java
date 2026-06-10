@@ -2,10 +2,13 @@ package controller;
 
 
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import model.FactsGameModel;
 import model.GameMode;
 import util.SceneManager;
 import view.FactsGameView;
+
+import java.util.List;
 
 
 public class FactsGameController {
@@ -13,11 +16,13 @@ public class FactsGameController {
     private final FactsGameModel model;
     private final FactsGameView view;
     private int leben;
+    private int counter;
 
     public FactsGameController(FactsGameModel model,FactsGameView view) {
         this.view = view;
         this.model = model;
         leben = 3;
+        counter = 0;
         initEvents();
 }
 
@@ -41,21 +46,22 @@ private void initEvents() {
 }
 
 private void handle(Button btn) {
-    String wert = btn.getText();
-    boolean richtig = model.auswählen(wert);
-    // markieren
+        boolean richtig;
+        if(btn.getText().isBlank()){
+            ImageView wert = (ImageView) btn.getGraphic();
+             richtig = model.auswaehlen(wert);
+        }
+        else {
+            String wert = btn.getText();
+             richtig = model.auswaehlen(wert);
+        }
+
     view.markiere(btn);
-    // falsch
     if (!richtig) {
         view.getStatus().setText("Falsch!");
         model.reset();
         view.resetButtons();
         leben--;
-        try {
-            wait(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         view.getStatus().setText("Du hast noch " + leben + " Leben übrig");
         if(leben == 0){
             SceneManager.switchView(GameMode.GAME_OVER);
@@ -63,15 +69,29 @@ private void handle(Button btn) {
         return;
     }
 
-    // alles richtig
     if (model.allesRichtig()) {
         view.getStatus().setText("Alles richtig!");
-        try {
-            wait(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        List<Button> buttonListList = view.getGridPane().getChildren().stream().filter(node -> node instanceof Button).map(node -> (Button) node).filter(button -> button.getStyleClass().contains("-fx-background-color: lightgreen")).filter(button -> button.isVisible()).toList();
+        for(int i = 0;i < buttonListList.size();i++){
+            buttonListList.get(i).setVisible(false);
         }
-        SceneManager.switchView(GameMode.MAIN_MENU);
+        counter++;
+        if (counter == 4) {
+            try {
+                wait(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            SceneManager.switchView(GameMode.MAIN_MENU);
+        }
     }
 }
+
+    public FactsGameModel getModel() {
+        return model;
+    }
+
+    public FactsGameView getView() {
+        return view;
+    }
 }

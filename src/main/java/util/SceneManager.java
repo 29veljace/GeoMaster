@@ -32,12 +32,10 @@ public class SceneManager {
                 root.getChildren().setAll(view.getBorderPane());
             }
             case FACTS_GAME -> {
-                FactsGameView view = new FactsGameView();
-                new FactsGameController(new FactsGameModel(),view);
-                root.getChildren().setAll(view.gethBox());
+                FactsGameModel model = new FactsGameModel();
+                FactsGameController factsGameController = new FactsGameController(model,model.getView());
+                root.getChildren().setAll(factsGameController.getModel().getView().gethBox());
             }
-
-
             case HIGHER_LOWER -> {
                 HigherLowerView view = new HigherLowerView(stage);
                 new HigherLowerController(view, new HigherLowerModel());

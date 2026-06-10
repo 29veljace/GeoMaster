@@ -19,7 +19,9 @@ public class CapitalGameModel {
             );
             this.connection = connection;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error Code: " + e.getErrorCode());
+            System.out.println("SQL State: " + e.getSQLState());
+            System.out.println("Message: " + e.getMessage());
         }
     }
     public ResultSet getData(){
