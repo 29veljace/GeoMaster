@@ -12,12 +12,16 @@ import java.util.Set;
 
 public class FactsGameModel {
 
-    FactsGameView view = new FactsGameView();
-    FactsGameModelCountryData factsGameModelCountryData = new FactsGameModelCountryData();
-    Country c1;
-    Country c2;
-    Country c3;
-    Country c4;
+    private FactsGameView view = new FactsGameView();
+    private FactsGameModelCountryData factsGameModelCountryData = new FactsGameModelCountryData();
+    private Country c1;
+    private Country c2;
+    private Country c3;
+    private Country c4;
+    private boolean isC1 = false;
+    private boolean isC2 = false;
+    private boolean isC3 = false;
+    private boolean isC4 = false;
 
     public void setCountries(){
         factsGameModelCountryData.connect();
@@ -57,7 +61,6 @@ public class FactsGameModel {
         setCountries();
         Random random = new Random();
 
-        // Alle Buttons in ein Array packen, um sie über einen Index anzusprechen
         Button[] buttons = new Button[] {
                 view.getBtn1(), view.getBtn2(), view.getBtn3(), view.getBtn4(),
                 view.getBtn5(), view.getBtn6(), view.getBtn7(), view.getBtn8(),
@@ -65,7 +68,6 @@ public class FactsGameModel {
                 view.getBtn13(), view.getBtn14(), view.getBtn15(), view.getBtn16()
         };
 
-        // Die 4 Länder und ihre zugehörigen Sets in Arrays packen
         Country[] countries = {c1, c2, c3, c4};
         Set[] antwortenSets = {richtigeAntwortenC1, richtigeAntwortenC2, richtigeAntwortenC3, richtigeAntwortenC4};
 
@@ -118,40 +120,41 @@ public class FactsGameModel {
                 }
             }
         }
+        System.out.println(richtigeAntwortenC1);
+        System.out.println(richtigeAntwortenC2);
+        System.out.println(richtigeAntwortenC3);
+        System.out.println(richtigeAntwortenC4);
     }
 
 
 
     public boolean auswaehlen(Object wert) {
         ausgewaehlt.add(wert);
-        boolean c1 = false;
-        boolean c2 = false;
-        boolean c3 = false;
-        boolean c4 = false;
+
         if(ausgewaehlt.size() == 1) {
             if (richtigeAntwortenC1.containsAll(ausgewaehlt)) {
-                c1 = true;
+                isC1 = true;
             }
             if (richtigeAntwortenC2.containsAll(ausgewaehlt)) {
-                c2 = true;
+                isC2 = true;
             }
             if (richtigeAntwortenC3.containsAll(ausgewaehlt)) {
-                c3 = true;
+                isC3 = true;
             }
             if (richtigeAntwortenC4.containsAll(ausgewaehlt)) {
-                c4 = true;
+                isC4 = true;
             }
         }
-        if(c1){
+        if(isC1){
             return richtigeAntwortenC1.containsAll(ausgewaehlt);
         }
-        if(c2){
+        if(isC2){
             return richtigeAntwortenC2.containsAll(ausgewaehlt);
         }
-        if(c3){
+        if(isC3){
             return richtigeAntwortenC3.containsAll(ausgewaehlt);
         }
-        if(c4){
+        if(isC4){
             return richtigeAntwortenC4.containsAll(ausgewaehlt);
         }
         return false;
@@ -160,10 +163,17 @@ public class FactsGameModel {
 
     public boolean allesRichtig() {
 
-        return (ausgewaehlt.containsAll(richtigeAntwortenC1) || ausgewaehlt.containsAll(richtigeAntwortenC2)
+        if ((ausgewaehlt.containsAll(richtigeAntwortenC1) || ausgewaehlt.containsAll(richtigeAntwortenC2)
                 || ausgewaehlt.containsAll(richtigeAntwortenC3) || ausgewaehlt.containsAll(richtigeAntwortenC4))
                 && (ausgewaehlt.size() == richtigeAntwortenC1.size() || ausgewaehlt.size() == richtigeAntwortenC2.size()
-                || ausgewaehlt.size() == richtigeAntwortenC3.size() || ausgewaehlt.size() == richtigeAntwortenC4.size());
+                || ausgewaehlt.size() == richtigeAntwortenC3.size() || ausgewaehlt.size() == richtigeAntwortenC4.size())){
+            isC1 = false;
+            isC2 = false;
+            isC3 = false;
+            isC4 = false;
+            return true;
+        }
+        return false;
     }
 
     public void reset() {

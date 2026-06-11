@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import model.FactsGameModel;
 import model.GameMode;
+import util.HighScoreManager;
 import util.SceneManager;
 import view.FactsGameView;
 
@@ -14,12 +15,10 @@ import java.util.List;
 public class FactsGameController {
     // controller für das spiel mit den fakten
     private final FactsGameModel model;
-    private final FactsGameView view;
     private int leben;
     private int counter;
 
-    public FactsGameController(FactsGameModel model,FactsGameView view) {
-        this.view = view;
+    public FactsGameController(FactsGameModel model) {
         this.model = model;
         leben = 3;
         counter = 0;
@@ -27,22 +26,22 @@ public class FactsGameController {
 }
 
 private void initEvents() {
-    view.getBtn1().setOnAction(e -> handle(view.getBtn1()));
-    view.getBtn2().setOnAction(e -> handle(view.getBtn2()));
-    view.getBtn3().setOnAction(e -> handle(view.getBtn3()));
-    view.getBtn4().setOnAction(e -> handle(view.getBtn4()));
-    view.getBtn5().setOnAction(e -> handle(view.getBtn5()));
-    view.getBtn6().setOnAction(e -> handle(view.getBtn6()));
-    view.getBtn7().setOnAction(e -> handle(view.getBtn7()));
-    view.getBtn8().setOnAction(e -> handle(view.getBtn8()));
-    view.getBtn9().setOnAction(e -> handle(view.getBtn9()));
-    view.getBtn10().setOnAction(e -> handle(view.getBtn10()));
-    view.getBtn11().setOnAction(e -> handle(view.getBtn11()));
-    view.getBtn12().setOnAction(e -> handle(view.getBtn12()));
-    view.getBtn13().setOnAction(e -> handle(view.getBtn13()));
-    view.getBtn14().setOnAction(e -> handle(view.getBtn14()));
-    view.getBtn15().setOnAction(e -> handle(view.getBtn15()));
-    view.getBtn16().setOnAction(e -> handle(view.getBtn16()));
+    model.getView().getBtn1().setOnAction(e -> handle(model.getView().getBtn1()));
+    model.getView().getBtn2().setOnAction(e -> handle(model.getView().getBtn2()));
+    model.getView().getBtn3().setOnAction(e -> handle(model.getView().getBtn3()));
+    model.getView().getBtn4().setOnAction(e -> handle(model.getView().getBtn4()));
+    model.getView().getBtn5().setOnAction(e -> handle(model.getView().getBtn5()));
+    model.getView().getBtn6().setOnAction(e -> handle(model.getView().getBtn6()));
+    model.getView().getBtn7().setOnAction(e -> handle(model.getView().getBtn7()));
+    model.getView().getBtn8().setOnAction(e -> handle(model.getView().getBtn8()));
+    model.getView().getBtn9().setOnAction(e -> handle(model.getView().getBtn9()));
+    model.getView().getBtn10().setOnAction(e -> handle(model.getView().getBtn10()));
+    model.getView().getBtn11().setOnAction(e -> handle(model.getView().getBtn11()));
+    model.getView().getBtn12().setOnAction(e -> handle(model.getView().getBtn12()));
+    model.getView().getBtn13().setOnAction(e -> handle(model.getView().getBtn13()));
+    model.getView().getBtn14().setOnAction(e -> handle(model.getView().getBtn14()));
+    model.getView().getBtn15().setOnAction(e -> handle(model.getView().getBtn15()));
+    model.getView().getBtn16().setOnAction(e -> handle(model.getView().getBtn16()));
 }
 
 private void handle(Button btn) {
@@ -56,13 +55,13 @@ private void handle(Button btn) {
              richtig = model.auswaehlen(wert);
         }
 
-    view.markiere(btn);
+    model.getView().markiere(btn);
     if (!richtig) {
-        view.getStatus().setText("Falsch!");
+        model.getView().getStatus().setText("Falsch!");
         model.reset();
-        view.resetButtons();
+        model.getView().resetButtons();
         leben--;
-        view.getStatus().setText("Du hast noch " + leben + " Leben übrig");
+        model.getView().getStatus().setText("Du hast noch " + leben + " Leben übrig");
         if(leben == 0){
             SceneManager.switchView(GameMode.GAME_OVER);
         }
@@ -70,18 +69,25 @@ private void handle(Button btn) {
     }
 
     if (model.allesRichtig()) {
-        view.getStatus().setText("Alles richtig!");
-        List<Button> buttonListList = view.getGridPane().getChildren().stream().filter(node -> node instanceof Button).map(node -> (Button) node).filter(button -> button.getStyleClass().contains("-fx-background-color: lightgreen")).filter(button -> button.isVisible()).toList();
-        for(int i = 0;i < buttonListList.size();i++){
-            buttonListList.get(i).setVisible(false);
+        model.getView().getStatus().setText("Alles richtig!");
+        Button[] buttons = new Button[] {
+                model.getView().getBtn1(), model.getView().getBtn2(), model.getView().getBtn3(), model.getView().getBtn4(),
+                model.getView().getBtn5(), model.getView().getBtn6(), model.getView().getBtn7(), model.getView().getBtn8(),
+                model.getView().getBtn9(), model.getView().getBtn10(), model.getView().getBtn11(), model.getView().getBtn12(),
+                model.getView().getBtn13(), model.getView().getBtn14(), model.getView().getBtn15(), model.getView().getBtn16()
+        };
+        Object[] objects = model.getAusgewaehlt().toArray();
+        for(int i = 0;i < 16;i++){
+            for (int a = 0;a < 4;a++){
+                if(objects[a] == buttons[i].getText() || objects[a] == buttons[i].getGraphic()){
+                    buttons[i].setVisible(false);
+                }
+            }
         }
+        model.reset();
         counter++;
         if (counter == 4) {
-            try {
-                wait(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            HighScoreManager.increaseStreak();
             SceneManager.switchView(GameMode.MAIN_MENU);
         }
     }
@@ -91,7 +97,5 @@ private void handle(Button btn) {
         return model;
     }
 
-    public FactsGameView getView() {
-        return view;
-    }
+
 }

@@ -5,6 +5,7 @@ import java.util.Properties;
 public class HighScoreManager {
 
     private static final String PATH = "src/main/resources/highscores.properties";
+    private static int countFactsGameStreak = 0;
 
     public static void saveFlagHighScore(int newScore) {
         Properties props = load();
@@ -91,5 +92,9 @@ public class HighScoreManager {
         } catch (IOException e) {
             throw new RuntimeException("Fehler beim Speichern der Highscores", e);
         }
+    }
+
+    public static void increaseStreak(){
+        countFactsGameStreak++;
     }
 }

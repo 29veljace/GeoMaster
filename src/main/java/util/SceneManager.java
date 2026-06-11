@@ -33,7 +33,7 @@ public class SceneManager {
             }
             case FACTS_GAME -> {
                 FactsGameModel model = new FactsGameModel();
-                FactsGameController factsGameController = new FactsGameController(model,model.getView());
+                FactsGameController factsGameController = new FactsGameController(model);
                 root.getChildren().setAll(factsGameController.getModel().getView().gethBox());
             }
             case HIGHER_LOWER -> {
