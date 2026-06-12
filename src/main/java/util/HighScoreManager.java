@@ -97,4 +97,8 @@ public class HighScoreManager {
     public static void increaseStreak(){
         countFactsGameStreak++;
     }
+
+    public static int getCountFactsGameStreak() {
+        return countFactsGameStreak;
+    }
 }

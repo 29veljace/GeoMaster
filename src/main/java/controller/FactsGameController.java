@@ -88,7 +88,7 @@ public class FactsGameController {
             counter++;
             if (counter == 4) {
                 HighScoreManager.increaseStreak();
-                SceneManager.switchView(GameMode.MAIN_MENU);
+                SceneManager.switchView(GameMode.FACTS_GAME_STREAK);
             }
         }
     }

@@ -56,6 +56,11 @@ public class SceneManager {
                 new GameOverController(view);
                 root.getChildren().setAll(view.getBorderPane());
             }
+            case FACTS_GAME_STREAK -> {
+                FactsGameStreakView view = new FactsGameStreakView();
+                new FactsGameStreakController(view);
+                root.getChildren().setAll(view.gethBox());
+            }
         }
     }
 
