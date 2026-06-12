@@ -5,8 +5,6 @@ import util.*;
 import model.*;
 
 public class GameOverController {
-    // controller für game over, zeigt score, blabla
-
     public GameOverController(GameOverView gameOverView) {
         int currentScore = GameSession.getCurrentScore();
         GameMode mode = GameSession.getCurrentMode();
@@ -25,7 +23,6 @@ public class GameOverController {
         return switch (mode) {
             case FLAG_GAME -> HighScoreManager.getFlagHighScore();
             case CAPITAL_GAME -> HighScoreManager.getCapitalHighScore();
-            case FACTS_GAME -> HighScoreManager.getFactsHighScore();
             case HIGHER_LOWER -> HighScoreManager.getHLHighScore();
             case OUTLINE_GAME -> HighScoreManager.getOutlineHighScore();
             default -> 0;

@@ -3,7 +3,7 @@ TODO
 1. Titel-Text anpassen (Gradient)
 2. Secondary UI-Elements (z.B. transparente Weltkarte im Hintergrund)
 3. Neue Fonts ausprobieren
- */
+*/
 #borderpane {
     -fx-background-color: linear-gradient(to bottom right,
     #eef9f8 0%,
