@@ -12,7 +12,7 @@ public class FactsGameStreakView {
     private final Button button;
     private final HBox hBox;
     public FactsGameStreakView(){
-        label = new Label("Du hast diesen Modus bereits " + HighScoreManager.getCountFactsGameStreak() + " gewonnen!");
+        label = new Label("Du hast diesen Modus bereits " + HighScoreManager.getCountFactsGameStreak() + " Mal gewonnen!");
         button = new Button("Zurück zum Menü");
         VBox vBox = new VBox(label,button);
         vBox.setSpacing(10);

@@ -45,6 +45,7 @@ public class FactsGameView {
         btn15 = new Button();
         btn16 = new Button();
         status = new Label("Wähle die zusammengehörigen Fakten aus");
+        status.setId("factsGameStatus");
         gridPane = new GridPane();
         gridPane.add(btn1,0,0);
         gridPane.add(btn2,1,0);
@@ -69,6 +70,7 @@ public class FactsGameView {
         vBox.setAlignment(Pos.CENTER);
         hBox = new HBox(vBox);
         hBox.setAlignment(Pos.CENTER);
+        hBox.setId("factsGamePane");
     }
 
     public void markiere(Button btn) {

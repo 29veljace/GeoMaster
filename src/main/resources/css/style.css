@@ -1,19 +1,70 @@
-/*
-TODO
-1. Titel-Text anpassen (Gradient)       ✓ (bleibt als nächste Aufgabe)
-2. Secondary UI-Elements (Weltkarte)    ✓ DONE
-3. Neue Fonts ausprobieren              ✓ DONE – Inter
-*/
-
 #borderpane {
     -fx-background-color: linear-gradient(to bottom right,
     #1e2a38 0%,
     #263545 40%,
     #2e4a63 100%);
-    -fx-background-image: url("../img/worldmap.png");
+    /*
+    -fx-background-image: url("../img/icon.png");
+     */
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-size: 85%;
+}
+
+#flagGamePane {
+    -fx-background-color: linear-gradient(to bottom right,
+    #3b0a0a 0%,
+    #6b1a1a 40%,
+    #8b2a2a 100%);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+
+#outlineGamePane {
+    -fx-background-color: linear-gradient(to bottom right, #e8943a, #c97120);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+
+#HLPane{
+    -fx-background-color: linear-gradient(to bottom, #7c5cbf, #5e3fa3);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+#HLquestion{
+    -fx-font-size: 32px;
+    -fx-font-weight: normal;
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-text-fill: white;
+}
+
+#factsGamePane{
+    -fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+#factsGameStatus{
+    -fx-font-size: 32px;
+    -fx-font-weight: normal;
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-text-fill: white;
+}
+
+#capitalGameView{
+    -fx-background-color: linear-gradient(to bottom, #39bdb7, #249d98);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+#capitalGameLabel{
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-text-fill: white;
 }
 
 #willkommen {
@@ -29,8 +80,6 @@ TODO
     -fx-font-family: "Inter", "Segoe UI", "Arial";
     -fx-text-fill: #7fb3d3;
 }
-
-/* === Ab hier alles unverändert === */
 
 .button {
     -fx-pref-width: 350px;
@@ -56,6 +105,46 @@ TODO
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
     -fx-translate-y: 0;
+}
+
+#flagGamePane .button {
+    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+    -fx-border-color: rgba(255,255,255,0.15);
+}
+#flagGamePane  .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
+}
+
+#outlineGamePane .button {
+    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+    -fx-border-color: rgba(255,255,255,0.15);
+}
+#outlineGamePane .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
+    -fx-border-color: rgba(255,255,255,0.15);
+}
+
+#HLPane .button {
+    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+    -fx-border-color: rgba(255,255,255,0.15);
+}
+#HLPane .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
+}
+
+#factsGamePane .button {
+    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+    -fx-border-color: rgba(255,255,255,0.15);
+}
+#factsGamePane .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
+}
+#capitalGameView .button {
+    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+    -fx-border-color: rgba(255,255,255,0.15);
+}
+#capitalGameView .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
 }
 
 #btnFlags {

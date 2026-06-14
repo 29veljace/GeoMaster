@@ -17,6 +17,7 @@ public class CapitalGameView {
 
     public CapitalGameView() {
         capital = new Label();
+        capital.setId("capitalGameLabel");
         button1 = new Button();
         button2 = new Button();
         button3 = new Button();
@@ -32,9 +33,10 @@ public class CapitalGameView {
         hBox2.setSpacing(30);
         VBox vBox = new VBox(capital,hBox2);
         vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(25);
+        vBox.setSpacing(35);
         borderPane = new BorderPane();
         borderPane.setCenter(vBox);
+        borderPane.setId("capitalGameView");
     }
 
     public Label getCapital() {

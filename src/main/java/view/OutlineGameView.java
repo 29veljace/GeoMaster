@@ -43,6 +43,7 @@ public class OutlineGameView {
         vBox.setAlignment(Pos.CENTER);
         borderPane = new BorderPane();
         borderPane.setCenter(vBox);
+        borderPane.setId("outlineGamePane");
     }
 
     public ImageView getImageView() {

@@ -19,6 +19,7 @@ public class HigherLowerView {
 
     public HigherLowerView(Stage stage){
        label = new Label();
+       label.setId("HLquestion");
        button1 = new Button();
        button2 = new Button();
        HBox hBox = new HBox(button1,button2);
@@ -40,6 +41,7 @@ public class HigherLowerView {
        vBox.setSpacing(25);
        borderPane = new BorderPane();
        borderPane.setCenter(vBox);
+       borderPane.setId("HLPane");
     }
 
     public BorderPane getBorderPane() {

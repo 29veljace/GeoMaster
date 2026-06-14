@@ -46,6 +46,7 @@ public class FlagGameView {
         vBox.setSpacing(60);
         borderPane = new BorderPane();
         borderPane.setCenter(vBox);
+        borderPane.setId("flagGamePane");
     }
 
     public ImageView getImageView() {
