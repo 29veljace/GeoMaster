@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.Random;
 
 public class FlagGameController {
-    private FlagGameView flagGameView;
-    private FlagGameModel flagGameModel;
+    private final FlagGameView flagGameView;
+    private final FlagGameModel flagGameModel;
     private int score = 0;
 
     public FlagGameController(FlagGameView view, FlagGameModel model) {
@@ -41,7 +41,7 @@ public class FlagGameController {
         }
         Country wrong3 = flagGameModel.getCountry();
         b = true;
-        while (b){
+        while (b) {
             b = false;
             if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
                 wrong3 = flagGameModel.getCountry();

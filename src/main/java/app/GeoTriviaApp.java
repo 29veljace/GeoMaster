@@ -26,7 +26,7 @@ public class GeoTriviaApp extends Application {
         stage.setFullScreenExitHint("");
         stage.setTitle("GeoMaster");
         stage.getIcons().add(
-                new Image(getClass().getResourceAsStream("/icon.png"))
+                new Image(getClass().getResourceAsStream("/img/icon.png"))
         );
         stage.show();
     }

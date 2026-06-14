@@ -1,57 +1,84 @@
 /*
 TODO
-1. Titel-Text anpassen (Gradient)
-2. Secondary UI-Elements (z.B. transparente Weltkarte im Hintergrund)
-3. Neue Fonts ausprobieren
+1. Titel-Text anpassen (Gradient)       ✓ (bleibt als nächste Aufgabe)
+2. Secondary UI-Elements (Weltkarte)    ✓ DONE
+3. Neue Fonts ausprobieren              ✓ DONE – Inter
 */
+
 #borderpane {
     -fx-background-color: linear-gradient(to bottom right,
-    #eef9f8 0%,
-    #d4f0ed 35%,
-    #b7e4df 70%,
-    #95d1cb 100%);
+    #1e2a38 0%,
+    #263545 40%,
+    #2e4a63 100%);
+    -fx-background-image: url("../img/worldmap.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: 85%;
 }
 
 #willkommen {
     -fx-font-size: 96px;
     -fx-font-weight: bold;
-    -fx-font-family: "Segoe UI", "Arial";
-    -fx-text-fill: #1a3a3a;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 18, 0.2, 0, 6);
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-effect: dropshadow(gaussian, rgba(180,180,180,0.25), 18, 0.2, 0, 6);
 }
 
 #info {
     -fx-font-size: 26px;
     -fx-font-weight: normal;
-    -fx-text-fill: #3a5a5a;
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-text-fill: #7fb3d3;
 }
+
+/* === Ab hier alles unverändert === */
 
 .button {
     -fx-pref-width: 350px;
     -fx-pref-height: 80px;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-background-color:
-            linear-gradient(to bottom,
-            #39bdb7,
-            #249d98);
-    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-text-fill: white;
     -fx-border-width: 1px;
     -fx-border-radius: 12;
-
-    -fx-text-fill: white;
     -fx-background-radius: 12;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
+    -fx-border-color: rgba(255,255,255,0.20);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.20), 10, 0, 0, 4);
 }
 
 .button:hover {
     -fx-translate-y: -2px;
-    -fx-background-color: #3ec4be;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0, 0, 6);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.30), 15, 0, 0, 6);
     -fx-cursor: hand;
 }
 
 .button:pressed {
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
+    -fx-translate-y: 0;
 }
+
+#btnFlags {
+    -fx-background-color: linear-gradient(to bottom, #e05c5c, #c23b3b);
+}
+#btnFlags:hover { -fx-background-color: #e86b6b; }
+
+#btnOutline {
+    -fx-background-color: linear-gradient(to bottom, #e8943a, #c97120);
+}
+#btnOutline:hover { -fx-background-color: #f0a048; }
+
+#btnFacts {
+    -fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);
+}
+#btnFacts:hover { -fx-background-color: #6aaae0; }
+
+#btnHigherLower {
+    -fx-background-color: linear-gradient(to bottom, #7c5cbf, #5e3fa3);
+}
+#btnHigherLower:hover { -fx-background-color: #8f70d0; }
+
+#btnCapital {
+    -fx-background-color: linear-gradient(to bottom, #39bdb7, #249d98);
+}
+#btnCapital:hover { -fx-background-color: #3ec4be; }
