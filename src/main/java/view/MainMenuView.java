@@ -7,11 +7,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class MainMenuView {
-    /*
-    TODO
-    1. Animationen ausprobieren
-    mehr in resources/css/style.css
-    */
     public final Button flagGuessing;
     public final Button outlineGuessing;
     public final Button factsGame;

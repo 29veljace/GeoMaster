@@ -70,6 +70,7 @@ public class FactsGameView {
         vBox.setAlignment(Pos.CENTER);
         hBox = new HBox(vBox);
         hBox.setAlignment(Pos.CENTER);
+        hBox.getStyleClass().add("game-pane");
         hBox.setId("factsGamePane");
     }
 

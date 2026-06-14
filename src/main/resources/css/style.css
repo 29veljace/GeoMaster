@@ -1,3 +1,12 @@
+/*
+    falls es sich noch ausgeht
+    TODO:
+    1. game over screens (für normale spiele + facts game) sollen auch css bekommen
+    2. versuchen endlich diese scheiß transparente world map hinzubekommen
+
+    14.06.26 22:50
+ */
+
 #borderpane {
     -fx-background-color: linear-gradient(to bottom right,
     #1e2a38 0%,
@@ -11,56 +20,33 @@
     -fx-background-size: 85%;
 }
 
-#flagGamePane {
-    -fx-background-color: linear-gradient(to bottom right,
-    #3b0a0a 0%,
-    #6b1a1a 40%,
-    #8b2a2a 100%);
+.game-pane {
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-size: cover;
 }
 
-#outlineGamePane {
-    -fx-background-color: linear-gradient(to bottom right, #e8943a, #c97120);
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;
-    -fx-background-size: cover;
-}
+#flagGamePane {-fx-background-color: linear-gradient(to bottom right, #3b0a0a, #8b2a2a);}
+#outlineGamePane {-fx-background-color: linear-gradient(to bottom right, #e8943a, #c97120);}
+#HLPane {-fx-background-color: linear-gradient(to bottom, #7c5cbf, #5e3fa3);}
+#factsGamePane {-fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);}
+#capitalGameView {-fx-background-color: linear-gradient(to bottom, #39bdb7, #249d98);}
 
-#HLPane{
-    -fx-background-color: linear-gradient(to bottom, #7c5cbf, #5e3fa3);
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;
-    -fx-background-size: cover;
-}
-#HLquestion{
+#HLquestion {
     -fx-font-size: 32px;
     -fx-font-weight: normal;
     -fx-font-family: "Inter", "Segoe UI", "Arial";
     -fx-text-fill: white;
 }
 
-#factsGamePane{
-    -fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;
-    -fx-background-size: cover;
-}
-#factsGameStatus{
+#factsGameStatus {
     -fx-font-size: 32px;
     -fx-font-weight: normal;
     -fx-font-family: "Inter", "Segoe UI", "Arial";
     -fx-text-fill: white;
 }
 
-#capitalGameView{
-    -fx-background-color: linear-gradient(to bottom, #39bdb7, #249d98);
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;
-    -fx-background-size: cover;
-}
-#capitalGameLabel{
+#capitalGameLabel {
     -fx-font-size: 48px;
     -fx-font-weight: bold;
     -fx-font-family: "Inter", "Segoe UI", "Arial";
@@ -71,7 +57,7 @@
     -fx-font-size: 96px;
     -fx-font-weight: bold;
     -fx-font-family: "Inter", "Segoe UI", "Arial";
-    -fx-effect: dropshadow(gaussian, rgba(180,180,180,0.25), 18, 0.2, 0, 6);
+    -fx-effect: dropshadow(gaussian, rgba(180, 180, 180, 0.25), 18, 0.2, 0, 6);
 }
 
 #info {
@@ -91,13 +77,13 @@
     -fx-border-width: 1px;
     -fx-border-radius: 12;
     -fx-background-radius: 12;
-    -fx-border-color: rgba(255,255,255,0.20);
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.20), 10, 0, 0, 4);
+    -fx-border-color: rgba(255, 255, 255, 0.20);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.20), 10, 0, 0, 4);
 }
 
 .button:hover {
     -fx-translate-y: -2px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.30), 15, 0, 0, 6);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.30), 15, 0, 0, 6);
     -fx-cursor: hand;
 }
 
@@ -107,67 +93,30 @@
     -fx-translate-y: 0;
 }
 
-#flagGamePane .button {
-    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
-    -fx-border-color: rgba(255,255,255,0.15);
-}
-#flagGamePane  .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
-}
-
-#outlineGamePane .button {
-    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
-    -fx-border-color: rgba(255,255,255,0.15);
-}
-#outlineGamePane .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
-    -fx-border-color: rgba(255,255,255,0.15);
-}
-
-#HLPane .button {
-    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
-    -fx-border-color: rgba(255,255,255,0.15);
-}
-#HLPane .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
-}
-
-#factsGamePane .button {
-    -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
-    -fx-border-color: rgba(255,255,255,0.15);
-}
-#factsGamePane .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #383838, #252525);
-}
+#flagGamePane .button,
+#outlineGamePane .button,
+#HLPane .button,
+#factsGamePane .button,
 #capitalGameView .button {
     -fx-background-color: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
-    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-color: rgba(255, 255, 255, 0.15);
 }
+
+#flagGamePane .button:hover,
+#outlineGamePane .button:hover,
+#HLPane .button:hover,
+#factsGamePane .button:hover,
 #capitalGameView .button:hover {
     -fx-background-color: linear-gradient(to bottom, #383838, #252525);
 }
 
-#btnFlags {
-    -fx-background-color: linear-gradient(to bottom, #e05c5c, #c23b3b);
-}
-#btnFlags:hover { -fx-background-color: #e86b6b; }
-
-#btnOutline {
-    -fx-background-color: linear-gradient(to bottom, #e8943a, #c97120);
-}
-#btnOutline:hover { -fx-background-color: #f0a048; }
-
-#btnFacts {
-    -fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);
-}
-#btnFacts:hover { -fx-background-color: #6aaae0; }
-
-#btnHigherLower {
-    -fx-background-color: linear-gradient(to bottom, #7c5cbf, #5e3fa3);
-}
-#btnHigherLower:hover { -fx-background-color: #8f70d0; }
-
-#btnCapital {
-    -fx-background-color: linear-gradient(to bottom, #39bdb7, #249d98);
-}
-#btnCapital:hover { -fx-background-color: #3ec4be; }
+#btnFlags {-fx-background-color: linear-gradient(to bottom, #e05c5c, #c23b3b);}
+#btnFlags:hover {-fx-background-color: #e86b6b;}
+#btnOutline {-fx-background-color: linear-gradient(to bottom, #e8943a, #c97120);}
+#btnOutline:hover {-fx-background-color: #f0a048;}
+#btnFacts {-fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);}
+#btnFacts:hover {-fx-background-color: #6aaae0;}
+#btnHigherLower {-fx-background-color: linear-gradient(to bottom, #7c5cbf, #5e3fa3);}
+#btnHigherLower:hover {-fx-background-color: #8f70d0;}
+#btnCapital {-fx-background-color: linear-gradient(to bottom, #39bdb7, #249d98);}
+#btnCapital:hover{-fx-background-color: #3ec4be;}

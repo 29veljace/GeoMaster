@@ -36,6 +36,7 @@ public class CapitalGameView {
         vBox.setSpacing(35);
         borderPane = new BorderPane();
         borderPane.setCenter(vBox);
+        borderPane.getStyleClass().add("game-pane");
         borderPane.setId("capitalGameView");
     }
 

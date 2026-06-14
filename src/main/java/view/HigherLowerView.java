@@ -17,31 +17,32 @@ public class HigherLowerView {
     private final ImageView imageView1;
     private final ImageView imageView2;
 
-    public HigherLowerView(Stage stage){
-       label = new Label();
-       label.setId("HLquestion");
-       button1 = new Button();
-       button2 = new Button();
-       HBox hBox = new HBox(button1,button2);
-       hBox.setSpacing(100);
-       hBox.setAlignment(Pos.CENTER);
-       imageView1 = new ImageView();
-       imageView1.setFitWidth(200);
-       imageView1.setFitHeight(150);
-       imageView1.setPreserveRatio(true);
-       imageView2 = new ImageView();
-       imageView2.setFitWidth(200);
-       imageView2.setFitHeight(150);
-       imageView2.setPreserveRatio(true);
-       HBox hBox1 = new HBox(imageView1,imageView2);
-       hBox1.setAlignment(Pos.CENTER);
-       hBox1.setSpacing(100);
-       VBox vBox = new VBox(label,hBox1,hBox);
-       vBox.setAlignment(Pos.CENTER);
-       vBox.setSpacing(25);
-       borderPane = new BorderPane();
-       borderPane.setCenter(vBox);
-       borderPane.setId("HLPane");
+    public HigherLowerView(Stage stage) {
+        label = new Label();
+        label.setId("HLquestion");
+        button1 = new Button();
+        button2 = new Button();
+        HBox hBox = new HBox(button1, button2);
+        hBox.setSpacing(100);
+        hBox.setAlignment(Pos.CENTER);
+        imageView1 = new ImageView();
+        imageView1.setFitWidth(200);
+        imageView1.setFitHeight(150);
+        imageView1.setPreserveRatio(true);
+        imageView2 = new ImageView();
+        imageView2.setFitWidth(200);
+        imageView2.setFitHeight(150);
+        imageView2.setPreserveRatio(true);
+        HBox hBox1 = new HBox(imageView1, imageView2);
+        hBox1.setAlignment(Pos.CENTER);
+        hBox1.setSpacing(100);
+        VBox vBox = new VBox(label, hBox1, hBox);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(25);
+        borderPane = new BorderPane();
+        borderPane.setCenter(vBox);
+        borderPane.getStyleClass().add("game-pane");
+        borderPane.setId("HLPane");
     }
 
     public BorderPane getBorderPane() {
