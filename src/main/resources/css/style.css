@@ -2,22 +2,19 @@
     falls es sich noch ausgeht
     TODO:
     1. game over screens (für normale spiele + facts game) sollen auch css bekommen
-    2. versuchen endlich diese scheiß transparente world map hinzubekommen
-
-    14.06.26 22:50
+    15.06.26 07:58
  */
 
 #borderpane {
+
     -fx-background-color: linear-gradient(to bottom right,
     #1e2a38 0%,
     #263545 40%,
     #2e4a63 100%);
-    /*
-    -fx-background-image: url("../img/icon.png");
-     */
+    -fx-background-image: url("../img/map1.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
-    -fx-background-size: 85%;
+    -fx-background-size: 110%;
 }
 
 .game-pane {

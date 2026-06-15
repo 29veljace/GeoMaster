@@ -23,7 +23,6 @@ public class MainMenuView {
         higherLower     = new Button("Higher Or Lower");
         capitalGame     = new Button("Hauptstädte erraten");
 
-        // CSS-IDs für individuelle Button-Farben
         flagGuessing.setId("btnFlags");
         outlineGuessing.setId("btnOutline");
         factsGame.setId("btnFacts");
@@ -58,7 +57,5 @@ public class MainMenuView {
     public Button getFactsGame()       { return factsGame; }
     public Button getHigherLower()     { return higherLower; }
     public Button getCapitalGame()     { return capitalGame; }
-    public Text   getWillkommen()      { return willkommen; }
-    public Text   getInfo()            { return info; }
     public BorderPane getBorderPane()  { return borderPane; }
 }
