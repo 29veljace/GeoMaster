@@ -1,10 +1,13 @@
 package view;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
@@ -16,8 +19,20 @@ public class HigherLowerView {
     private final Button button2;
     private final ImageView imageView1;
     private final ImageView imageView2;
+    private final Text score;
+    private final Text scoreNumber;
 
     public HigherLowerView(Stage stage) {
+        score = new Text("Score");
+        score.setId("score");
+        score.setFill(Color.WHITESMOKE);
+        scoreNumber = new Text("0");
+        scoreNumber.setId("scoreNumber");
+        scoreNumber.setFill(Color.WHITESMOKE);
+        VBox scoreBox = new VBox(score, scoreNumber);
+        scoreBox.setAlignment(Pos.CENTER);
+        scoreBox.setPadding(new Insets(10, 10, 10, 10));
+
         label = new Label();
         label.setId("HLquestion");
         button1 = new Button();
@@ -40,32 +55,17 @@ public class HigherLowerView {
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(25);
         borderPane = new BorderPane();
+        borderPane.setTop(scoreBox);
         borderPane.setCenter(vBox);
         borderPane.getStyleClass().add("game-pane");
         borderPane.setId("HLPane");
     }
 
-    public BorderPane getBorderPane() {
-        return borderPane;
-    }
-
-    public Label getLabel() {
-        return label;
-    }
-
-    public Button getButton1() {
-        return button1;
-    }
-
-    public Button getButton2() {
-        return button2;
-    }
-
-    public ImageView getImageView1() {
-        return imageView1;
-    }
-
-    public ImageView getImageView2() {
-        return imageView2;
-    }
+    public BorderPane getBorderPane() {return borderPane;}
+    public Label getLabel() {return label;}
+    public Button getButton1() {return button1;}
+    public Button getButton2() {return button2;}
+    public ImageView getImageView1() {return imageView1;}
+    public ImageView getImageView2() {return imageView2;}
+    public Text getScoreNumber() {return scoreNumber;}
 }

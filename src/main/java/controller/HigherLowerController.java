@@ -189,8 +189,9 @@ public class HigherLowerController {
         }
     }
     public void correctAnswer(){
-        buildQuestion();
         score++;
+        higherLowerView.getScoreNumber().setText(Integer.toString(score));
+        buildQuestion();
     }
 
     public void wrongAnswer(){

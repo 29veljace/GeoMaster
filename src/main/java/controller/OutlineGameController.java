@@ -116,6 +116,7 @@ public class OutlineGameController {
 
     public void correctAnswer(){
         score++;
+        outlineGameView.getScoreNumber().setText(Integer.toString(score));
         buildQuestion();
     }
 

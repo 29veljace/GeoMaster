@@ -119,6 +119,7 @@ public class FlagGameController {
 
     public void correctAnswer() {
         score++;
+        flagGameView.getScoreNumber().setText(Integer.toString(score));
         buildQuestion();
     }
 

@@ -1,18 +1,13 @@
 package controller;
 
-import model.CapitalGameModel;
-import model.Country;
-import model.GameMode;
-import util.GameSession;
-import util.HighScoreManager;
-import util.SceneManager;
+import model.*;
+import util.*;
 import view.CapitalGameView;
 
 import java.sql.SQLException;
 import java.util.Random;
 
 public class CapitalGameController {
-    // controller für das hauptstadtspiel
     private CapitalGameModel capitalGameModel;
     private CapitalGameView capitalGameView;
     private int score = 0;
@@ -117,6 +112,7 @@ public class CapitalGameController {
     }
     public void correctAnswer() {
         score++;
+        capitalGameView.getScoreNumber().setText(Integer.toString(score));
         buildQuestion();
     }
 

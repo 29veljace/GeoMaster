@@ -6,15 +6,14 @@
  */
 
 #borderpane {
-
     -fx-background-color: linear-gradient(to bottom right,
     #1e2a38 0%,
     #263545 40%,
     #2e4a63 100%);
-    -fx-background-image: url("../img/map1.png");
+    -fx-background-image: url("../img/test1.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
-    -fx-background-size: 110%;
+    -fx-background-size: 70%;
 }
 
 .game-pane {
@@ -28,6 +27,19 @@
 #HLPane {-fx-background-color: linear-gradient(to bottom, #7c5cbf, #5e3fa3);}
 #factsGamePane {-fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);}
 #capitalGameView {-fx-background-color: linear-gradient(to bottom, #39bdb7, #249d98);}
+
+#score{
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-effect: dropshadow(gaussian, rgba(180, 180, 180, 0.25), 18, 0.2, 0, 6);
+}
+#scoreNumber{
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Inter", "Segoe UI", "Arial";
+    -fx-effect: dropshadow(gaussian, rgba(180, 180, 180, 0.25), 18, 0.2, 0, 6);
+}
 
 #HLquestion {
     -fx-font-size: 32px;
