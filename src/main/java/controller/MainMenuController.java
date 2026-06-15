@@ -1,6 +1,6 @@
 package controller;
 
-import javafx.scene.Scene;
+import javafx.application.Platform;
 import view.*;
 import javafx.stage.Stage;
 import model.*;
@@ -17,6 +17,10 @@ public class MainMenuController {
         initEvents();
     }
     public void initEvents(){
+        mainMenuView.exit.setOnMouseClicked(_ -> {
+            Platform.exit();
+            System.exit(0);
+        });
         mainMenuView.getFlagGuessing().setOnAction(_ -> {
             SceneManager.switchView(GameMode.FLAG_GAME);
         });

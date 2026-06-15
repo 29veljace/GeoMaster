@@ -2,6 +2,8 @@ package view;
 
 import javafx.geometry.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
@@ -14,14 +16,15 @@ public class MainMenuView {
     public final Button capitalGame;
     public final Text willkommen;
     public final Text info;
+    public final ImageView exit;
     private BorderPane borderPane = new BorderPane();
 
-    public MainMenuView(){
-        flagGuessing    = new Button("Flaggen erraten");
+    public MainMenuView() {
+        flagGuessing = new Button("Flaggen erraten");
         outlineGuessing = new Button("Länderumrisse erkennen");
-        factsGame       = new Button("Viele Fakten → ein Land");
-        higherLower     = new Button("Higher Or Lower");
-        capitalGame     = new Button("Hauptstädte erraten");
+        factsGame = new Button("Viele Fakten → ein Land");
+        higherLower = new Button("Higher Or Lower");
+        capitalGame = new Button("Hauptstädte erraten");
 
         flagGuessing.setId("btnFlags");
         outlineGuessing.setId("btnOutline");
@@ -41,21 +44,49 @@ public class MainMenuView {
         HBox hBox2 = new HBox(higherLower, factsGame, capitalGame);
         hBox2.setAlignment(Pos.CENTER);
 
+        exit = new ImageView(new Image(getClass().getResourceAsStream("/img/exit.png")));
+        exit.setFitWidth(60);
+        exit.setFitHeight(60);
+        exit.setCursor(javafx.scene.Cursor.HAND);
+        exit.setPreserveRatio(true);
+
         VBox vBox = new VBox(willkommen, info, hBox1, hBox2);
         vBox.setAlignment(Pos.CENTER);
         VBox.setMargin(hBox1, new Insets(140, 0, 30, 0));
-        VBox.setMargin(info,  new Insets(35, 0, 0, 0));
+        VBox.setMargin(info, new Insets(35, 0, 0, 0));
         hBox1.setSpacing(30);
         hBox2.setSpacing(30);
 
+        HBox topBar = new HBox(exit);
+        topBar.setAlignment(Pos.CENTER_RIGHT);
+        topBar.setPadding(new Insets(15, 15, 0, 0));
+
+        borderPane.setTop(topBar);
         borderPane.setCenter(vBox);
         borderPane.setId("borderpane");
     }
 
-    public Button getFlagGuessing()    { return flagGuessing; }
-    public Button getOutlineGuessing() { return outlineGuessing; }
-    public Button getFactsGame()       { return factsGame; }
-    public Button getHigherLower()     { return higherLower; }
-    public Button getCapitalGame()     { return capitalGame; }
-    public BorderPane getBorderPane()  { return borderPane; }
+    public Button getFlagGuessing() {
+        return flagGuessing;
+    }
+
+    public Button getOutlineGuessing() {
+        return outlineGuessing;
+    }
+
+    public Button getFactsGame() {
+        return factsGame;
+    }
+
+    public Button getHigherLower() {
+        return higherLower;
+    }
+
+    public Button getCapitalGame() {
+        return capitalGame;
+    }
+
+    public BorderPane getBorderPane() {
+        return borderPane;
+    }
 }
