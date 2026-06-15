@@ -28,6 +28,7 @@ public class GameOverView {
         highScoreText.setFill(Color.WHITESMOKE);
 
         returnMenu = new Button("Zurück zum Menü");
+        returnMenu.setId("gameOverButton");
         VBox vBox = new VBox(gameOverText,scoreText,highScoreText,returnMenu);
         vBox.setSpacing(30);
         vBox.setAlignment(Pos.CENTER);
