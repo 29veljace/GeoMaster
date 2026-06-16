@@ -11,11 +11,8 @@ public class FactsGameModelCountryData {
     public void connect() {
 
         try {
-            this.connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/geoMaster",
-                    "GeoMaster",
-                    "hihi_haha_Weihnachtsstunde"
-            );
+            String url = "jdbc:sqlite:countrydata.db";
+            this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println("Error Code: " + e.getErrorCode());
             System.out.println("SQL State: " + e.getSQLState());

@@ -133,12 +133,4 @@ public class FlagGameController {
         HighScoreManager.saveFlagHighScore(score);
         score = 0;
     }
-
-    public FlagGameView getFlagGameView() {
-        return flagGameView;
-    }
-
-    public FlagGameModel getFlagGameModel() {
-        return flagGameModel;
-    }
 }

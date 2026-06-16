@@ -12,12 +12,8 @@ public class CapitalGameModel {
     public void connect() {
 
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/geoMaster",
-                    "GeoMaster",
-                    "hihi_haha_Weihnachtsstunde"
-            );
-            this.connection = connection;
+            String url = "jdbc:sqlite:data/countrydata.db";
+            this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println("Error Code: " + e.getErrorCode());
             System.out.println("SQL State: " + e.getSQLState());

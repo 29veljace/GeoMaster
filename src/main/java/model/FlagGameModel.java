@@ -8,17 +8,13 @@ import java.sql.*;
 import java.util.Random;
 
 public class FlagGameModel {
-    // /database/migrations/002_add_orders.sql !!!
     private Connection connection;
 
     public void connect() {
 
         try {
-            this.connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/geoMaster",
-                    "GeoMaster",
-                    "hihi_haha_Weihnachtsstunde"
-            );
+            String url = "jdbc:sqlite:data/countrydata.db";
+            this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             e.printStackTrace();
         }

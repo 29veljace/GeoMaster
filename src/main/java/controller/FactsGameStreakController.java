@@ -6,15 +6,13 @@ import view.FactsGameStreakView;
 
 public class FactsGameStreakController {
 
-    FactsGameStreakView view = new FactsGameStreakView();
+    FactsGameStreakView view;
 
     public FactsGameStreakController(FactsGameStreakView factsGameStreakView){
         view = factsGameStreakView;
         initEvents();
     }
     public void initEvents(){
-        view.getButton().setOnAction(actionEvent -> {
-            SceneManager.switchView(GameMode.MAIN_MENU);
-        });
+        view.getButton().setOnAction(_ -> SceneManager.switchView(GameMode.MAIN_MENU));
     }
 }
