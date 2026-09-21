@@ -1,8 +1,12 @@
 package util;
 import java.io.*;
+import java.nio.file.*;
 import java.util.Properties;
 
 public class HighScoreManager {
+
+    private static final Path CONFIG_DIR = Paths.get(System.getProperty("user.home"), ".geomaster");
+    private static final Path HIGHSCORE_FILE = CONFIG_DIR.resolve("highscores.properties");
 
     private static final String PATH = "src/main/resources/highscores.properties";
     private static int countFactsGameStreak = 0;
@@ -75,9 +79,8 @@ public class HighScoreManager {
 
     private static Properties load() {
         Properties props = new Properties();
-        File file = new File(PATH);
-        if (file.exists()) {
-            try (FileInputStream in = new FileInputStream(file)) {
+        if (Files.exists(HIGHSCORE_FILE)) {
+            try (InputStream in = Files.newInputStream(HIGHSCORE_FILE)) {
                 props.load(in);
             } catch (IOException e) {
                 throw new RuntimeException("Fehler beim Laden der Highscores", e);
@@ -87,8 +90,11 @@ public class HighScoreManager {
     }
 
     private static void save(Properties props) {
-        try (FileOutputStream out = new FileOutputStream(PATH)) {
-            props.store(out,null);
+        try {
+            Files.createDirectories(CONFIG_DIR); // legt .geomaster an, falls nicht vorhanden
+            try (OutputStream out = Files.newOutputStream(HIGHSCORE_FILE)) {
+                props.store(out, null);
+            }
         } catch (IOException e) {
             throw new RuntimeException("Fehler beim Speichern der Highscores", e);
         }

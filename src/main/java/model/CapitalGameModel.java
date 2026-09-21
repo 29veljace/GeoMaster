@@ -2,22 +2,45 @@ package model;
 
 import javafx.scene.image.Image;
 
+import java.io.*;
 import java.sql.*;
 import java.util.Random;
+import app.Launcher;
 
 public class CapitalGameModel {
 
     private Connection connection;
 
     public void connect() {
+        String userHome = System.getProperty("user.home");
+        File dbFolder = new File(userHome + File.separator + ".geomaster");
+        File dbFile = new File(dbFolder, "countrydata.db");
+        if (!dbFolder.exists()) {
+            dbFolder.mkdirs();
+        }
 
+        if (!dbFile.exists()) {
+            try (InputStream is = Launcher.class.getResourceAsStream("/countrydata.db");
+                 OutputStream os = new FileOutputStream(dbFile)) {
+
+                if (is == null) {
+                    throw new FileNotFoundException("Die originale countrydata.db wurde nicht in src/main/resources gefunden!");
+                }
+
+                byte[] buffer = new byte[4096];
+                int length;
+                while ((length = is.read(buffer)) > 0) {
+                    os.write(buffer, 0, length);
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        String url = "jdbc:sqlite:" + dbFile.getAbsolutePath();
         try {
-            String url = "jdbc:sqlite:data/countrydata.db";
             this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            System.out.println("Error Code: " + e.getErrorCode());
-            System.out.println("SQL State: " + e.getSQLState());
-            System.out.println("Message: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
     public ResultSet getData(){
