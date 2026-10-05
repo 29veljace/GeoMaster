@@ -58,55 +58,55 @@ public class FlagGameController {
         int i = random.nextInt(4);
         switch (i) {
             case 0:
-                flagGameView.getButton1().setText(c.getName());
+                flagGameView.getButton1().setText(c.getName_EN());
                 flagGameView.getButton1().setOnAction(_ -> correctAnswer());
 
-                flagGameView.getButton2().setText(wrong1.getName());
+                flagGameView.getButton2().setText(wrong1.getName_EN());
                 flagGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton3().setText(wrong2.getName());
+                flagGameView.getButton3().setText(wrong2.getName_EN());
                 flagGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton4().setText(wrong3.getName());
+                flagGameView.getButton4().setText(wrong3.getName_EN());
                 flagGameView.getButton4().setOnAction(_ -> wrongAnswer());
                 break;
             case 1:
-                flagGameView.getButton1().setText(wrong1.getName());
+                flagGameView.getButton1().setText(wrong1.getName_EN());
                 flagGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton2().setText(c.getName());
+                flagGameView.getButton2().setText(c.getName_EN());
                 flagGameView.getButton2().setOnAction(_ -> correctAnswer());
 
-                flagGameView.getButton3().setText(wrong2.getName());
+                flagGameView.getButton3().setText(wrong2.getName_EN());
                 flagGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton4().setText(wrong3.getName());
+                flagGameView.getButton4().setText(wrong3.getName_EN());
                 flagGameView.getButton4().setOnAction(_ -> wrongAnswer());
                 break;
             case 2:
-                flagGameView.getButton1().setText(wrong1.getName());
+                flagGameView.getButton1().setText(wrong1.getName_EN());
                 flagGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton2().setText(wrong2.getName());
+                flagGameView.getButton2().setText(wrong2.getName_EN());
                 flagGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton3().setText(c.getName());
+                flagGameView.getButton3().setText(c.getName_EN());
                 flagGameView.getButton3().setOnAction(_ -> correctAnswer());
 
-                flagGameView.getButton4().setText(wrong3.getName());
+                flagGameView.getButton4().setText(wrong3.getName_EN());
                 flagGameView.getButton4().setOnAction(_ -> wrongAnswer());
                 break;
             case 3:
-                flagGameView.getButton1().setText(wrong1.getName());
+                flagGameView.getButton1().setText(wrong1.getName_EN());
                 flagGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton2().setText(wrong2.getName());
+                flagGameView.getButton2().setText(wrong2.getName_EN());
                 flagGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton3().setText(wrong3.getName());
+                flagGameView.getButton3().setText(wrong3.getName_EN());
                 flagGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                flagGameView.getButton4().setText(c.getName());
+                flagGameView.getButton4().setText(c.getName_EN());
                 flagGameView.getButton4().setOnAction(_ -> correctAnswer());
                 break;
         }

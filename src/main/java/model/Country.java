@@ -4,27 +4,31 @@ import javafx.scene.image.Image;
 
 public class Country {
     private int id;
-    private String name;
+    private String name_EN;
+    private String name_DE;
     private String code;
     private String capital;
     private long population;
     private long area;
     private double avgHeight;
-    private long bip;
+    private long gdp;
     private double avgTemperature;
+    private long gdpc;
     private Image flag;
     private Image outline;
 
-    public Country(int id, String name, String code, String capital, long population, long area, double avgHeight, long bip, double avgTemperature, Image flag, Image outline) {
+    public Country(int id, String name_EN, String name_DE, String code, String capital, long population, long area, double avgHeight, long gdp, double avgTemperature, long gdpc, Image flag, Image outline) {
         this.id = id;
-        this.name = name;
+        this.name_EN = name_EN;
+        this.name_DE = name_DE;
         this.code = code;
         this.capital = capital;
         this.population = population;
         this.area = area;
         this.avgHeight = avgHeight;
-        this.bip = bip;
+        this.gdp = gdp;
         this.avgTemperature = avgTemperature;
+        this.gdpc = gdpc;
         this.flag = flag;
         this.outline = outline;
     }
@@ -37,21 +41,25 @@ public class Country {
         return avgHeight;
     }
 
-    public double getBip() {
-        return bip;
+    public double getGdp() {
+        return gdp;
     }
 
     public double getAvgTemperature() {
         return avgTemperature;
     }
 
-    public String getName() {
-        return name;
+    public String getName_EN() {
+        return name_EN;
     }
+
+    public String getName_DE() {return name_DE;}
 
     public long getArea() {
         return area;
     }
+
+    public long getGdpc() {return gdpc;}
 
     public long getPopulation() {
         return population;

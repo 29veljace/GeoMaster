@@ -34,10 +34,10 @@ public class FactsGameModel {
         do {
             c4 = factsGameModelCountryData.getCountry();
         } while (c1.getId() == c4.getId() || c2.getId() == c4.getId() || c3.getId() == c4.getId());
-        System.out.println(c1.getName());
-        System.out.println(c2.getName());
-        System.out.println(c3.getName());
-        System.out.println(c4.getName());
+        System.out.println(c1.getName_EN());
+        System.out.println(c2.getName_EN());
+        System.out.println(c3.getName_EN());
+        System.out.println(c4.getName_EN());
     }
 
 
@@ -90,8 +90,8 @@ public class FactsGameModel {
 
                     switch (eigenschaft) {
                         case 0 -> {
-                            btn.setText(country.getName());
-                            hinzugefuegtesObjekt = country.getName();
+                            btn.setText(country.getName_EN());
+                            hinzugefuegtesObjekt = country.getName_EN();
                         }
                         case 1 -> {
                             btn.setText(country.getCode());
@@ -117,7 +117,7 @@ public class FactsGameModel {
                             hinzugefuegtesObjekt = groesse;
                         }
                         case 6 -> {
-                            String bipText = gdpFormat(country.getBip()) + " $";
+                            String bipText = gdpFormat(country.getGdp()) + " $";
                             btn.setText(bipText);
                             hinzugefuegtesObjekt = bipText;
                         }

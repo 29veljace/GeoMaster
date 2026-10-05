@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import java.io.*;
 import java.sql.*;
 import java.util.Random;
+
 import app.Launcher;
 
 public class CapitalGameModel {
@@ -43,7 +44,8 @@ public class CapitalGameModel {
             throw new RuntimeException(e);
         }
     }
-    public ResultSet getData(){
+
+    public ResultSet getData() {
         Statement statement;
         try {
             statement = connection.createStatement();
@@ -60,20 +62,23 @@ public class CapitalGameModel {
         }
         return resultSet;
     }
-    public Country getCountry(){
+
+    public Country getCountry() {
         ResultSet resultSet = getData();
         Country country;
         int id;
-        String name, code, capital;
-        long population, area, bip;
-        double avgHeight,avgTemperature;
+        String name_EN, name_DE, code, capital;
+        long population, area, gdp, gdpc;
+        double avgHeight, avgTemperature;
         Image image;
         Image outline;
         try {
             resultSet.next();
             id = resultSet.getInt("id");
 
-            name = resultSet.getString("name");
+            name_EN = resultSet.getString("name_EN");
+
+            name_DE = resultSet.getString("name_DE");
 
             code = resultSet.getString("code");
 
@@ -85,9 +90,13 @@ public class CapitalGameModel {
 
             avgHeight = resultSet.getInt("avgHeight");
 
-            bip = resultSet.getLong("bip");
+            gdp = resultSet.getLong("gdp");
 
             avgTemperature = resultSet.getInt("avgTemperature");
+
+            gdpc = resultSet.getLong("gdpc");
+
+
             String path1 = resultSet.getString("path1");
             image = new Image(getClass().getResourceAsStream("/" + path1));
             String path2 = resultSet.getString("path2");
@@ -96,7 +105,7 @@ public class CapitalGameModel {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        country = new Country(id,name,code,capital,population,area,avgHeight,bip,avgTemperature,image,outline);
+        country = new Country(id, name_EN, name_DE, code, capital, population, area, avgHeight, gdp, avgTemperature, gdpc, image, outline);
         return country;
     }
 

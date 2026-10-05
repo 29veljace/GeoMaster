@@ -40,8 +40,8 @@ public class HigherLowerController {
                 higherLowerView.getLabel().setText("Welches Land hat die größere Bevölkerung?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
-                higherLowerView.getButton1().setText(c1.getName());
-                higherLowerView.getButton2().setText(c2.getName());
+                higherLowerView.getButton1().setText(c1.getName_EN());
+                higherLowerView.getButton2().setText(c2.getName_EN());
                 if(c1.getPopulation() > c2.getPopulation()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                     correctAnswer();
@@ -69,8 +69,8 @@ public class HigherLowerController {
                 higherLowerView.getLabel().setText("Welches Land ist größer?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
-                higherLowerView.getButton1().setText(c1.getName());
-                higherLowerView.getButton2().setText(c2.getName());
+                higherLowerView.getButton1().setText(c1.getName_EN());
+                higherLowerView.getButton2().setText(c2.getName_EN());
                 if(c1.getArea() > c2.getArea()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         correctAnswer();
@@ -98,8 +98,8 @@ public class HigherLowerController {
                 higherLowerView.getLabel().setText("Welches Land hat die größeren Menschen?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
-                higherLowerView.getButton1().setText(c1.getName());
-                higherLowerView.getButton2().setText(c2.getName());
+                higherLowerView.getButton1().setText(c1.getName_EN());
+                higherLowerView.getButton2().setText(c2.getName_EN());
                 if(c1.getAvgHeight() > c2.getAvgHeight()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         correctAnswer();
@@ -127,16 +127,16 @@ public class HigherLowerController {
                 higherLowerView.getLabel().setText("Welches Land hat das größere BIP?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
-                higherLowerView.getButton1().setText(c1.getName());
-                higherLowerView.getButton2().setText(c2.getName());
-                if(c1.getBip() > c2.getBip()){
+                higherLowerView.getButton1().setText(c1.getName_EN());
+                higherLowerView.getButton2().setText(c2.getName_EN());
+                if(c1.getGdp() > c2.getGdp()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         correctAnswer();
                     });
                     higherLowerView.getButton2().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
-                }else if(c1.getBip() < c2.getBip()){
+                }else if(c1.getGdp() < c2.getGdp()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         wrongAnswer();
                     });
@@ -156,8 +156,8 @@ public class HigherLowerController {
                 higherLowerView.getLabel().setText("In welchem Land ist es heißer?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
-                higherLowerView.getButton1().setText(c1.getName());
-                higherLowerView.getButton2().setText(c2.getName());
+                higherLowerView.getButton1().setText(c1.getName_EN());
+                higherLowerView.getButton2().setText(c2.getName_EN());
                 if(c1.getAvgTemperature() > c2.getAvgTemperature()){
                     higherLowerView.getButton1().setOnAction(actionEvent -> {
                         correctAnswer();
