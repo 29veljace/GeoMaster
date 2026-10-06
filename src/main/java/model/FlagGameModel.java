@@ -24,7 +24,7 @@ public class FlagGameModel {
                  OutputStream os = new FileOutputStream(dbFile)) {
 
                 if (is == null) {
-                    throw new FileNotFoundException("Die originale countrydata.db wurde nicht in src/main/resources gefunden!");
+                    throw new FileNotFoundException("Original countrydata.db file not found in src/main/resources!");
                 }
 
                 byte[] buffer = new byte[4096];

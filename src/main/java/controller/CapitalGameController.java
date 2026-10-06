@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.Random;
 
 public class CapitalGameController {
-    private CapitalGameModel capitalGameModel;
-    private CapitalGameView capitalGameView;
+    private final CapitalGameModel capitalGameModel;
+    private final CapitalGameView capitalGameView;
     private int score = 0;
 
     public CapitalGameController(CapitalGameView view,CapitalGameModel model){

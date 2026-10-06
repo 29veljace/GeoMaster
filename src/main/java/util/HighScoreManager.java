@@ -83,7 +83,7 @@ public class HighScoreManager {
             try (InputStream in = Files.newInputStream(HIGHSCORE_FILE)) {
                 props.load(in);
             } catch (IOException e) {
-                throw new RuntimeException("Fehler beim Laden der Highscores", e);
+                throw new RuntimeException("Error loading High Scores", e);
             }
         }
         return props;
@@ -96,7 +96,7 @@ public class HighScoreManager {
                 props.store(out, null);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Fehler beim Speichern der Highscores", e);
+            throw new RuntimeException("Error saving High Scores", e);
         }
     }
 

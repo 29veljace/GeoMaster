@@ -37,7 +37,7 @@ public class HigherLowerController {
         int i = random.nextInt(5);
         switch (i){
             case 0:
-                higherLowerView.getLabel().setText("Welches Land hat die größere Bevölkerung?");
+                higherLowerView.getLabel().setText("Which country has a larger population?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName_EN());
@@ -66,7 +66,7 @@ public class HigherLowerController {
                 }
                 break;
             case 1:
-                higherLowerView.getLabel().setText("Welches Land ist größer?");
+                higherLowerView.getLabel().setText("Which country is larger?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName_EN());
@@ -95,7 +95,7 @@ public class HigherLowerController {
                 }
                 break;
             case 2:
-                higherLowerView.getLabel().setText("Welches Land hat die größeren Menschen?");
+                higherLowerView.getLabel().setText("Which country has taller people?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName_EN());
@@ -124,7 +124,7 @@ public class HigherLowerController {
                 }
                 break;
             case 3:
-                higherLowerView.getLabel().setText("Welches Land hat das größere BIP?");
+                higherLowerView.getLabel().setText("Which country has a larger GDP?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName_EN());
@@ -153,7 +153,7 @@ public class HigherLowerController {
                 }
                 break;
             case 4:
-                higherLowerView.getLabel().setText("In welchem Land ist es heißer?");
+                higherLowerView.getLabel().setText("Which country has the larger average temperature?");
                 higherLowerView.getImageView1().setImage(c1.getFlag());
                 higherLowerView.getImageView2().setImage(c2.getFlag());
                 higherLowerView.getButton1().setText(c1.getName_EN());

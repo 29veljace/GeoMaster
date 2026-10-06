@@ -1,7 +1,6 @@
 package view;
 
 import javafx.geometry.Pos;
-import javafx.stage.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
@@ -44,7 +43,7 @@ public class FactsGameView {
         btn14 = new Button();
         btn15 = new Button();
         btn16 = new Button();
-        status = new Label("Wähle die zusammengehörigen Fakten aus");
+        status = new Label("Select the related facts");
         status.setId("factsGameStatus");
         gridPane = new GridPane();
         gridPane.add(btn1,0,0);
@@ -74,7 +73,7 @@ public class FactsGameView {
         hBox.setId("factsGamePane");
     }
 
-    public void markiere(Button btn) {
+    public void mark(Button btn) {
         btn.setStyle("-fx-background-color: lightgreen;");
     }
 

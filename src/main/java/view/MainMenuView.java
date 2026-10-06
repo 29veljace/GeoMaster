@@ -20,11 +20,11 @@ public class MainMenuView {
     private BorderPane borderPane = new BorderPane();
 
     public MainMenuView() {
-        flagGuessing = new Button("Flaggen erraten");
-        outlineGuessing = new Button("Länderumrisse erkennen");
-        factsGame = new Button("Viele Fakten → ein Land");
-        higherLower = new Button("Higher Or Lower");
-        capitalGame = new Button("Hauptstädte erraten");
+        flagGuessing = new Button("Guess the Flag");
+        outlineGuessing = new Button("Guess the Outline");
+        factsGame = new Button("Many Facts → One Country");
+        higherLower = new Button("Higher or Lower");
+        capitalGame = new Button("Guess the Capital");
 
         flagGuessing.setId("btnFlags");
         outlineGuessing.setId("btnOutline");
@@ -35,7 +35,7 @@ public class MainMenuView {
         willkommen = new Text("GeoMaster");
         willkommen.setFill(Color.WHITESMOKE);
         willkommen.setId("willkommen");
-        info = new Text("Wählen Sie einen der Spielmodi aus");
+        info = new Text("Choose one of the game modes");
         info.setFill(Color.WHITESMOKE);
         info.setId("info");
 

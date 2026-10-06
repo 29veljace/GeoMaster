@@ -13,11 +13,11 @@ public class FactsGameStreakView {
     private final Button button;
     private final HBox hBox;
     public FactsGameStreakView(){
-        label = new Label("Du hast diesen Modus bereits " + HighScoreManager.getCountFactsGameStreak() + " Mal gewonnen!");
+        label = new Label("You won this mode " + HighScoreManager.getCountFactsGameStreak() + " times!");
         label.setId("score");
         label.setTextFill(Color.WHITESMOKE);
 
-        button = new Button("Zurück zum Menü");
+        button = new Button("Back to Main Menu");
         button.setId("gameOverButton");
         VBox vBox = new VBox(label,button);
         vBox.setSpacing(25);

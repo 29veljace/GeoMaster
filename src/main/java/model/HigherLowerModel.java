@@ -23,7 +23,7 @@ public class HigherLowerModel {
                  OutputStream os = new FileOutputStream(dbFile)) {
 
                 if (is == null) {
-                    throw new FileNotFoundException("Die originale countrydata.db wurde nicht in src/main/resources gefunden!");
+                    throw new FileNotFoundException("Original countrydata.db file not found in src/main/resources!");
                 }
 
                 byte[] buffer = new byte[4096];
@@ -53,7 +53,7 @@ public class HigherLowerModel {
         int i = random.nextInt(192);
         ResultSet resultSet;
         try {
-            resultSet = statement.executeQuery("Select * from country where id = " + i + ";");
+            resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
