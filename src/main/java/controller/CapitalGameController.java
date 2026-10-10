@@ -52,7 +52,7 @@ public class CapitalGameController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        capitalGameView.getCapital().setText(c.getCapital());
+        capitalGameView.getCapital().setText(c.getCapital_EN());
         Random random = new Random();
         int i = random.nextInt(4);
         switch (i) {

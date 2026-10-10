@@ -7,7 +7,8 @@ public class Country {
     private String name_EN;
     private String name_DE;
     private String code;
-    private String capital;
+    private String capital_EN;
+    private String capital_DE;
     private long population;
     private long area;
     private double avgHeight;
@@ -17,12 +18,13 @@ public class Country {
     private Image flag;
     private Image outline;
 
-    public Country(int id, String name_EN, String name_DE, String code, String capital, long population, long area, double avgHeight, long gdp, double avgTemperature, long gdpc, Image flag, Image outline) {
+    public Country(int id, String name_EN, String name_DE, String code, String capital_EN, String capital_DE, long population, long area, double avgHeight, long gdp, double avgTemperature, long gdpc, Image flag, Image outline) {
         this.id = id;
         this.name_EN = name_EN;
         this.name_DE = name_DE;
         this.code = code;
-        this.capital = capital;
+        this.capital_EN = capital_EN;
+        this.capital_DE = capital_DE;
         this.population = population;
         this.area = area;
         this.avgHeight = avgHeight;
@@ -65,8 +67,12 @@ public class Country {
         return population;
     }
 
-    public String getCapital() {
-        return capital;
+    public String getCapital_EN() {
+        return capital_EN;
+    }
+
+    public String getCapital_DE() {
+        return capital_DE;
     }
 
     public String getCode() {

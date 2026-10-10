@@ -56,7 +56,7 @@ public class OutlineGameModel {
         int i = random.nextInt(192);
         ResultSet resultSet;
         try {
-            resultSet = statement.executeQuery("Select * from country where id = " + i + ";");
+            resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -67,7 +67,7 @@ public class OutlineGameModel {
         ResultSet resultSet = getData();
         Country country;
         int id;
-        String name_EN, code, capital, name_DE;
+        String name_EN, code, capital_EN, capital_DE, name_DE;
         long population, area, gdp, gdpc;
         double avgHeight, avgTemperature;
         Image image;
@@ -82,7 +82,9 @@ public class OutlineGameModel {
 
             code = resultSet.getString("code");
 
-            capital = resultSet.getString("capital");
+            capital_EN = resultSet.getString("capital_EN");
+
+            capital_DE = resultSet.getString("capital_DE");
 
             population = resultSet.getLong("population");
 
@@ -104,7 +106,7 @@ public class OutlineGameModel {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        country = new Country(id, name_EN, name_DE, code, capital, population, area, avgHeight, gdp, avgTemperature, gdpc, image, outline);
+        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, image, outline);
         return country;
     }
 

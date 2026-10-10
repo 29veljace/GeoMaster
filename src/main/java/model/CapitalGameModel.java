@@ -67,7 +67,7 @@ public class CapitalGameModel {
         ResultSet resultSet = getData();
         Country country;
         int id;
-        String name_EN, name_DE, code, capital;
+        String name_EN, name_DE, code, capital_EN, capital_DE;
         long population, area, gdp, gdpc;
         double avgHeight, avgTemperature;
         Image image;
@@ -82,7 +82,9 @@ public class CapitalGameModel {
 
             code = resultSet.getString("code");
 
-            capital = resultSet.getString("capital");
+            capital_EN = resultSet.getString("capital_EN");
+
+            capital_DE = resultSet.getString("capital_DE");
 
             population = resultSet.getLong("population");
 
@@ -105,7 +107,7 @@ public class CapitalGameModel {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        country = new Country(id, name_EN, name_DE, code, capital, population, area, avgHeight, gdp, avgTemperature, gdpc, image, outline);
+        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, image, outline);
         return country;
     }
 

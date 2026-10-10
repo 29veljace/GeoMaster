@@ -98,8 +98,8 @@ public class FactsGameModel {
                             addedObject = country.getCode();
                         }
                         case 2 -> {
-                            btn.setText(country.getCapital());
-                            addedObject = country.getCapital();
+                            btn.setText(country.getCapital_EN());
+                            addedObject = country.getCapital_EN();
                         }
                         case 3 -> {
                             String population = nf.format(country.getPopulation()) + " people";
