@@ -34,7 +34,7 @@ public class HigherLowerController {
             }
         }
         Random random = new Random();
-        int i = random.nextInt(5);
+        int i = random.nextInt(6);
         switch (i){
             case 0:
                 higherLowerView.getLabel().setText("Which country has a larger population?");
@@ -181,6 +181,35 @@ public class HigherLowerController {
                     });
                 }
                 break;
+
+            case 5:
+                higherLowerView.getLabel().setText("Which country has the larger GDP per capita?");
+                higherLowerView.getImageView1().setImage(c1.getFlag());
+                higherLowerView.getImageView2().setImage(c2.getFlag());
+                higherLowerView.getButton1().setText(c1.getName_EN());
+                higherLowerView.getButton2().setText(c2.getName_EN());
+                if(c1.getGdpc() > c2.getGdpc()){
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        wrongAnswer();
+                    });
+                }else if(c1.getGdpc() < c2.getGdpc()){
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        wrongAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                }else{
+                    higherLowerView.getButton1().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                    higherLowerView.getButton2().setOnAction(actionEvent -> {
+                        correctAnswer();
+                    });
+                }
         }
         try {
             higherLowerModel.getConnection().close();
