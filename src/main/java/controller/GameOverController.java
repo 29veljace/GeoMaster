@@ -14,9 +14,7 @@ public class GameOverController {
         gameOverView.getScoreText().setText("Score: " + currentScore);
         gameOverView.getHighScoreText().setText("High Score: " + highScore);
 
-        gameOverView.getReturnMenu().setOnAction(_ -> {
-            SceneManager.switchView(GameMode.MAIN_MENU);
-        });
+        gameOverView.getReturnMenu().setOnAction(_ -> SceneManager.switchView(GameMode.MAIN_MENU));
     }
 
     private int getHighScoreForMode(GameMode mode) {

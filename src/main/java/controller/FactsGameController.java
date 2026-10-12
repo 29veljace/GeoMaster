@@ -23,22 +23,22 @@ public class FactsGameController {
     }
 
     private void initEvents() {
-        model.getView().getBtn1().setOnAction(e -> handle(model.getView().getBtn1()));
-        model.getView().getBtn2().setOnAction(e -> handle(model.getView().getBtn2()));
-        model.getView().getBtn3().setOnAction(e -> handle(model.getView().getBtn3()));
-        model.getView().getBtn4().setOnAction(e -> handle(model.getView().getBtn4()));
-        model.getView().getBtn5().setOnAction(e -> handle(model.getView().getBtn5()));
-        model.getView().getBtn6().setOnAction(e -> handle(model.getView().getBtn6()));
-        model.getView().getBtn7().setOnAction(e -> handle(model.getView().getBtn7()));
-        model.getView().getBtn8().setOnAction(e -> handle(model.getView().getBtn8()));
-        model.getView().getBtn9().setOnAction(e -> handle(model.getView().getBtn9()));
-        model.getView().getBtn10().setOnAction(e -> handle(model.getView().getBtn10()));
-        model.getView().getBtn11().setOnAction(e -> handle(model.getView().getBtn11()));
-        model.getView().getBtn12().setOnAction(e -> handle(model.getView().getBtn12()));
-        model.getView().getBtn13().setOnAction(e -> handle(model.getView().getBtn13()));
-        model.getView().getBtn14().setOnAction(e -> handle(model.getView().getBtn14()));
-        model.getView().getBtn15().setOnAction(e -> handle(model.getView().getBtn15()));
-        model.getView().getBtn16().setOnAction(e -> handle(model.getView().getBtn16()));
+        model.getView().getBtn1().setOnAction(_ -> handle(model.getView().getBtn1()));
+        model.getView().getBtn2().setOnAction(_ -> handle(model.getView().getBtn2()));
+        model.getView().getBtn3().setOnAction(_ -> handle(model.getView().getBtn3()));
+        model.getView().getBtn4().setOnAction(_ -> handle(model.getView().getBtn4()));
+        model.getView().getBtn5().setOnAction(_ -> handle(model.getView().getBtn5()));
+        model.getView().getBtn6().setOnAction(_ -> handle(model.getView().getBtn6()));
+        model.getView().getBtn7().setOnAction(_ -> handle(model.getView().getBtn7()));
+        model.getView().getBtn8().setOnAction(_ -> handle(model.getView().getBtn8()));
+        model.getView().getBtn9().setOnAction(_ -> handle(model.getView().getBtn9()));
+        model.getView().getBtn10().setOnAction(_ -> handle(model.getView().getBtn10()));
+        model.getView().getBtn11().setOnAction(_ -> handle(model.getView().getBtn11()));
+        model.getView().getBtn12().setOnAction(_ -> handle(model.getView().getBtn12()));
+        model.getView().getBtn13().setOnAction(_ -> handle(model.getView().getBtn13()));
+        model.getView().getBtn14().setOnAction(_ -> handle(model.getView().getBtn14()));
+        model.getView().getBtn15().setOnAction(_ -> handle(model.getView().getBtn15()));
+        model.getView().getBtn16().setOnAction(_ -> handle(model.getView().getBtn16()));
     }
 
     private void handle(Button btn) {
