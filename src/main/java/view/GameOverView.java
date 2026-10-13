@@ -27,7 +27,13 @@ public class GameOverView {
         highScoreText.setId("gameOverInfo");
         highScoreText.setFill(Color.WHITESMOKE);
 
-        returnMenu = new Button("Back to Main Menu");
+        if (util.LanguageManager.getLanguage().equals("en")) {
+            returnMenu = new Button("Back to Main Menu");
+        }
+        else{
+            returnMenu = new Button("Zurück zum Hauptmenü");
+        }
+
         returnMenu.setId("gameOverButton");
         VBox vBox = new VBox(gameOverText,scoreText,highScoreText,returnMenu);
         vBox.setSpacing(30);

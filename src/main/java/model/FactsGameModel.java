@@ -90,29 +90,59 @@ public class FactsGameModel {
 
                     switch (property) {
                         case 0 -> {
-                            btn.setText(country.getName_EN());
-                            addedObject = country.getName_EN();
+                            if (util.LanguageManager.getLanguage().equals("en")) {
+                                btn.setText(country.getName_EN());
+                                addedObject = country.getName_EN();
+                            }
+                            else{
+                                btn.setText(country.getName_DE());
+                                addedObject = country.getName_DE();
+                            }
                         }
                         case 1 -> {
                             btn.setText(country.getCode());
                             addedObject = country.getCode();
                         }
                         case 2 -> {
-                            btn.setText(country.getCapital_EN());
-                            addedObject = country.getCapital_EN();
+                            if (util.LanguageManager.getLanguage().equals("en")) {
+                                btn.setText(country.getCapital_EN());
+                                addedObject = country.getCapital_EN();
+                            }
+                            else{
+                                btn.setText(country.getCapital_DE());
+                                addedObject = country.getCapital_DE();
+                            }
                         }
                         case 3 -> {
-                            String population = nf.format(country.getPopulation()) + " people";
+                            String population;
+                            if (util.LanguageManager.getLanguage().equals("en")) {
+                                population = nf.format(country.getPopulation()) + " people";
+                            }
+                            else{
+                                population = nf.format(country.getPopulation()) + " Einwohner";
+                            }
                             btn.setText(population);
                             addedObject = population;
                         }
                         case 4 -> {
-                            String area = nf.format(country.getArea()) + " km² area";
+                            String area;
+                            if (util.LanguageManager.getLanguage().equals("en")) {
+                                area =  nf.format(country.getArea()) + " km² area";
+                            }
+                            else{
+                                area = nf.format(country.getArea()) + " km² area";
+                            }
                             btn.setText(area);
                             addedObject = area;
                         }
                         case 5 -> {
-                            String bodyHeight = nf.format(country.getAvgHeight()) + "cm ⌀ body height";
+                            String bodyHeight;
+                            if (util.LanguageManager.getLanguage().equals("en")) {
+                                bodyHeight = nf.format(country.getAvgHeight()) + "cm ⌀ body height";
+                            }
+                            else{
+                                bodyHeight = nf.format(country.getAvgHeight()) + "cm ⌀ Körpergröße";
+                            }
                             btn.setText(bodyHeight);
                             addedObject = bodyHeight;
                         }
@@ -222,11 +252,24 @@ public class FactsGameModel {
     }
 
     private String gdpFormat(double gdp) {
-        java.text.NumberFormat nf = java.text.NumberFormat.getInstance(java.util.Locale.GERMAN);
+        if (util.LanguageManager.getLanguage().equals("en")) {
+            java.text.NumberFormat nf = java.text.NumberFormat.getInstance(java.util.Locale.US);
+        }
+        else{
+            java.text.NumberFormat nf = java.text.NumberFormat.getInstance(java.util.Locale.GERMAN);
+        }
         if (gdp >= 1_000_000_000) {
             double billion = gdp / 1_000_000_000.0;
             nf.setMaximumFractionDigits(2);
-            return nf.format(billion) + " billion GDP";
+            if (util.LanguageManager.getLanguage().equals("en")) {
+                return nf.format(billion) + " billion GDP";
+            }
+            else{
+                return nf.format(billion) + " Mrd. BIP";
+            }
+        }
+        if (util.LanguageManager.getLanguage().equals("de")) {
+            return nf.format(gdp) + " BIP";
         }
         return nf.format(gdp) + " GDP";
     }

@@ -42,22 +42,31 @@ public class FactsGameController {
     }
 
     private void handle(Button btn) {
-        boolean richtig;
+        boolean correct;
         if (btn.getText().isBlank()) {
             ImageView value = (ImageView) btn.getGraphic();
-            richtig = model.choose(value);
+            correct = model.choose(value);
         } else {
             String value = btn.getText();
-            richtig = model.choose(value);
+            correct = model.choose(value);
         }
 
         model.getView().mark(btn);
-        if (!richtig) {
-            model.getView().getStatus().setText("Wrong!");
+        if (!correct) {
+            if (util.LanguageManager.getLanguage().equals("en")) {
+                model.getView().getStatus().setText("Wrong!");
+            } else {
+                model.getView().getStatus().setText("Falsch!");
+            }
             model.reset();
             model.getView().resetButtons();
             lives--;
-            model.getView().getStatus().setText("You have got " + lives + " lives left");
+            if (util.LanguageManager.getLanguage().equals("en")) {
+                model.getView().getStatus().setText("You have got " + lives + " lives left");
+            } else {
+                model.getView().getStatus().setText("Du hast noch " + lives + " Leben übrig");
+            }
+
             if (lives == 0) {
                 SceneManager.switchView(GameMode.MAIN_MENU);
             }
@@ -65,7 +74,13 @@ public class FactsGameController {
         }
 
         if (model.everythingCorrect()) {
-            model.getView().getStatus().setText("Everything correct!");
+            if (util.LanguageManager.getLanguage().equals("en")) {
+                model.getView().getStatus().setText("Everything correct!");
+            }
+            else{
+                model.getView().getStatus().setText("Alles richtig!");
+            }
+
             Button[] buttons = new Button[]{
                     model.getView().getBtn1(), model.getView().getBtn2(), model.getView().getBtn3(), model.getView().getBtn4(),
                     model.getView().getBtn5(), model.getView().getBtn6(), model.getView().getBtn7(), model.getView().getBtn8(),

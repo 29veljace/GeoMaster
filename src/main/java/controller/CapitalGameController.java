@@ -52,63 +52,128 @@ public class CapitalGameController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        capitalGameView.getCapital().setText(c.getCapital_EN());
+        if (util.LanguageManager.getLanguage().equals("en")){
+            capitalGameView.getCapital().setText(c.getCapital_EN());
+        }
+        else{
+            capitalGameView.getCapital().setText(c.getCapital_DE());
+        }
+
         Random random = new Random();
         int i = random.nextInt(4);
-        switch (i) {
-            case 0:
-                capitalGameView.getButton1().setText(c.getName_EN());
-                capitalGameView.getButton1().setOnAction(_ -> correctAnswer());
+        if (util.LanguageManager.getLanguage().equals("en")){
+            switch (i) {
+                case 0:
+                    capitalGameView.getButton1().setText(c.getName_EN());
+                    capitalGameView.getButton1().setOnAction(_ -> correctAnswer());
 
-                capitalGameView.getButton2().setText(wrong1.getName_EN());
-                capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton2().setText(wrong1.getName_EN());
+                    capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton3().setText(wrong2.getName_EN());
-                capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton3().setText(wrong2.getName_EN());
+                    capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton4().setText(wrong3.getName_EN());
-                capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
-                break;
-            case 1:
-                capitalGameView.getButton1().setText(wrong1.getName_EN());
-                capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton4().setText(wrong3.getName_EN());
+                    capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 1:
+                    capitalGameView.getButton1().setText(wrong1.getName_EN());
+                    capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton2().setText(c.getName_EN());
-                capitalGameView.getButton2().setOnAction(_ -> correctAnswer());
+                    capitalGameView.getButton2().setText(c.getName_EN());
+                    capitalGameView.getButton2().setOnAction(_ -> correctAnswer());
 
-                capitalGameView.getButton3().setText(wrong2.getName_EN());
-                capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton3().setText(wrong2.getName_EN());
+                    capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton4().setText(wrong3.getName_EN());
-                capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
-                break;
-            case 2:
-                capitalGameView.getButton1().setText(wrong1.getName_EN());
-                capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton4().setText(wrong3.getName_EN());
+                    capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 2:
+                    capitalGameView.getButton1().setText(wrong1.getName_EN());
+                    capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton2().setText(wrong2.getName_EN());
-                capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton2().setText(wrong2.getName_EN());
+                    capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton3().setText(c.getName_EN());
-                capitalGameView.getButton3().setOnAction(_ -> correctAnswer());
+                    capitalGameView.getButton3().setText(c.getName_EN());
+                    capitalGameView.getButton3().setOnAction(_ -> correctAnswer());
 
-                capitalGameView.getButton4().setText(wrong3.getName_EN());
-                capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
-                break;
-            case 3:
-                capitalGameView.getButton1().setText(wrong1.getName_EN());
-                capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton4().setText(wrong3.getName_EN());
+                    capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 3:
+                    capitalGameView.getButton1().setText(wrong1.getName_EN());
+                    capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton2().setText(wrong2.getName_EN());
-                capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton2().setText(wrong2.getName_EN());
+                    capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton3().setText(wrong3.getName_EN());
-                capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
+                    capitalGameView.getButton3().setText(wrong3.getName_EN());
+                    capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                capitalGameView.getButton4().setText(c.getName_EN());
-                capitalGameView.getButton4().setOnAction(_ -> correctAnswer());
-                break;
+                    capitalGameView.getButton4().setText(c.getName_EN());
+                    capitalGameView.getButton4().setOnAction(_ -> correctAnswer());
+                    break;
+            }
         }
+        else{
+            switch (i) {
+                case 0:
+                    capitalGameView.getButton1().setText(c.getName_DE());
+                    capitalGameView.getButton1().setOnAction(_ -> correctAnswer());
+
+                    capitalGameView.getButton2().setText(wrong1.getName_DE());
+                    capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton3().setText(wrong2.getName_DE());
+                    capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton4().setText(wrong3.getName_DE());
+                    capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 1:
+                    capitalGameView.getButton1().setText(wrong1.getName_DE());
+                    capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton2().setText(c.getName_DE());
+                    capitalGameView.getButton2().setOnAction(_ -> correctAnswer());
+
+                    capitalGameView.getButton3().setText(wrong2.getName_DE());
+                    capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton4().setText(wrong3.getName_DE());
+                    capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 2:
+                    capitalGameView.getButton1().setText(wrong1.getName_DE());
+                    capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton2().setText(wrong2.getName_DE());
+                    capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton3().setText(c.getName_DE());
+                    capitalGameView.getButton3().setOnAction(_ -> correctAnswer());
+
+                    capitalGameView.getButton4().setText(wrong3.getName_DE());
+                    capitalGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 3:
+                    capitalGameView.getButton1().setText(wrong1.getName_DE());
+                    capitalGameView.getButton1().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton2().setText(wrong2.getName_DE());
+                    capitalGameView.getButton2().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton3().setText(wrong3.getName_DE());
+                    capitalGameView.getButton3().setOnAction(_ -> wrongAnswer());
+
+                    capitalGameView.getButton4().setText(c.getName_DE());
+                    capitalGameView.getButton4().setOnAction(_ -> correctAnswer());
+                    break;
+            }
+        }
+
     }
     public void correctAnswer() {
         score++;

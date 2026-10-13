@@ -14,13 +14,13 @@ public class OutlineGameController {
     private OutlineGameModel outlineGameModel;
     private int score;
 
-    public OutlineGameController(OutlineGameView view, OutlineGameModel model){
+    public OutlineGameController(OutlineGameView view, OutlineGameModel model) {
         outlineGameView = view;
         outlineGameModel = model;
         buildQuestion();
     }
 
-    public void buildQuestion(){
+    public void buildQuestion() {
         outlineGameModel.connect();
         boolean b = true;
         Country c = outlineGameModel.getCountry();
@@ -43,7 +43,7 @@ public class OutlineGameController {
         }
         Country wrong3 = outlineGameModel.getCountry();
         b = true;
-        while (b){
+        while (b) {
             b = false;
             if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
                 wrong3 = outlineGameModel.getCountry();
@@ -58,70 +58,129 @@ public class OutlineGameController {
         outlineGameView.getImageView().setImage(c.getOutline());
         Random random = new Random();
         int i = random.nextInt(4);
-        switch (i){
-            case 0:
-                outlineGameView.getButton1().setText(c.getName_EN());
-                outlineGameView.getButton1().setOnAction(_ -> correctAnswer());
+        if (util.LanguageManager.getLanguage().equals("en")) {
+            switch (i) {
+                case 0:
+                    outlineGameView.getButton1().setText(c.getName_EN());
+                    outlineGameView.getButton1().setOnAction(_ -> correctAnswer());
 
-                outlineGameView.getButton2().setText(wrong1.getName_EN());
-                outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton2().setText(wrong1.getName_EN());
+                    outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton3().setText(wrong2.getName_EN());
-                outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton3().setText(wrong2.getName_EN());
+                    outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton4().setText(wrong3.getName_EN());
-                outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
-                break;
-            case 1:
-                outlineGameView.getButton1().setText(wrong1.getName_EN());
-                outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton4().setText(wrong3.getName_EN());
+                    outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 1:
+                    outlineGameView.getButton1().setText(wrong1.getName_EN());
+                    outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton2().setText(c.getName_EN());
-                outlineGameView.getButton2().setOnAction(_ -> correctAnswer());
+                    outlineGameView.getButton2().setText(c.getName_EN());
+                    outlineGameView.getButton2().setOnAction(_ -> correctAnswer());
 
-                outlineGameView.getButton3().setText(wrong2.getName_EN());
-                outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton3().setText(wrong2.getName_EN());
+                    outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton4().setText(wrong3.getName_EN());
-                outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
-                break;
-            case 2:
-                outlineGameView.getButton1().setText(wrong1.getName_EN());
-                outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton4().setText(wrong3.getName_EN());
+                    outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 2:
+                    outlineGameView.getButton1().setText(wrong1.getName_EN());
+                    outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton2().setText(wrong2.getName_EN());
-                outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton2().setText(wrong2.getName_EN());
+                    outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton3().setText(c.getName_EN());
-                outlineGameView.getButton3().setOnAction(_ -> correctAnswer());
+                    outlineGameView.getButton3().setText(c.getName_EN());
+                    outlineGameView.getButton3().setOnAction(_ -> correctAnswer());
 
-                outlineGameView.getButton4().setText(wrong3.getName_EN());
-                outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
-                break;
-            case 3:
-                outlineGameView.getButton1().setText(wrong1.getName_EN());
-                outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton4().setText(wrong3.getName_EN());
+                    outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 3:
+                    outlineGameView.getButton1().setText(wrong1.getName_EN());
+                    outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton2().setText(wrong2.getName_EN());
-                outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton2().setText(wrong2.getName_EN());
+                    outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton3().setText(wrong3.getName_EN());
-                outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
+                    outlineGameView.getButton3().setText(wrong3.getName_EN());
+                    outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                outlineGameView.getButton4().setText(c.getName_EN());
-                outlineGameView.getButton4().setOnAction(_ -> correctAnswer());
-                break;
+                    outlineGameView.getButton4().setText(c.getName_EN());
+                    outlineGameView.getButton4().setOnAction(_ -> correctAnswer());
+                    break;
+            }
         }
+        else{
+            switch (i){
+                case 0:
+                    outlineGameView.getButton1().setText(c.getName_DE());
+                    outlineGameView.getButton1().setOnAction(_ -> correctAnswer());
+
+                    outlineGameView.getButton2().setText(wrong1.getName_DE());
+                    outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton3().setText(wrong2.getName_DE());
+                    outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton4().setText(wrong3.getName_DE());
+                    outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 1:
+                    outlineGameView.getButton1().setText(wrong1.getName_DE());
+                    outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton2().setText(c.getName_DE());
+                    outlineGameView.getButton2().setOnAction(_ -> correctAnswer());
+
+                    outlineGameView.getButton3().setText(wrong2.getName_DE());
+                    outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton4().setText(wrong3.getName_DE());
+                    outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 2:
+                    outlineGameView.getButton1().setText(wrong1.getName_DE());
+                    outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton2().setText(wrong2.getName_DE());
+                    outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton3().setText(c.getName_DE());
+                    outlineGameView.getButton3().setOnAction(_ -> correctAnswer());
+
+                    outlineGameView.getButton4().setText(wrong3.getName_DE());
+                    outlineGameView.getButton4().setOnAction(_ -> wrongAnswer());
+                    break;
+                case 3:
+                    outlineGameView.getButton1().setText(wrong1.getName_DE());
+                    outlineGameView.getButton1().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton2().setText(wrong2.getName_DE());
+                    outlineGameView.getButton2().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton3().setText(wrong3.getName_DE());
+                    outlineGameView.getButton3().setOnAction(_ -> wrongAnswer());
+
+                    outlineGameView.getButton4().setText(c.getName_DE());
+                    outlineGameView.getButton4().setOnAction(_ -> correctAnswer());
+                    break;
+            }
+        }
+
     }
 
-    public void correctAnswer(){
+    public void correctAnswer() {
         score++;
         outlineGameView.getScoreNumber().setText(Integer.toString(score));
         buildQuestion();
     }
 
-    public void wrongAnswer(){
-        GameSession.setCurrentGame(GameMode.OUTLINE_GAME,score);
+    public void wrongAnswer() {
+        GameSession.setCurrentGame(GameMode.OUTLINE_GAME, score);
         saveHighScore();
         SceneManager.switchView(GameMode.GAME_OVER);
     }

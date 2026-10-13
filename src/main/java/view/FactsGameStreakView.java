@@ -12,14 +12,19 @@ public class FactsGameStreakView {
     private final Label label;
     private final Button button;
     private final HBox hBox;
-    public FactsGameStreakView(){
-        label = new Label("You won this mode " + HighScoreManager.getCountFactsGameStreak() + " times!");
+
+    public FactsGameStreakView() {
+        if (util.LanguageManager.getLanguage().equals("en")) {
+            label = new Label("You won this mode " + HighScoreManager.getCountFactsGameStreak() + " times!");
+        } else {
+            label = new Label("Du hast diesen Modus" + HighScoreManager.getCountFactsGameStreak() + " Mal gewonnen!");
+        }
         label.setId("score");
         label.setTextFill(Color.WHITESMOKE);
 
         button = new Button("Back to Main Menu");
         button.setId("gameOverButton");
-        VBox vBox = new VBox(label,button);
+        VBox vBox = new VBox(label, button);
         vBox.setSpacing(25);
         vBox.setAlignment(Pos.CENTER);
         hBox = new HBox(vBox);

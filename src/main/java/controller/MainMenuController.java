@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.application.Platform;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import view.*;
 import javafx.stage.Stage;
 import model.*;
@@ -26,5 +28,9 @@ public class MainMenuController {
         mainMenuView.getFactsGame().setOnAction(_ -> SceneManager.switchView(GameMode.FACTS_GAME));
         mainMenuView.getCapitalGame().setOnAction(_ -> SceneManager.switchView(GameMode.CAPITAL_GAME));
         mainMenuView.getHigherLower().setOnAction(_ -> SceneManager.switchView(GameMode.HIGHER_LOWER));
+        mainMenuView.getLanguageButton().setOnAction(_ -> {
+            LanguageManager.switchLanguage();
+            MainMenuView.reload();
+        });
     }
 }

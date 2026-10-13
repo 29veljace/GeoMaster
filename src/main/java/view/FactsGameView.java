@@ -43,7 +43,12 @@ public class FactsGameView {
         btn14 = new Button();
         btn15 = new Button();
         btn16 = new Button();
-        status = new Label("Select the related facts");
+        if (util.LanguageManager.getLanguage().equals("en")){
+            status = new Label("Select the related facts");
+        }
+        else{
+            status = new Label("Wähle die zusammengehörigen Fakten aus");
+        }
         status.setId("factsGameStatus");
         gridPane = new GridPane();
         gridPane.add(btn1,0,0);
