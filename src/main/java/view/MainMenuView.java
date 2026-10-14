@@ -14,10 +14,13 @@ public class MainMenuView {
     public static Button factsGame;
     public static Button higherLower;
     public static Button capitalGame;
-    public static Button languageButton;
     public static Text welcome;
     public static Text info;
     public ImageView exit;
+    public ImageView languageIcon;
+    private ContextMenu languageMenu;
+    private RadioMenuItem englishItem;
+    private RadioMenuItem germanItem;
     private BorderPane borderPane = new BorderPane();
 
     public MainMenuView() {
@@ -27,14 +30,12 @@ public class MainMenuView {
             factsGame = new Button("Many Facts → One Country");
             higherLower = new Button("Higher or Lower");
             capitalGame = new Button("Guess the Capital");
-            languageButton = new Button("Switch language");
         } else {
             flagGuessing = new Button("Flaggen erraten");
             outlineGuessing = new Button("Länderumrisse erraten");
             factsGame = new Button("Viele Fakten → Ein Land");
             higherLower = new Button("Higher or Lower");
             capitalGame = new Button("Hauptstädte erraten");
-            languageButton = new Button("Sprache wechseln");
         }
 
         flagGuessing.setId("btnFlags");
@@ -42,7 +43,6 @@ public class MainMenuView {
         factsGame.setId("btnFacts");
         higherLower.setId("btnHigherLower");
         capitalGame.setId("btnCapital");
-        languageButton.setId("btnLanguage");
 
         welcome = new Text("GeoMaster");
         welcome.setFill(Color.WHITESMOKE);
@@ -66,7 +66,30 @@ public class MainMenuView {
         exit.setFitWidth(60);
         exit.setFitHeight(60);
         exit.setCursor(javafx.scene.Cursor.HAND);
+        exit.setPickOnBounds(true);
         exit.setPreserveRatio(true);
+
+        languageIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/globe.png")));
+        languageIcon.setFitWidth(60);
+        languageIcon.setFitHeight(60);
+        languageIcon.setPreserveRatio(true);
+        languageIcon.setSmooth(true);
+        languageIcon.setCursor(javafx.scene.Cursor.HAND);
+        languageIcon.setPickOnBounds(true);
+        languageIcon.setId("languageIcon");
+
+        englishItem = new RadioMenuItem("English");
+        germanItem = new RadioMenuItem("Deutsch");
+        ToggleGroup languageGroup = new ToggleGroup();
+        englishItem.setToggleGroup(languageGroup);
+        germanItem.setToggleGroup(languageGroup);
+        languageMenu = new ContextMenu(englishItem, germanItem);
+        languageMenu.setOnShowing(_ -> {
+            boolean en = util.LanguageManager.getLanguage().equals("en");
+            englishItem.setSelected(en);
+            germanItem.setSelected(!en);
+        });
+
 
         VBox vBox = new VBox(welcome, info, hBox1, hBox2);
         vBox.setAlignment(Pos.CENTER);
@@ -75,9 +98,9 @@ public class MainMenuView {
         hBox1.setSpacing(30);
         hBox2.setSpacing(30);
 
-        HBox topBar = new HBox(15, languageButton, exit);
+        HBox topBar = new HBox(25, languageIcon, exit);
         topBar.setAlignment(Pos.CENTER_RIGHT);
-        topBar.setPadding(new Insets(15, 15, 0, 0));
+        topBar.setPadding(new Insets(15, 25, 0, 0));
 
         borderPane.setTop(topBar);
         borderPane.setCenter(vBox);
@@ -108,8 +131,20 @@ public class MainMenuView {
         return borderPane;
     }
 
-    public Button getLanguageButton() {
-        return languageButton;
+    public ImageView getLanguageIcon() {
+        return languageIcon;
+    }
+
+    public ContextMenu getLanguageMenu() {
+        return languageMenu;
+    }
+
+    public RadioMenuItem getEnglishItem() {
+        return englishItem;
+    }
+
+    public RadioMenuItem getGermanItem() {
+        return germanItem;
     }
 
     public static void reload() {
@@ -119,7 +154,6 @@ public class MainMenuView {
             factsGame.setText("Many Facts → One Country");
             higherLower.setText("Higher or Lower");
             capitalGame.setText("Guess the Capital");
-            languageButton.setText("Switch language");
             info.setText("Choose one of the game modes");
         } else {
             flagGuessing.setText("Flaggen erraten");
@@ -127,7 +161,6 @@ public class MainMenuView {
             factsGame.setText("Viele Fakten → Ein Land");
             higherLower.setText("Higher or Lower");
             capitalGame.setText("Hauptstädte erraten");
-            languageButton.setText("Sprache wechseln");
             info.setText("Wählen sie einen der Spielmodi");
         }
     }
