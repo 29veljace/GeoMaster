@@ -115,16 +115,16 @@ public class FlagGameController {
         else{
             switch (i) {
                 case 0:
-                    flagGameView.getButton1().setText(c.getName_EN());
+                    flagGameView.getButton1().setText(c.getName_DE());
                     flagGameView.getButton1().setOnAction(_ -> correctAnswer());
 
-                    flagGameView.getButton2().setText(wrong1.getName_EN());
+                    flagGameView.getButton2().setText(wrong1.getName_DE());
                     flagGameView.getButton2().setOnAction(_ -> wrongAnswer());
 
-                    flagGameView.getButton3().setText(wrong2.getName_EN());
+                    flagGameView.getButton3().setText(wrong2.getName_DE());
                     flagGameView.getButton3().setOnAction(_ -> wrongAnswer());
 
-                    flagGameView.getButton4().setText(wrong3.getName_EN());
+                    flagGameView.getButton4().setText(wrong3.getName_DE());
                     flagGameView.getButton4().setOnAction(_ -> wrongAnswer());
                     break;
                 case 1:
