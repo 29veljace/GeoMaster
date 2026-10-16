@@ -52,7 +52,7 @@ public class FlagGameModel {
             throw new RuntimeException(e);
         }
         Random random = new Random();
-        int i = random.nextInt(192);
+        int i = random.nextInt(189);
         ResultSet resultSet;
         try {
             resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
@@ -97,10 +97,8 @@ public class FlagGameModel {
 
             gdpc = resultSet.getLong("gdpc");
 
-            String path1 = resultSet.getString("path1");
-            image = new Image(getClass().getResourceAsStream("/" + path1));
-            String path2 = resultSet.getString("path2");
-            outline = new Image(getClass().getResourceAsStream("/" + path2));
+            image   = loadImage(resultSet.getString("path1"), id);
+            outline = loadImage(resultSet.getString("path2"), id);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -112,4 +110,13 @@ public class FlagGameModel {
     public Connection getConnection() {
         return connection;
     }
+
+    private Image loadImage(String path, int id) {
+        InputStream is = (path == null) ? null : getClass().getResourceAsStream("/" + path);
+        if (is == null) {
+            throw new IllegalStateException("Image missing: id=" + id + ", path=" + path);
+        }
+        return new Image(is);
+    }
+
 }

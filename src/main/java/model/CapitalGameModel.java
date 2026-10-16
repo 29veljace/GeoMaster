@@ -53,7 +53,7 @@ public class CapitalGameModel {
             throw new RuntimeException(e);
         }
         Random random = new Random();
-        int i = random.nextInt(192);
+        int i = random.nextInt(189);
         ResultSet resultSet;
         try {
             resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
