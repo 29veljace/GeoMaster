@@ -182,7 +182,7 @@ public class CapitalGameController {
     }
 
     public void wrongAnswer() {
-        GameSession.setCurrentGame(GameMode.FLAG_GAME, score);
+        GameSession.setCurrentGame(GameMode.CAPITAL_GAME, score);
         saveHighScore();
         SceneManager.switchView(GameMode.GAME_OVER);
     }
