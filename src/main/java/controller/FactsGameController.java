@@ -1,13 +1,10 @@
 package controller;
 
-
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import model.FactsGameModel;
 import model.GameMode;
 import util.HighScoreManager;
 import util.SceneManager;
-
 
 public class FactsGameController {
     // controller für das spiel mit den fakten
@@ -23,90 +20,75 @@ public class FactsGameController {
     }
 
     private void initEvents() {
-        model.getView().getBtn1().setOnAction(_ -> handle(model.getView().getBtn1()));
-        model.getView().getBtn2().setOnAction(_ -> handle(model.getView().getBtn2()));
-        model.getView().getBtn3().setOnAction(_ -> handle(model.getView().getBtn3()));
-        model.getView().getBtn4().setOnAction(_ -> handle(model.getView().getBtn4()));
-        model.getView().getBtn5().setOnAction(_ -> handle(model.getView().getBtn5()));
-        model.getView().getBtn6().setOnAction(_ -> handle(model.getView().getBtn6()));
-        model.getView().getBtn7().setOnAction(_ -> handle(model.getView().getBtn7()));
-        model.getView().getBtn8().setOnAction(_ -> handle(model.getView().getBtn8()));
-        model.getView().getBtn9().setOnAction(_ -> handle(model.getView().getBtn9()));
-        model.getView().getBtn10().setOnAction(_ -> handle(model.getView().getBtn10()));
-        model.getView().getBtn11().setOnAction(_ -> handle(model.getView().getBtn11()));
-        model.getView().getBtn12().setOnAction(_ -> handle(model.getView().getBtn12()));
-        model.getView().getBtn13().setOnAction(_ -> handle(model.getView().getBtn13()));
-        model.getView().getBtn14().setOnAction(_ -> handle(model.getView().getBtn14()));
-        model.getView().getBtn15().setOnAction(_ -> handle(model.getView().getBtn15()));
-        model.getView().getBtn16().setOnAction(_ -> handle(model.getView().getBtn16()));
+        for (Button btn : model.getButtons()) {
+            btn.setOnAction(_ -> handle(btn));
+        }
+        model.getView().getSubmitBtn().setOnAction(_ -> submit());
     }
 
+    // Klick auf einen Fakt: nur Auswahl umschalten, noch keine Auswertung
     private void handle(Button btn) {
-        boolean correct;
-        if (btn.getText().isBlank()) {
-            ImageView value = (ImageView) btn.getGraphic();
-            correct = model.choose(value);
+        model.toggle(btn);
+        if (model.isSelected(btn)) {
+            model.getView().markSelected(btn);
         } else {
-            String value = btn.getText();
-            correct = model.choose(value);
+            model.getView().unmark(btn);
         }
+        model.getView().getSubmitBtn().setDisable(!model.canSubmit());
+    }
 
-        model.getView().mark(btn);
-        if (!correct) {
-            if (util.LanguageManager.getLanguage().equals("en")) {
-                model.getView().getStatus().setText("Wrong!");
-            } else {
-                model.getView().getStatus().setText("Falsch!");
-            }
-            model.reset();
-            model.getView().resetButtons();
-            lives--;
-            if (util.LanguageManager.getLanguage().equals("en")) {
-                model.getView().getStatus().setText("You have got " + lives + " lives left");
-            } else {
-                model.getView().getStatus().setText("Du hast noch " + lives + " Leben übrig");
-            }
-
-            if (lives == 0) {
-                SceneManager.switchView(GameMode.MAIN_MENU);
-            }
+    // Klick auf Submit: die vier gewählten Fakten auswerten
+    private void submit() {
+        if (!model.canSubmit()) {
             return;
         }
+        FactsGameModel.SubmitResult result = model.submit();
 
-        if (model.everythingCorrect()) {
+        if (result.correct()) {
+            for (Button b : model.getSelectedButtons()) {
+                b.setVisible(false);
+            }
+            model.reset();
+            model.getView().getSubmitBtn().setDisable(true);
+
             if (util.LanguageManager.getLanguage().equals("en")) {
                 model.getView().getStatus().setText("Everything correct!");
-            }
-            else{
+            } else {
                 model.getView().getStatus().setText("Alles richtig!");
             }
 
-            Button[] buttons = new Button[]{
-                    model.getView().getBtn1(), model.getView().getBtn2(), model.getView().getBtn3(), model.getView().getBtn4(),
-                    model.getView().getBtn5(), model.getView().getBtn6(), model.getView().getBtn7(), model.getView().getBtn8(),
-                    model.getView().getBtn9(), model.getView().getBtn10(), model.getView().getBtn11(), model.getView().getBtn12(),
-                    model.getView().getBtn13(), model.getView().getBtn14(), model.getView().getBtn15(), model.getView().getBtn16()
-            };
-            Object[] objects = model.getSelected().toArray();
-            for (int i = 0; i < 16; i++) {
-                for (int a = 0; a < 4; a++) {
-                    if (objects[a] == buttons[i].getText() || objects[a] == buttons[i].getGraphic()) {
-                        buttons[i].setVisible(false);
-                    }
-                }
-            }
-            model.reset();
             counter++;
             if (counter == 4) {
                 HighScoreManager.increaseStreak();
                 SceneManager.switchView(GameMode.FACTS_GAME_STREAK);
             }
+            return;
         }
+
+        // falsch: ein Leben weniger, Auswahl zurücksetzen
+        lives--;
+        for (Button b : model.getSelectedButtons()) {
+            model.getView().unmark(b);
+        }
+        model.reset();
+        model.getView().getSubmitBtn().setDisable(true);
+        model.getView().getStatus().setText(errorMessage(result.mistakes(), lives));
+
+        if (lives == 0) {
+            SceneManager.switchView(GameMode.MAIN_MENU);
+        }
+    }
+
+    private String errorMessage(int mistakes, int livesLeft) {
+        if (util.LanguageManager.getLanguage().equals("en")) {
+            return mistakes + (mistakes == 1 ? " mistake" : " mistakes") + " – you have "
+                    + livesLeft + (livesLeft == 1 ? " life" : " lives") + " left";
+        }
+        return mistakes + (mistakes == 1 ? " Fehler" : " Fehler") + " – du hast noch "
+                + livesLeft + " Leben übrig";
     }
 
     public FactsGameModel getModel() {
         return model;
     }
-
-
 }

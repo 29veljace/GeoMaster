@@ -21,6 +21,7 @@ public class FactsGameView {
     private final Button btn14;
     private final Button btn15;
     private final Button btn16;
+    private final Button submitBtn;
     private final Label status;
     private final VBox vBox;
     private final HBox hBox;
@@ -50,6 +51,9 @@ public class FactsGameView {
             status = new Label("Wähle die zusammengehörigen Fakten aus");
         }
         status.setId("factsGameStatus");
+        submitBtn = new Button(util.LanguageManager.getLanguage().equals("en") ? "Submit" : "Einreichen");
+        submitBtn.setId("factsGameSubmit");
+        submitBtn.setDisable(true);
         gridPane = new GridPane();
         gridPane.add(btn1,0,0);
         gridPane.add(btn2,1,0);
@@ -69,7 +73,7 @@ public class FactsGameView {
         gridPane.add(btn16,3,3);
         gridPane.setVgap(10);
         gridPane.setHgap(10);
-        vBox = new VBox(status,gridPane);
+        vBox = new VBox(status, gridPane, submitBtn);
         vBox.setSpacing(50);
         vBox.setAlignment(Pos.CENTER);
         hBox = new HBox(vBox);
@@ -179,5 +183,17 @@ public class FactsGameView {
 
     public GridPane getGridPane() {
         return gridPane;
+    }
+
+    public void markSelected(Button btn) {
+        btn.setStyle("-fx-background-color: lightskyblue;");
+    }
+
+    public void unmark(Button btn) {
+        btn.setStyle("");
+    }
+
+    public Button getSubmitBtn() {
+        return submitBtn;
     }
 }
