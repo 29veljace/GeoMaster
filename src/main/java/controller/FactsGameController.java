@@ -34,12 +34,12 @@ public class FactsGameController {
         } else {
             model.getView().unmark(btn);
         }
-        model.getView().getSubmitBtn().setDisable(!model.canSubmit());
+        model.getView().getSubmitBtn().setDisable(model.canSubmit());
     }
 
     // Klick auf Submit: die vier gewählten Fakten auswerten
     private void submit() {
-        if (!model.canSubmit()) {
+        if (model.canSubmit()) {
             return;
         }
         FactsGameModel.SubmitResult result = model.submit();
@@ -84,7 +84,7 @@ public class FactsGameController {
             return mistakes + (mistakes == 1 ? " mistake" : " mistakes") + " – you have "
                     + livesLeft + (livesLeft == 1 ? " life" : " lives") + " left";
         }
-        return mistakes + (mistakes == 1 ? " Fehler" : " Fehler") + " – du hast noch "
+        return mistakes + (" Fehler") + " – du hast noch "
                 + livesLeft + " Leben übrig";
     }
 
