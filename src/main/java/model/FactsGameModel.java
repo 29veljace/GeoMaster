@@ -62,103 +62,97 @@ public class FactsGameModel {
         Country[] countries = {c1, c2, c3, c4};
         Set[] answersSet = {correctAnswersC1, correctAnswersC2, correctAnswersC3, correctAnswersC4};
 
+        correctAnswersC1.clear();
+        correctAnswersC2.clear();
+        correctAnswersC3.clear();
+        correctAnswersC4.clear();
+
+        Set<Object> globalValues = new HashSet<>();
+
         for (int c = 0; c < 4; c++) {
             Country country = countries[c];
             Set<Object> currentSet = answersSet[c];
 
-            List<Integer> identifiers = new ArrayList<>(List.of(0, 1, 8));
-            Collections.shuffle(identifiers, random);
+            List<Integer> properties;
+            boolean unique;
+            List<Object> generatedValues = new ArrayList<>();
+            do {
+                unique = true;
+                generatedValues.clear();
 
-            List<Integer> pool = new ArrayList<>(List.of(2, 3, 4, 5, 6, 7, 9, 10));
-            pool.add(identifiers.get(2));
-            Collections.shuffle(pool, random);
+                List<Integer> identifiers = new ArrayList<>(List.of(0, 1, 8));
+                Collections.shuffle(identifiers, random);
 
-            List<Integer> properties = List.of(
-                    identifiers.get(0),
-                    identifiers.get(1),
-                    pool.get(0),
-                    pool.get(1)
-            );
+                List<Integer> pool = new ArrayList<>(List.of(2, 3, 4, 5, 6, 7, 9, 10));
+                pool.add(identifiers.get(2));
+                Collections.shuffle(pool, random);
 
-            for (int property : properties) {
+                properties = List.of(
+                        identifiers.get(0),
+                        identifiers.get(1),
+                        pool.get(0),
+                        pool.get(1)
+                );
+
+                Set<Object> tempCountryValues = new HashSet<>();
+                for (int property : properties) {
+                    Object val = getPropertyValue(country, property);
+                    if (globalValues.contains(val) || !tempCountryValues.add(val)) {
+                        unique = false;
+                        break;
+                    }
+                    generatedValues.add(val);
+                }
+            } while (!unique);
+            for (int i = 0; i < properties.size(); i++) {
+                int property = properties.get(i);
+                Object val = generatedValues.get(i);
+
+                globalValues.add(val);
+                currentSet.add(val);
+
                 Button btn;
                 do {
                     btn = buttons[random.nextInt(16)];
                 } while (!btn.getText().isBlank() || btn.getGraphic() != null);
 
-                currentSet.add(applyProperty(country, property, btn));
+                applyPropertyToButton(btn, property, val);
             }
         }
+
         System.out.println(correctAnswersC1);
         System.out.println(correctAnswersC2);
         System.out.println(correctAnswersC3);
         System.out.println(correctAnswersC4);
     }
 
-    private Object applyProperty(Country country, int property, Button btn) {
+    private Object getPropertyValue(Country country, int property) {
         boolean en = util.LanguageManager.getLanguage().equals("en");
-        switch (property) {
-            case 0 -> {
-                String name = en ? country.getName_EN() : country.getName_DE();
-                btn.setText(name);
-                return name;
-            }
-            case 1 -> {
-                btn.setText(country.getCode());
-                return country.getCode();
-            }
-            case 2 -> {
-                String capital = en ? country.getCapital_EN() : country.getCapital_DE();
-                btn.setText(capital);
-                return capital;
-            }
-            case 3 -> {
-                String population = nf.format(country.getPopulation()) + (en ? " people" : " Einwohner");
-                btn.setText(population);
-                return population;
-            }
-            case 4 -> {
-                String area = nf.format(country.getArea()) + (en ? " km² area" : " km² Fläche");
-                btn.setText(area);
-                return area;
-            }
-            case 5 -> {
-                String bodyHeight = nf.format(country.getAvgHeight()) + (en ? "cm ⌀ body height" : "cm ⌀ Körpergröße");
-                btn.setText(bodyHeight);
-                return bodyHeight;
-            }
-            case 6 -> {
-                String gdpText = gdpFormat(country.getGdp()) + " $";
-                btn.setText(gdpText);
-                return gdpText;
-            }
-            case 7 -> {
-                String temp = nf.format(country.getAvgTemperature()) + " ⌀ °C";
-                btn.setText(temp);
-                return temp;
-            }
-            case 8 -> {
-                Image flagImage = country.getFlag();
-                ImageView img = new ImageView(flagImage);
-                img.setFitHeight(75);
-                img.setFitWidth(100);
-                btn.setGraphic(img);
-                return flagImage;
-            }
-            case 9 -> {
-                Image outlineImage = country.getOutline();
-                ImageView img = new ImageView(outlineImage);
-                img.setFitHeight(75);
-                img.setFitWidth(100);
-                btn.setGraphic(img);
-                return outlineImage;
-            }
-            case 10 -> {
-                String passport = nf.format(country.getPassportStrength()) + (en ? " visa-free destinations" : " visafreie Reiseziele");
-                btn.setText(passport);
-                return passport;
-            }
+        return switch (property) {
+            case 0 -> en ? country.getName_EN() : country.getName_DE();
+            case 1 -> country.getCode();
+            case 2 -> en ? country.getCapital_EN() : country.getCapital_DE();
+            case 3 -> nf.format(country.getPopulation()) + (en ? " people" : " Einwohner");
+            case 4 -> nf.format(country.getArea()) + (en ? " km² area" : " km² Fläche");
+            case 5 -> nf.format(country.getAvgHeight()) + (en ? "cm ⌀ body height" : "cm ⌀ Körpergröße");
+            case 6 -> gdpFormat(country.getGdp()) + " $";
+            case 7 -> nf.format(country.getAvgTemperature()) + " ⌀ °C";
+            case 8 -> country.getFlag();
+            case 9 -> country.getOutline();
+            case 10 -> nf.format(country.getPassportStrength()) + (en ? " visa-free destinations" : " visafreie Reiseziele");
             default -> throw new IllegalArgumentException("Unknown property: " + property);
+        };
+    }
+
+    private void applyPropertyToButton(Button btn, int property, Object value) {
+        if (property == 8 || property == 9) {
+            Image imgResource = (Image) value;
+            ImageView img = new ImageView(imgResource);
+            img.setFitHeight(75);
+            img.setFitWidth(100);
+            btn.setGraphic(img);
+        } else {
+            btn.setText((String) value);
         }
     }
 
@@ -239,6 +233,7 @@ public class FactsGameModel {
             best = Math.max(best, overlap);
         }
         int mistakes = 4 - best;
+
         return new SubmitResult(mistakes == 0, mistakes);
     }
 
