@@ -15,10 +15,11 @@ public class Country {
     private long gdp;
     private double avgTemperature;
     private long gdpc;
+    private int passportStrength;
     private Image flag;
     private Image outline;
 
-    public Country(int id, String name_EN, String name_DE, String code, String capital_EN, String capital_DE, long population, long area, double avgHeight, long gdp, double avgTemperature, long gdpc, Image flag, Image outline) {
+    public Country(int id, String name_EN, String name_DE, String code, String capital_EN, String capital_DE, long population, long area, double avgHeight, long gdp, double avgTemperature, long gdpc, int passportStrength, Image flag, Image outline) {
         this.id = id;
         this.name_EN = name_EN;
         this.name_DE = name_DE;
@@ -31,6 +32,7 @@ public class Country {
         this.gdp = gdp;
         this.avgTemperature = avgTemperature;
         this.gdpc = gdpc;
+        this.passportStrength = passportStrength;
         this.flag = flag;
         this.outline = outline;
     }
@@ -55,13 +57,17 @@ public class Country {
         return name_EN;
     }
 
-    public String getName_DE() {return name_DE;}
+    public String getName_DE() {
+        return name_DE;
+    }
 
     public long getArea() {
         return area;
     }
 
-    public long getGdpc() {return gdpc;}
+    public long getGdpc() {
+        return gdpc;
+    }
 
     public long getPopulation() {
         return population;
@@ -77,6 +83,10 @@ public class Country {
 
     public String getCode() {
         return code;
+    }
+
+    public int getPassportStrength() {
+        return passportStrength;
     }
 
     public Image getFlag() {

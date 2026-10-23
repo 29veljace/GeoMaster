@@ -42,72 +42,76 @@ public class FactsGameModelCountryData {
             throw new RuntimeException(e);
         }
     }
-        public ResultSet getData () {
-            Statement statement;
-            try {
-                statement = connection.createStatement();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            Random random = new Random();
-            int i = random.nextInt(189);
-            ResultSet resultSet;
-            try {
-                resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            return resultSet;
+
+    public ResultSet getData() {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        public Country getCountry () {
-            ResultSet resultSet = getData();
-            Country country;
-            int id;
-            String name_EN, code, capital_EN,capital_DE, name_DE;
-            long population, area, gdp, gdpc;
-            double avgHeight, avgTemperature;
-            Image image;
-            Image outline;
-            try {
-                resultSet.next();
-                id = resultSet.getInt("id");
-
-                name_EN = resultSet.getString("name_EN");
-
-                name_DE = resultSet.getString("name_DE");
-
-                code = resultSet.getString("code");
-
-                capital_EN = resultSet.getString("capital_EN");
-
-                capital_DE = resultSet.getString("capital_DE");
-
-                population = resultSet.getLong("population");
-
-                area = resultSet.getLong("area");
-
-                avgHeight = resultSet.getInt("avgHeight");
-
-                gdp = resultSet.getLong("gdp");
-
-                avgTemperature = resultSet.getInt("avgTemperature");
-
-                gdpc = resultSet.getLong("gdpc");
-
-
-                String path1 = resultSet.getString("path1");
-                image = new Image(getClass().getResourceAsStream("/" + path1));
-                String path2 = resultSet.getString("path2");
-                outline = new Image(getClass().getResourceAsStream("/" + path2));
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            country = new Country(id,name_EN,name_DE,code,capital_EN,capital_DE,population,area,avgHeight,gdp,avgTemperature,gdpc,image,outline);
-            return country;
+        Random random = new Random();
+        int i = random.nextInt(189);
+        ResultSet resultSet;
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        public Connection getConnection () {
-            return connection;
-        }
+        return resultSet;
     }
+
+    public Country getCountry() {
+        ResultSet resultSet = getData();
+        Country country;
+        int id, passportStrength;
+        String name_EN, code, capital_EN, capital_DE, name_DE;
+        long population, area, gdp, gdpc;
+        double avgHeight, avgTemperature;
+        Image image;
+        Image outline;
+        try {
+            resultSet.next();
+            id = resultSet.getInt("id");
+
+            name_EN = resultSet.getString("name_EN");
+
+            name_DE = resultSet.getString("name_DE");
+
+            code = resultSet.getString("code");
+
+            capital_EN = resultSet.getString("capital_EN");
+
+            capital_DE = resultSet.getString("capital_DE");
+
+            population = resultSet.getLong("population");
+
+            area = resultSet.getLong("area");
+
+            avgHeight = resultSet.getInt("avgHeight");
+
+            gdp = resultSet.getLong("gdp");
+
+            avgTemperature = resultSet.getInt("avgTemperature");
+
+            passportStrength = resultSet.getInt("passportStrength");
+
+            gdpc = resultSet.getLong("gdpc");
+
+
+            String path1 = resultSet.getString("path1");
+            image = new Image(getClass().getResourceAsStream("/" + path1));
+            String path2 = resultSet.getString("path2");
+            outline = new Image(getClass().getResourceAsStream("/" + path2));
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, passportStrength, image, outline);
+        return country;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+}

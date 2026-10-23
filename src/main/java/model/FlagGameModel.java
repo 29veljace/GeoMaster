@@ -65,7 +65,7 @@ public class FlagGameModel {
     public Country getCountry() {
         ResultSet resultSet = getData();
         Country country;
-        int id;
+        int id, passportStrength;
         String name_EN, name_DE, code, capital_EN, capital_DE;
         long population, area, gdp, gdpc;
         double avgHeight, avgTemperature;
@@ -95,15 +95,17 @@ public class FlagGameModel {
 
             avgTemperature = resultSet.getInt("avgTemperature");
 
+            passportStrength = resultSet.getInt("passportStrength");
+
             gdpc = resultSet.getLong("gdpc");
 
-            image   = loadImage(resultSet.getString("path1"), id);
+            image = loadImage(resultSet.getString("path1"), id);
             outline = loadImage(resultSet.getString("path2"), id);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature,gdpc, image, outline);
+        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, passportStrength, image, outline);
         return country;
     }
 

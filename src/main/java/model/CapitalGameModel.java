@@ -66,7 +66,7 @@ public class CapitalGameModel {
     public Country getCountry() {
         ResultSet resultSet = getData();
         Country country;
-        int id;
+        int id, passportStrength;
         String name_EN, name_DE, code, capital_EN, capital_DE;
         long population, area, gdp, gdpc;
         double avgHeight, avgTemperature;
@@ -96,8 +96,9 @@ public class CapitalGameModel {
 
             avgTemperature = resultSet.getInt("avgTemperature");
 
-            gdpc = resultSet.getLong("gdpc");
+            passportStrength = resultSet.getInt("passportStrength");
 
+            gdpc = resultSet.getLong("gdpc");
 
             String path1 = resultSet.getString("path1");
             image = new Image(getClass().getResourceAsStream("/" + path1));
@@ -107,7 +108,7 @@ public class CapitalGameModel {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, image, outline);
+        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, passportStrength, image, outline);
         return country;
     }
 
