@@ -34,7 +34,7 @@ public class HigherLowerController {
             }
         }
         Random random = new Random();
-        int i = random.nextInt(6);
+        int i = random.nextInt(7);
         if (util.LanguageManager.getLanguage().equals("en")){
             switch (i){
                 case 0:
@@ -139,6 +139,26 @@ public class HigherLowerController {
                         higherLowerView.getButton1().setOnAction(_ -> correctAnswer());
                         higherLowerView.getButton2().setOnAction(_ -> correctAnswer());
                     }
+                    break;
+
+                case 6:
+                    higherLowerView.getLabel().setText("Which country has the stronger passport?");
+                    higherLowerView.getImageView1().setImage(c1.getFlag());
+                    higherLowerView.getImageView2().setImage(c2.getFlag());
+                    higherLowerView.getButton1().setText(c1.getName_EN());
+                    higherLowerView.getButton2().setText(c2.getName_EN());
+                    if(c1.getPassportStrength() > c2.getPassportStrength()){
+                        higherLowerView.getButton1().setOnAction(_ -> correctAnswer());
+                        higherLowerView.getButton2().setOnAction(_ -> wrongAnswer());
+                    }
+                    else if(c1.getPassportStrength() < c2.getPassportStrength()){
+                        higherLowerView.getButton1().setOnAction(_ -> wrongAnswer());
+                        higherLowerView.getButton2().setOnAction(_ -> correctAnswer());
+                    }
+                    else{
+                        higherLowerView.getButton1().setOnAction(_ -> correctAnswer());
+                        higherLowerView.getButton2().setOnAction(_ -> correctAnswer());
+                    }
             }
         }
         else{
@@ -239,6 +259,25 @@ public class HigherLowerController {
                         higherLowerView.getButton1().setOnAction(_ -> correctAnswer());
                         higherLowerView.getButton2().setOnAction(_ -> wrongAnswer());
                     }else if(c1.getGdpc() < c2.getGdpc()){
+                        higherLowerView.getButton1().setOnAction(_ -> wrongAnswer());
+                        higherLowerView.getButton2().setOnAction(_ -> correctAnswer());
+                    }else{
+                        higherLowerView.getButton1().setOnAction(_ -> correctAnswer());
+                        higherLowerView.getButton2().setOnAction(_ -> correctAnswer());
+                    }
+                    break;
+
+                case 6:
+                    higherLowerView.getLabel().setText("Welches Land hat den stärkeren Reisepass?");
+                    higherLowerView.getImageView1().setImage(c1.getFlag());
+                    higherLowerView.getImageView2().setImage(c2.getFlag());
+                    higherLowerView.getButton1().setText(c1.getName_DE());
+                    higherLowerView.getButton2().setText(c2.getName_DE());
+                    if(c1.getPassportStrength() > c2.getPassportStrength()){
+                        higherLowerView.getButton1().setOnAction(_ -> correctAnswer());
+                        higherLowerView.getButton2().setOnAction(_ -> wrongAnswer());
+                    }
+                    else if(c1.getPassportStrength() < c2.getPassportStrength()){
                         higherLowerView.getButton1().setOnAction(_ -> wrongAnswer());
                         higherLowerView.getButton2().setOnAction(_ -> correctAnswer());
                     }else{

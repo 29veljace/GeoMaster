@@ -69,7 +69,7 @@ public class FactsGameModel {
             List<Integer> identifiers = new ArrayList<>(List.of(0, 1, 8));
             Collections.shuffle(identifiers, random);
 
-            List<Integer> pool = new ArrayList<>(List.of(2, 3, 4, 5, 6, 7, 9));
+            List<Integer> pool = new ArrayList<>(List.of(2, 3, 4, 5, 6, 7, 9, 10));
             pool.add(identifiers.get(2));
             Collections.shuffle(pool, random);
 
@@ -152,6 +152,11 @@ public class FactsGameModel {
                 img.setFitWidth(100);
                 btn.setGraphic(img);
                 return outlineImage;
+            }
+            case 10 -> {
+                String passport = nf.format(country.getPassportStrength()) + (en ? " visa-free destinations" : " visafreie Reiseziele");
+                btn.setText(passport);
+                return passport;
             }
             default -> throw new IllegalArgumentException("Unknown property: " + property);
         }
