@@ -59,13 +59,12 @@ public class FactsGameController {
 
             counter++;
             if (counter == 4) {
-                HighScoreManager.increaseStreak();
+                HighScoreManager.recordFactsWin();
                 SceneManager.switchView(GameMode.FACTS_GAME_STREAK);
             }
             return;
         }
 
-        // falsch: ein Leben weniger, Auswahl zurücksetzen
         lives--;
         for (Button b : model.getSelectedButtons()) {
             model.getView().unmark(b);
@@ -75,7 +74,8 @@ public class FactsGameController {
         model.getView().getStatus().setText(errorMessage(result.mistakes(), lives));
 
         if (lives == 0) {
-            SceneManager.switchView(GameMode.MAIN_MENU);
+            HighScoreManager.recordFactsLoss();
+            SceneManager.switchView(GameMode.FACTS_GAME_STREAK);
         }
     }
 
