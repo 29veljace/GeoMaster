@@ -211,3 +211,16 @@
 .context-menu .radio-menu-item > .left-container > .radio {
     -fx-background-color: transparent;
 }
+
+#statsTitleLabel {
+    -fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: whitesmoke;
+}
+#highscoresHeader{
+    -fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: whitesmoke;
+}
+#highscoresRow{
+    -fx-font-size: 20px; -fx-text-fill: whitesmoke;
+}
+#highscoresValue{
+    -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: whitesmoke;
+}

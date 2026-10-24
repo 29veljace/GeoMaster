@@ -17,15 +17,6 @@ import util.LanguageManager;
  */
 public class StatsBoardView {
 
-    private static final String TITLE_STYLE =
-            "-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: whitesmoke;";
-    private static final String HEADER_STYLE =
-            "-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: whitesmoke;";
-    private static final String ROW_STYLE =
-            "-fx-font-size: 20px; -fx-text-fill: whitesmoke;";
-    private static final String VALUE_STYLE =
-            "-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: whitesmoke;";
-
     private final HBox root;
     private final Button backButton = new Button();
 
@@ -39,9 +30,9 @@ public class StatsBoardView {
     private final Label[] factsValues = new Label[3];
 
     public StatsBoardView() {
-        titleLabel.setStyle(TITLE_STYLE);
-        highscoresHeader.setStyle(HEADER_STYLE);
-        factsHeader.setStyle(HEADER_STYLE);
+        titleLabel.setId("statsTitleLabel");
+        highscoresHeader.setId("highscoresHeader");
+        factsHeader.setId("highscoresHeader");
 
         GridPane highscoreGrid = createGrid(modeNames, modeScores);
         GridPane factsGrid = createGrid(factsNames, factsValues);
@@ -77,9 +68,9 @@ public class StatsBoardView {
 
         for (int i = 0; i < names.length; i++) {
             names[i] = new Label();
-            names[i].setStyle(ROW_STYLE);
+            names[i].setId("highscoresRow");
             values[i] = new Label();
-            values[i].setStyle(VALUE_STYLE);
+            values[i].setId("highscoresValue");
             grid.add(names[i], 0, i);
             grid.add(values[i], 1, i);
         }
