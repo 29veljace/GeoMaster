@@ -83,7 +83,7 @@ public class FactsGameModel {
                 List<Integer> identifiers = new ArrayList<>(List.of(0, 1, 8));
                 Collections.shuffle(identifiers, random);
 
-                List<Integer> pool = new ArrayList<>(List.of(2, 3, 4, 5, 6, 7, 9, 10));
+                List<Integer> pool = new ArrayList<>(List.of(2, 3, 4, 5, 6, 7, 9, 10,11));
                 pool.add(identifiers.get(2));
                 Collections.shuffle(pool, random);
 
@@ -140,6 +140,8 @@ public class FactsGameModel {
             case 8 -> country.getFlag();
             case 9 -> country.getOutline();
             case 10 -> nf.format(country.getPassportStrength()) + (en ? " visa-free destinations" : " visafreie Reiseziele");
+            case 11 -> nf.format(Math.round(country.getGdpc())) + " $"
+                    + (en ? " GDP/capita" : " BIP pro Kopf");
             default -> throw new IllegalArgumentException("Unknown property: " + property);
         };
     }
