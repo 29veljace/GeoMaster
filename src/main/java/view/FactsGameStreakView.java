@@ -27,7 +27,13 @@ public class FactsGameStreakView {
                     + "\nLongest Streak: " + longestStreak);
             button = new Button("Back to Main Menu");
         } else {
-            label = new Label("Du hast diesen Modus " + wins + " Mal gewonnen!\nAktuelle Serie: " + currentStreak);
+            label = new Label("Du hast diesen Modus "
+                    + wins
+                    + " Mal gewonnen!" +
+                    "\nAktuelle Serie: "
+                    + currentStreak
+                    + "\nLängste Serie: "
+                    + longestStreak);
             button = new Button("Zurück zum Hauptmenü");
         }
         label.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
