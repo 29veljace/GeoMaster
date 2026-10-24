@@ -61,6 +61,11 @@ public class SceneManager {
                 new FactsGameStreakController(view);
                 root.getChildren().setAll(view.gethBox());
             }
+            case STAT_BOARD -> {
+                StatsBoardView view = new StatsBoardView();
+                new StatBoardController(view);
+                root.getChildren().setAll(view.getRoot());
+            }
         }
     }
 
