@@ -14,15 +14,33 @@ public class FactsGameStreakView {
     private final HBox hBox;
 
     public FactsGameStreakView() {
+        int wins = HighScoreManager.getFactsWinCount();
+        int currentStreak = HighScoreManager.getFactsCurrentStreak();
+        int longestStreak = HighScoreManager.getFactsLongestStreak();
+
         if (util.LanguageManager.getLanguage().equals("en")) {
-            label = new Label("You won this mode " + HighScoreManager.getCountFactsGameStreak() + " times!");
+            label = new Label("You won this mode "
+                    + wins
+                    + " times!" +
+                    "\nCurrent streak: "
+                    + currentStreak
+                    + "\nLongest Streak: " + longestStreak);
+            button = new Button("Back to Main Menu");
         } else {
-            label = new Label("Du hast diesen Modus" + HighScoreManager.getCountFactsGameStreak() + " Mal gewonnen!");
+            label = new Label("Du hast diesen Modus "
+                    + wins
+                    + " Mal gewonnen!" +
+                    "\nAktuelle Serie: "
+                    + currentStreak
+                    + "\nLängste Serie: "
+                    + longestStreak);
+            button = new Button("Zurück zum Hauptmenü");
         }
+        label.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         label.setId("score");
         label.setTextFill(Color.WHITESMOKE);
 
-        button = new Button("Back to Main Menu");
+
         button.setId("gameOverButton");
         VBox vBox = new VBox(label, button);
         vBox.setSpacing(25);

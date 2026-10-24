@@ -8,5 +8,6 @@ public enum GameMode {
     HIGHER_LOWER,
     FACTS_GAME,
     GAME_OVER,
-    FACTS_GAME_STREAK
+    FACTS_GAME_STREAK,
+    STAT_BOARD
 }

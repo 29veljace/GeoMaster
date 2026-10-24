@@ -24,6 +24,7 @@ public class MainMenuController {
             Platform.exit();
             System.exit(0);
         });
+        mainMenuView.getStatsIcon().setOnMouseClicked(_ -> SceneManager.switchView(GameMode.STAT_BOARD));
         mainMenuView.getFlagGuessing().setOnAction(_ -> SceneManager.switchView(GameMode.FLAG_GAME));
         mainMenuView.getOutlineGuessing().setOnAction(_ -> SceneManager.switchView(GameMode.OUTLINE_GAME));
         mainMenuView.getFactsGame().setOnAction(_ -> SceneManager.switchView(GameMode.FACTS_GAME));

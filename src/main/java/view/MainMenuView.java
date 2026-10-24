@@ -18,6 +18,7 @@ public class MainMenuView {
     public static Text info;
     public ImageView exit;
     public ImageView languageIcon;
+    public ImageView statsIcon;
     private ContextMenu languageMenu;
     private RadioMenuItem englishItem;
     private RadioMenuItem germanItem;
@@ -69,6 +70,13 @@ public class MainMenuView {
         exit.setPickOnBounds(true);
         exit.setPreserveRatio(true);
 
+        statsIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/stats.png")));
+        statsIcon.setFitWidth(60);
+        statsIcon.setFitHeight(60);
+        statsIcon.setCursor(javafx.scene.Cursor.HAND);
+        statsIcon.setPreserveRatio(true);
+        statsIcon.setPickOnBounds(true);
+
         languageIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/globe.png")));
         languageIcon.setFitWidth(60);
         languageIcon.setFitHeight(60);
@@ -98,7 +106,7 @@ public class MainMenuView {
         hBox1.setSpacing(30);
         hBox2.setSpacing(30);
 
-        HBox topBar = new HBox(25, languageIcon, exit);
+        HBox topBar = new HBox(25, statsIcon, languageIcon, exit);
         topBar.setAlignment(Pos.CENTER_RIGHT);
         topBar.setPadding(new Insets(15, 25, 0, 0));
 
@@ -133,6 +141,10 @@ public class MainMenuView {
 
     public ImageView getLanguageIcon() {
         return languageIcon;
+    }
+
+    public ImageView getStatsIcon() {
+        return statsIcon;
     }
 
     public ContextMenu getLanguageMenu() {
