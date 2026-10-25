@@ -175,23 +175,28 @@ public class FactsGameModel {
     }
 
     private String gdpFormat(double gdp) {
-        NumberFormat localNf = util.LanguageManager.getLanguage().equals("en")
-                ? java.text.NumberFormat.getInstance(java.util.Locale.US)
-                : java.text.NumberFormat.getInstance(java.util.Locale.GERMAN);
+        boolean en = util.LanguageManager.getLanguage().equals("en");
+        NumberFormat localNf = NumberFormat.getInstance(en ? Locale.US : Locale.GERMAN);
+        localNf.setMaximumFractionDigits(2);
 
-        if (gdp >= 1_000_000_000) {
-            double billion = gdp / 1_000_000_000.0;
-            localNf.setMaximumFractionDigits(2);
-            if (util.LanguageManager.getLanguage().equals("en")) {
-                return localNf.format(billion) + " billion GDP";
-            } else {
-                return localNf.format(billion) + " Mrd. BIP";
+        if (gdp >= 1_000_000_000_000.0) {
+            double trillion = gdp / 1_000_000_000_000.0;
+            String formatted = localNf.format(trillion);
+            if (en) {
+                return formatted + " trillion GDP";
             }
+            boolean isOne = Math.abs(trillion - 1.0) < 0.005;
+            return formatted + (isOne ? " Billion BIP" : " Billionen BIP");
         }
-        if (util.LanguageManager.getLanguage().equals("de")) {
-            return localNf.format(gdp) + " BIP";
+        if (gdp >= 1_000_000_000.0) {
+            double billion = gdp / 1_000_000_000.0;
+            return localNf.format(billion) + (en ? " billion GDP" : " Mrd. BIP");
         }
-        return localNf.format(gdp) + " GDP";
+        if (gdp >= 1_000_000.0) {
+            double million = gdp / 1_000_000.0;
+            return localNf.format(million) + (en ? " million GDP" : " Mio. BIP");
+        }
+        return localNf.format(gdp) + (en ? " GDP" : " BIP");
     }
 
     public record SubmitResult(boolean correct, int mistakes) {}
