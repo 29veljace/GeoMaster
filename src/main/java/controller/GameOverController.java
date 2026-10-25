@@ -11,6 +11,8 @@ public class GameOverController {
 
         int highScore = getHighScoreForMode(mode);
 
+        gameOverView.setMode(mode);
+
         gameOverView.getScoreText().setText("Score: " + currentScore);
         gameOverView.getHighScoreText().setText("High Score: " + highScore);
 
