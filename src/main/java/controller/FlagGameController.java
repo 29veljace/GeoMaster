@@ -21,7 +21,7 @@ public class FlagGameController {
     public void buildQuestion() {
         boolean b = true;
         flagGameModel.connect();
-        Country c = flagGameModel.getCountry();
+        Country c = flagGameModel.getNextQuestionCountry();
         Country wrong1 = flagGameModel.getCountry();
         while (b) {
             b = false;

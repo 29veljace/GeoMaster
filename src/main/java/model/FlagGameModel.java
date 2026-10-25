@@ -7,9 +7,15 @@ import javafx.scene.image.Image;
 import java.io.*;
 import java.sql.*;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FlagGameModel {
     private Connection connection;
+    private static final int COUNTRY_COUNT = 189;
+    private final Random random = new Random();
+    private final List<Integer> deck = new ArrayList<>();
 
     public void connect() {
         String userHome = System.getProperty("user.home");
@@ -43,7 +49,7 @@ public class FlagGameModel {
             throw new RuntimeException(e);
         }
     }
-
+    /*
     public ResultSet getData() {
         Statement statement;
         try {
@@ -61,9 +67,10 @@ public class FlagGameModel {
         }
         return resultSet;
     }
+     */
 
-    public Country getCountry() {
-        ResultSet resultSet = getData();
+    public Country getCountry(int countryId) {
+        ResultSet resultSet = getData(countryId);
         Country country;
         int id, passportStrength;
         String name_EN, name_DE, code, capital_EN, capital_DE;
@@ -121,4 +128,32 @@ public class FlagGameModel {
         return new Image(is);
     }
 
+    private int nextQuestionId() {
+        if (deck.isEmpty()) {
+            for (int i = 0; i < COUNTRY_COUNT; i++) deck.add(i);
+            Collections.shuffle(deck, random);
+        }
+        return deck.remove(deck.size() - 1);
+    }
+
+    public ResultSet getData(int id) {
+        try {
+            Statement statement = connection.createStatement();
+            return statement.executeQuery("SELECT * FROM country WHERE id = " + id + ";");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ResultSet getData() {
+        return getData(random.nextInt(COUNTRY_COUNT));
+    }
+
+    public Country getCountry() {
+        return getCountry(random.nextInt(COUNTRY_COUNT));
+    }
+
+    public Country getNextQuestionCountry() {
+        return getCountry(nextQuestionId());
+    }
 }
