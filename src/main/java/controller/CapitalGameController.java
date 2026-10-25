@@ -188,7 +188,7 @@ public class CapitalGameController {
     }
 
     public void saveHighScore() {
-        HighScoreManager.saveFlagHighScore(score);
+        HighScoreManager.saveCapitalHighScore(score);
         score = 0;
     }
 }
