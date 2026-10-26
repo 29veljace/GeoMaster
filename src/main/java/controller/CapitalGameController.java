@@ -19,7 +19,7 @@ public class CapitalGameController {
     }
     public void buildQuestion(){
         capitalGameModel.connect();
-        Country c = capitalGameModel.getCountry();
+        Country c = capitalGameModel.getNextQuestionCountry();
         Country wrong1 = capitalGameModel.getCountry();
         boolean b = true;
         while (b) {
