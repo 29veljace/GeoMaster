@@ -23,7 +23,7 @@ public class OutlineGameController {
     public void buildQuestion() {
         outlineGameModel.connect();
         boolean b = true;
-        Country c = outlineGameModel.getCountry();
+        Country c = outlineGameModel.getNextQuestionCountry();
         Country wrong1 = outlineGameModel.getCountry();
         while (b) {
             b = false;

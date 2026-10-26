@@ -7,9 +7,15 @@ import javafx.scene.image.Image;
 import java.io.*;
 import java.sql.*;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 
 public class OutlineGameModel {
     private Connection connection;
+    private static final int COUNTRY_COUNT = 189;
+    private final Random random = new Random();
+    private final List<Integer> deck = new ArrayList<>();
 
     public void connect() {
         String userHome = System.getProperty("user.home");
@@ -44,7 +50,7 @@ public class OutlineGameModel {
             throw new RuntimeException(e);
         }
     }
-
+    /*
     public ResultSet getData() {
         Statement statement;
         try {
@@ -62,9 +68,10 @@ public class OutlineGameModel {
         }
         return resultSet;
     }
+     */
 
-    public Country getCountry() {
-        ResultSet resultSet = getData();
+    public Country getCountry(int countryId) {
+        ResultSet resultSet = getData(countryId);
         Country country;
         int id, passportStrength;
         String name_EN, code, capital_EN, capital_DE, name_DE;
@@ -110,6 +117,38 @@ public class OutlineGameModel {
         }
         country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, passportStrength, image, outline);
         return country;
+    }
+
+    private int nextQuestionId(){
+        if (deck.isEmpty()) {
+            for (int i = 0; i < COUNTRY_COUNT; i++){
+                deck.add(i);
+            }
+            Collections.shuffle(deck, random);
+        }
+        return deck.remove(deck.size() - 1);
+    }
+
+    public ResultSet getData(){
+        return getData(random.nextInt(COUNTRY_COUNT));
+    }
+
+    public ResultSet getData(int id){
+        try{
+            Statement statement = connection.createStatement();
+            return statement.executeQuery("SELECT * FROM country where id = " + id + ";");
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Country getCountry(){
+        return getCountry(random.nextInt(COUNTRY_COUNT));
+    }
+
+    public Country getNextQuestionCountry(){
+        return getCountry(nextQuestionId());
     }
 
     public Connection getConnection() {
