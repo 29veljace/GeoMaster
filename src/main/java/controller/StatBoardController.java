@@ -1,13 +1,11 @@
 package controller;
 
-import javafx.stage.Stage;
 import model.GameMode;
 import util.SceneManager;
 import view.StatsBoardView;
 
 public class StatBoardController {
-    private StatsBoardView view;
-    private Stage stage;
+    private final StatsBoardView view;
 
     public StatBoardController(StatsBoardView view) {
         this.view = view;

@@ -10,8 +10,8 @@ import java.util.*;
 
 public class FactsGameModel {
 
-    private FactsGameView view = new FactsGameView();
-    private FactsGameModelCountryData factsGameModelCountryData = new FactsGameModelCountryData();
+    private final FactsGameView view = new FactsGameView();
+    private final FactsGameModelCountryData factsGameModelCountryData = new FactsGameModelCountryData();
     private Country c1;
     private Country c2;
     private Country c3;
@@ -24,7 +24,6 @@ public class FactsGameModel {
 
     public void setCountries() {
         factsGameModelCountryData.connect();
-        System.out.println(factsGameModelCountryData.getConnection());
         c1 = factsGameModelCountryData.getCountry();
         do {
             c2 = factsGameModelCountryData.getCountry();
@@ -35,10 +34,6 @@ public class FactsGameModel {
         do {
             c4 = factsGameModelCountryData.getCountry();
         } while (c1.getId() == c4.getId() || c2.getId() == c4.getId() || c3.getId() == c4.getId());
-        System.out.println(c1.getName_EN());
-        System.out.println(c2.getName_EN());
-        System.out.println(c3.getName_EN());
-        System.out.println(c4.getName_EN());
     }
 
     private final Set<Object> correctAnswersC1 = Collections.synchronizedSet(new HashSet<>());
@@ -119,11 +114,6 @@ public class FactsGameModel {
                 applyPropertyToButton(btn, property, val);
             }
         }
-
-        System.out.println(correctAnswersC1);
-        System.out.println(correctAnswersC2);
-        System.out.println(correctAnswersC3);
-        System.out.println(correctAnswersC4);
     }
 
     private Object getPropertyValue(Country country, int property) {
@@ -164,14 +154,6 @@ public class FactsGameModel {
 
     public FactsGameView getView() {
         return view;
-    }
-
-    public FactsGameModelCountryData getFactsGameModelCountryData() {
-        return factsGameModelCountryData;
-    }
-
-    public Set<Object> getSelected() {
-        return selected;
     }
 
     private String gdpFormat(double gdp) {

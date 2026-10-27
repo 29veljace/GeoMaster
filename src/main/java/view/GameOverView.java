@@ -68,11 +68,9 @@ public class GameOverView {
         HBox hBox = new HBox(vBox);
         hBox.setAlignment(Pos.CENTER);
 
-        // Textur-Ebene hinter dem eigentlichen Inhalt
         texturePane = new Pane();
         texturePane.setMouseTransparent(true);
 
-        // Nichts soll über den Rand hinausragen
         Rectangle clip = new Rectangle();
         clip.widthProperty().bind(texturePane.widthProperty());
         clip.heightProperty().bind(texturePane.heightProperty());
@@ -86,10 +84,9 @@ public class GameOverView {
         borderPane = new BorderPane();
         borderPane.setCenter(layered);
 
-        setMode(GameMode.GAME_OVER); // Standard: Globus auf Teal, der Controller überschreibt das
+        setMode(GameMode.GAME_OVER);
     }
 
-    /** Setzt Hintergrund und Textur passend zum verlorenen Spielmodus. */
     public void setMode(GameMode mode) {
         switch (mode) {
             case FLAG_GAME -> applyTheme(
@@ -115,7 +112,7 @@ public class GameOverView {
         this.textureImages = images;
         this.minOpacity = minOpacity;
         this.maxOpacity = maxOpacity;
-        this.textureSeed = System.nanoTime(); // pro Game Over neue Anordnung, beim Resize bleibt sie gleich
+        this.textureSeed = System.nanoTime();
         fillTexture();
     }
 
@@ -131,20 +128,18 @@ public class GameOverView {
         for (double x = 0; x < w + spacing; x += spacing) {
             for (double y = 0; y < h + spacing; y += spacing) {
                 ImageView iv = new ImageView(textureImages.get(rnd.nextInt(textureImages.size())));
-                double size = 25 + rnd.nextDouble() * 25;                    // 25-50 px
+                double size = 25 + rnd.nextDouble() * 25;
                 iv.setFitWidth(size);
                 iv.setFitHeight(size);
                 iv.setPreserveRatio(true);
                 iv.setOpacity(minOpacity + rnd.nextDouble() * (maxOpacity - minOpacity));
                 iv.setRotate(rnd.nextDouble() * 360);
-                iv.setLayoutX(x + rnd.nextDouble() * 30 - 15);               // leichter Versatz
+                iv.setLayoutX(x + rnd.nextDouble() * 30 - 15);
                 iv.setLayoutY(y + rnd.nextDouble() * 30 - 15);
                 texturePane.getChildren().add(iv);
             }
         }
     }
-
-    // ---------- Bilder laden ----------
 
     private static Image loadImage(String path) {
         try (InputStream in = GameOverView.class.getResourceAsStream(path)) {
@@ -152,7 +147,6 @@ public class GameOverView {
                 System.err.println("Bild nicht gefunden: " + path);
                 return null;
             }
-            // auf max. 100x100 verkleinert laden, spart Speicher bei großen Flaggen
             Image img = new Image(in, 100, 100, true, true);
             return img.isError() ? null : img;
         } catch (IOException e) {
@@ -166,7 +160,6 @@ public class GameOverView {
         return img == null ? List.of() : List.of(img);
     }
 
-    /** Lädt zufällig 'count' Bilder aus einem Resource-Ordner. */
     private static List<Image> loadRandomImages(String folder, int count) {
         List<String> files = listResourceFiles(folder);
         Collections.shuffle(files);
@@ -177,7 +170,6 @@ public class GameOverView {
                 .toList();
     }
 
-    /** Listet Bilddateien eines Resource-Ordners (IDE, JAR und jlink-Image). */
     private static List<String> listResourceFiles(String folder) {
         List<String> result = new ArrayList<>();
         try {
@@ -194,7 +186,7 @@ public class GameOverView {
                 } catch (FileSystemAlreadyExistsException e) {
                     fs = FileSystems.getFileSystem(uri);
                 }
-                collectImages(fs.getPath(folder), folder, result); // FS bewusst offen lassen
+                collectImages(fs.getPath(folder), folder, result);
             } else {
                 collectImages(Path.of(uri), folder, result);
             }

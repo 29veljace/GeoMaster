@@ -1,6 +1,8 @@
 package controller;
 
-import model.*;
+import model.CapitalGameModel;
+import model.Country;
+import model.GameMode;
 import util.*;
 import view.CapitalGameView;
 
@@ -173,8 +175,8 @@ public class CapitalGameController {
                     break;
             }
         }
-
     }
+
     public void correctAnswer() {
         score++;
         capitalGameView.getScoreNumber().setText(Integer.toString(score));

@@ -19,10 +19,10 @@ public class MainMenuView {
     public ImageView exit;
     public ImageView languageIcon;
     public ImageView statsIcon;
-    private ContextMenu languageMenu;
-    private RadioMenuItem englishItem;
-    private RadioMenuItem germanItem;
-    private BorderPane borderPane = new BorderPane();
+    private final ContextMenu languageMenu;
+    private final RadioMenuItem englishItem;
+    private final RadioMenuItem germanItem;
+    private final BorderPane borderPane = new BorderPane();
 
     public MainMenuView() {
         if (util.LanguageManager.getLanguage().equals("en")) {

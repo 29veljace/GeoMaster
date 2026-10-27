@@ -11,10 +11,6 @@ import javafx.scene.layout.VBox;
 import util.HighScoreManager;
 import util.LanguageManager;
 
-/**
- * Statsboard: Highscores der vier Modi plus Win Count und Streaks des Facts-Games.
- * refresh() liest Werte und Sprache neu ein; aufrufen, bevor die View angezeigt wird.
- */
 public class StatsBoardView {
 
     private final HBox root;
@@ -77,7 +73,6 @@ public class StatsBoardView {
         return grid;
     }
 
-    /** Liest Sprache und Werte neu ein. */
     public void refresh() {
         boolean en = LanguageManager.getLanguage().equals("en");
 

@@ -62,9 +62,9 @@ public class HigherLowerModel {
     public Country getCountry(){
         ResultSet resultSet = getData();
         Country country;
-        int id, passportStrength;
+        int id, passportStrength, gdpc;
         String name_EN, code, capital_EN,capital_DE, name_DE;
-        long population, area, gdp, gdpc;
+        long population, area, gdp;
         double avgHeight,avgTemperature;
         Image image;
         Image outline;
@@ -94,7 +94,7 @@ public class HigherLowerModel {
 
             passportStrength = resultSet.getInt("passportStrength");
 
-            gdpc = resultSet.getLong("gdpc");
+            gdpc = resultSet.getInt("gdpc");
 
 
             String path1 = resultSet.getString("path1");

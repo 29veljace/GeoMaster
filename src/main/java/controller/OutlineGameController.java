@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.util.Random;
 
 public class OutlineGameController {
-    private OutlineGameView outlineGameView;
-    private OutlineGameModel outlineGameModel;
+    private final OutlineGameView outlineGameView;
+    private final OutlineGameModel outlineGameModel;
     private int score;
 
     public OutlineGameController(OutlineGameView view, OutlineGameModel model) {
@@ -113,9 +113,8 @@ public class OutlineGameController {
                     outlineGameView.getButton4().setOnAction(_ -> correctAnswer());
                     break;
             }
-        }
-        else{
-            switch (i){
+        } else {
+            switch (i) {
                 case 0:
                     outlineGameView.getButton1().setText(c.getName_DE());
                     outlineGameView.getButton1().setOnAction(_ -> correctAnswer());
@@ -188,13 +187,5 @@ public class OutlineGameController {
     public void saveHighScore() {
         HighScoreManager.saveOutlineHighScore(score);
         score = 0;
-    }
-
-    public OutlineGameView getOutlineGameView() {
-        return outlineGameView;
-    }
-
-    public OutlineGameModel getOutlineGameModel() {
-        return outlineGameModel;
     }
 }

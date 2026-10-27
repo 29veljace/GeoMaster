@@ -1,6 +1,8 @@
 package controller;
 
-import model.*;
+import model.Country;
+import model.FlagGameModel;
+import model.GameMode;
 import util.*;
 import view.FlagGameView;
 

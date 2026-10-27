@@ -1,22 +1,20 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import view.*;
-import javafx.stage.Stage;
-import model.*;
-import util.*;
 import javafx.geometry.Side;
+
+import view.MainMenuView;
+import model.GameMode;
+import util.SceneManager;
+import util.LanguageManager;
+
 
 
 public class MainMenuController {
     private MainMenuView mainMenuView;
-    private Stage stage;
 
-    public MainMenuController(MainMenuView menuView, Stage stage) {
+    public MainMenuController(MainMenuView menuView) {
         mainMenuView = menuView;
-        this.stage = stage;
         initEvents();
     }
     public void initEvents(){

@@ -1,8 +1,10 @@
 package controller;
 
-import view.*;
-import util.*;
-import model.*;
+import view.GameOverView;
+import util.HighScoreManager;
+import util.SceneManager;
+import util.GameSession;
+import model.GameMode;
 
 public class GameOverController {
     public GameOverController(GameOverView gameOverView) {

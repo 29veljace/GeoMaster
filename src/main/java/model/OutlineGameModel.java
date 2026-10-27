@@ -73,9 +73,9 @@ public class OutlineGameModel {
     public Country getCountry(int countryId) {
         ResultSet resultSet = getData(countryId);
         Country country;
-        int id, passportStrength;
+        int id, passportStrength, gdpc;
         String name_EN, code, capital_EN, capital_DE, name_DE;
-        long population, area, gdp, gdpc;
+        long population, area, gdp;
         double avgHeight, avgTemperature;
         Image image;
         Image outline;
@@ -105,7 +105,7 @@ public class OutlineGameModel {
 
             passportStrength = resultSet.getInt("passportStrength");
 
-            gdpc = resultSet.getLong("gdpc");
+            gdpc = resultSet.getInt("gdpc");
 
             String path1 = resultSet.getString("path1");
             image = new Image(getClass().getResourceAsStream("/" + path1));
@@ -129,9 +129,6 @@ public class OutlineGameModel {
         return deck.remove(deck.size() - 1);
     }
 
-    public ResultSet getData(){
-        return getData(random.nextInt(COUNTRY_COUNT));
-    }
 
     public ResultSet getData(int id){
         try{

@@ -7,7 +7,6 @@ import util.HighScoreManager;
 import util.SceneManager;
 
 public class FactsGameController {
-    // controller für das spiel mit den fakten
     private final FactsGameModel model;
     private int lives;
     private int counter;
@@ -26,7 +25,6 @@ public class FactsGameController {
         model.getView().getSubmitBtn().setOnAction(_ -> submit());
     }
 
-    // Klick auf einen Fakt: nur Auswahl umschalten, noch keine Auswertung
     private void handle(Button btn) {
         model.toggle(btn);
         if (model.isSelected(btn)) {
@@ -37,7 +35,6 @@ public class FactsGameController {
         model.getView().getSubmitBtn().setDisable(model.canSubmit());
     }
 
-    // Klick auf Submit: die vier gewählten Fakten auswerten
     private void submit() {
         if (model.canSubmit()) {
             return;

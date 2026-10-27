@@ -64,9 +64,9 @@ public class FactsGameModelCountryData {
     public Country getCountry() {
         ResultSet resultSet = getData();
         Country country;
-        int id, passportStrength;
+        int id, passportStrength, gdpc;
         String name_EN, code, capital_EN, capital_DE, name_DE;
-        long population, area, gdp, gdpc;
+        long population, area, gdp;
         double avgHeight, avgTemperature;
         Image image;
         Image outline;
@@ -96,7 +96,7 @@ public class FactsGameModelCountryData {
 
             passportStrength = resultSet.getInt("passportStrength");
 
-            gdpc = resultSet.getLong("gdpc");
+            gdpc = resultSet.getInt("gdpc");
 
 
             String path1 = resultSet.getString("path1");
@@ -109,9 +109,5 @@ public class FactsGameModelCountryData {
         }
         country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, passportStrength, image, outline);
         return country;
-    }
-
-    public Connection getConnection() {
-        return connection;
     }
 }

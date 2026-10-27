@@ -21,14 +21,6 @@ public class LanguageManager {
         save(props);
     }
 
-    public static void switchLanguage() {
-        if ("en".equals(getLanguage())) {
-            setLanguage("de");
-        } else {
-            setLanguage("en");
-        }
-    }
-
     private static void ensureSettingsFileExists() {
         if (Files.exists(SETTINGS_FILE)) {
             return;

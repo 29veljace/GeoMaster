@@ -3,23 +3,23 @@ package model;
 import javafx.scene.image.Image;
 
 public class Country {
-    private int id;
-    private String name_EN;
-    private String name_DE;
-    private String code;
-    private String capital_EN;
-    private String capital_DE;
-    private long population;
-    private long area;
-    private double avgHeight;
-    private long gdp;
-    private double avgTemperature;
-    private long gdpc;
-    private int passportStrength;
-    private Image flag;
-    private Image outline;
+    private final int id;
+    private final String name_EN;
+    private final String name_DE;
+    private final String code;
+    private final String capital_EN;
+    private final String capital_DE;
+    private final long population;
+    private final long area;
+    private final double avgHeight;
+    private final long gdp;
+    private final double avgTemperature;
+    private final int gdpc;
+    private final int passportStrength;
+    private final Image flag;
+    private final Image outline;
 
-    public Country(int id, String name_EN, String name_DE, String code, String capital_EN, String capital_DE, long population, long area, double avgHeight, long gdp, double avgTemperature, long gdpc, int passportStrength, Image flag, Image outline) {
+    public Country(int id, String name_EN, String name_DE, String code, String capital_EN, String capital_DE, long population, long area, double avgHeight, long gdp, double avgTemperature, int gdpc, int passportStrength, Image flag, Image outline) {
         this.id = id;
         this.name_EN = name_EN;
         this.name_DE = name_DE;

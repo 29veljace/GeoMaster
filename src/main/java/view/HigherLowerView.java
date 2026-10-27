@@ -8,22 +8,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.control.*;
 
 public class HigherLowerView {
-
     private final BorderPane borderPane;
     private final Label label;
     private final Button button1;
     private final Button button2;
     private final ImageView imageView1;
     private final ImageView imageView2;
-    private final Text score;
     private final Text scoreNumber;
 
-    public HigherLowerView(Stage stage) {
-        score = new Text("Score");
+    public HigherLowerView() {
+        Text score = new Text("Score");
         score.setId("score");
         score.setFill(Color.WHITESMOKE);
         scoreNumber = new Text("0");

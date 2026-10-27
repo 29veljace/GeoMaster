@@ -23,7 +23,7 @@ public class SceneManager {
         switch (mode) {
             case MAIN_MENU -> {
                 MainMenuView view = new MainMenuView();
-                new MainMenuController(view, stage);
+                new MainMenuController(view);
                 root.getChildren().setAll(view.getBorderPane());
             }
             case FLAG_GAME -> {
@@ -37,7 +37,7 @@ public class SceneManager {
                 root.getChildren().setAll(factsGameController.getModel().getView().gethBox());
             }
             case HIGHER_LOWER -> {
-                HigherLowerView view = new HigherLowerView(stage);
+                HigherLowerView view = new HigherLowerView();
                 new HigherLowerController(view, new HigherLowerModel());
                 root.getChildren().setAll(view.getBorderPane());
             }

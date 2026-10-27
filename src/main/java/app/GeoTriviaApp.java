@@ -8,6 +8,8 @@ import util.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class GeoTriviaApp extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -17,9 +19,9 @@ public class GeoTriviaApp extends Application {
     public void start(Stage stage) {
         SceneManager.init(stage);
         MainMenuView mainMenuView = new MainMenuView();
-        new MainMenuController(mainMenuView, stage);
+        new MainMenuController(mainMenuView);
         SceneManager.getScene().getStylesheets().add(
-                getClass().getResource("/css/style.css").toExternalForm()
+                Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm()
         );
         SceneManager.switchView(GameMode.MAIN_MENU);
         stage.setFullScreen(true);

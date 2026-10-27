@@ -49,32 +49,13 @@ public class FlagGameModel {
             throw new RuntimeException(e);
         }
     }
-    /*
-    public ResultSet getData() {
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        Random random = new Random();
-        int i = random.nextInt(189);
-        ResultSet resultSet;
-        try {
-            resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return resultSet;
-    }
-     */
 
     public Country getCountry(int countryId) {
         ResultSet resultSet = getData(countryId);
         Country country;
-        int id, passportStrength;
+        int id, passportStrength, gdpc;
         String name_EN, name_DE, code, capital_EN, capital_DE;
-        long population, area, gdp, gdpc;
+        long population, area, gdp;
         double avgHeight, avgTemperature;
         Image image;
         Image outline;
@@ -104,7 +85,7 @@ public class FlagGameModel {
 
             passportStrength = resultSet.getInt("passportStrength");
 
-            gdpc = resultSet.getLong("gdpc");
+            gdpc = resultSet.getInt("gdpc");
 
             image = loadImage(resultSet.getString("path1"), id);
             outline = loadImage(resultSet.getString("path2"), id);
@@ -133,7 +114,7 @@ public class FlagGameModel {
             for (int i = 0; i < COUNTRY_COUNT; i++) deck.add(i);
             Collections.shuffle(deck, random);
         }
-        return deck.remove(deck.size() - 1);
+        return deck.removeLast();
     }
 
     public ResultSet getData(int id) {
@@ -143,10 +124,6 @@ public class FlagGameModel {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public ResultSet getData() {
-        return getData(random.nextInt(COUNTRY_COUNT));
     }
 
     public Country getCountry() {
