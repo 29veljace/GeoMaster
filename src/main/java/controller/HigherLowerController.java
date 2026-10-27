@@ -22,7 +22,6 @@ public class HigherLowerController {
         buildQuestion();
     }
     public void buildQuestion(){
-        higherLowerModel.connect();
         boolean b = true;
         Country c1 = higherLowerModel.getCountry();
         Country c2 = higherLowerModel.getCountry();
@@ -285,12 +284,6 @@ public class HigherLowerController {
                         higherLowerView.getButton2().setOnAction(_ -> correctAnswer());
                     }
             }
-        }
-
-        try {
-            higherLowerModel.getConnection().close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
     public void correctAnswer(){

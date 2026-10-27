@@ -6,7 +6,6 @@ import util.HighScoreManager;
 import util.SceneManager;
 import view.OutlineGameView;
 
-import java.sql.SQLException;
 import java.util.Random;
 
 public class OutlineGameController {
@@ -21,7 +20,6 @@ public class OutlineGameController {
     }
 
     public void buildQuestion() {
-        outlineGameModel.connect();
         boolean b = true;
         Country c = outlineGameModel.getNextQuestionCountry();
         Country wrong1 = outlineGameModel.getCountry();
@@ -49,11 +47,6 @@ public class OutlineGameController {
                 wrong3 = outlineGameModel.getCountry();
                 b = true;
             }
-        }
-        try {
-            outlineGameModel.getConnection().close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
         outlineGameView.getImageView().setImage(c.getOutline());
         Random random = new Random();

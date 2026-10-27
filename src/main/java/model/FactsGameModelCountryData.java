@@ -2,112 +2,57 @@ package model;
 
 import app.Launcher;
 import javafx.scene.image.Image;
+import util.DatabaseManager;
 
 import java.io.*;
 import java.sql.*;
 import java.util.Random;
 
 public class FactsGameModelCountryData {
-    private Connection connection;
+    private final Random random = new Random();
+    private final int COUNTRY_COUNT = 189;
 
-    public void connect() {
-        String userHome = System.getProperty("user.home");
-        File dbFolder = new File(userHome + File.separator + ".geomaster");
-        File dbFile = new File(dbFolder, "countrydata.db");
-        if (!dbFolder.exists()) {
-            dbFolder.mkdirs();
-        }
+    public Country getCountry(){
+        return getCountry(random.nextInt(COUNTRY_COUNT));
+    }
 
-        if (!dbFile.exists()) {
-            try (InputStream is = Launcher.class.getResourceAsStream("/countrydata.db");
-                 OutputStream os = new FileOutputStream(dbFile)) {
-
-                if (is == null) {
-                    throw new FileNotFoundException("Original countrydata.db file not found in src/main/resources");
+    public Country getCountry(int countryId) {
+        String sql = "SELECT * FROM country WHERE id = ?";
+        try (PreparedStatement ps = DatabaseManager.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, countryId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    throw new IllegalStateException("Country not found: id=" + countryId);
                 }
-
-                byte[] buffer = new byte[4096];
-                int length;
-                while ((length = is.read(buffer)) > 0) {
-                    os.write(buffer, 0, length);
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                int id = rs.getInt("id");
+                return new Country(
+                        id,
+                        rs.getString("name_EN"),
+                        rs.getString("name_DE"),
+                        rs.getString("code"),
+                        rs.getString("capital_EN"),
+                        rs.getString("capital_DE"),
+                        rs.getLong("population"),
+                        rs.getLong("area"),
+                        rs.getInt("avgHeight"),
+                        rs.getLong("gdp"),
+                        rs.getInt("avgTemperature"),
+                        rs.getInt("gdpc"),
+                        rs.getInt("passportStrength"),
+                        loadImage(rs.getString("path1"), id),
+                        loadImage(rs.getString("path2"), id)
+                );
             }
-        }
-        String url = "jdbc:sqlite:" + dbFile.getAbsolutePath();
-        try {
-            this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public ResultSet getData() {
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    private Image loadImage(String path, int id) {
+        InputStream is = (path == null) ? null : getClass().getResourceAsStream("/" + path);
+        if (is == null) {
+            throw new IllegalStateException("Image missing: id=" + id + ", path=" + path);
         }
-        Random random = new Random();
-        int i = random.nextInt(189);
-        ResultSet resultSet;
-        try {
-            resultSet = statement.executeQuery("SELECT * FROM country WHERE id = " + i + ";");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return resultSet;
-    }
-
-    public Country getCountry() {
-        ResultSet resultSet = getData();
-        Country country;
-        int id, passportStrength, gdpc;
-        String name_EN, code, capital_EN, capital_DE, name_DE;
-        long population, area, gdp;
-        double avgHeight, avgTemperature;
-        Image image;
-        Image outline;
-        try {
-            resultSet.next();
-            id = resultSet.getInt("id");
-
-            name_EN = resultSet.getString("name_EN");
-
-            name_DE = resultSet.getString("name_DE");
-
-            code = resultSet.getString("code");
-
-            capital_EN = resultSet.getString("capital_EN");
-
-            capital_DE = resultSet.getString("capital_DE");
-
-            population = resultSet.getLong("population");
-
-            area = resultSet.getLong("area");
-
-            avgHeight = resultSet.getInt("avgHeight");
-
-            gdp = resultSet.getLong("gdp");
-
-            avgTemperature = resultSet.getInt("avgTemperature");
-
-            passportStrength = resultSet.getInt("passportStrength");
-
-            gdpc = resultSet.getInt("gdpc");
-
-
-            String path1 = resultSet.getString("path1");
-            image = new Image(getClass().getResourceAsStream("/" + path1));
-            String path2 = resultSet.getString("path2");
-            outline = new Image(getClass().getResourceAsStream("/" + path2));
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        country = new Country(id, name_EN, name_DE, code, capital_EN, capital_DE, population, area, avgHeight, gdp, avgTemperature, gdpc, passportStrength, image, outline);
-        return country;
+        return new Image(is);
     }
 }

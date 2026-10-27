@@ -23,7 +23,6 @@ public class FactsGameModel {
     public Set<Button> getSelectedButtons() { return selectedButtons; }
 
     public void setCountries() {
-        factsGameModelCountryData.connect();
         c1 = factsGameModelCountryData.getCountry();
         do {
             c2 = factsGameModelCountryData.getCountry();

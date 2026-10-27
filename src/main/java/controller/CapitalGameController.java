@@ -5,8 +5,6 @@ import model.Country;
 import model.GameMode;
 import util.*;
 import view.CapitalGameView;
-
-import java.sql.SQLException;
 import java.util.Random;
 
 public class CapitalGameController {
@@ -20,7 +18,6 @@ public class CapitalGameController {
         buildQuestion();
     }
     public void buildQuestion(){
-        capitalGameModel.connect();
         Country c = capitalGameModel.getNextQuestionCountry();
         Country wrong1 = capitalGameModel.getCountry();
         boolean b = true;
@@ -48,11 +45,6 @@ public class CapitalGameController {
                 wrong3 = capitalGameModel.getCountry();
                 b = true;
             }
-        }
-        try {
-            capitalGameModel.getConnection().close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
         if (util.LanguageManager.getLanguage().equals("en")){
             capitalGameView.getCapital().setText(c.getCapital_EN());

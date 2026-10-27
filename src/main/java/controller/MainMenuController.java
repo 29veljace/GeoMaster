@@ -3,6 +3,7 @@ package controller;
 import javafx.application.Platform;
 import javafx.geometry.Side;
 
+import util.DatabaseManager;
 import view.MainMenuView;
 import model.GameMode;
 import util.SceneManager;
@@ -19,6 +20,7 @@ public class MainMenuController {
     }
     public void initEvents(){
         mainMenuView.exit.setOnMouseClicked(_ -> {
+            DatabaseManager.close();
             Platform.exit();
             System.exit(0);
         });

@@ -5,8 +5,6 @@ import model.FlagGameModel;
 import model.GameMode;
 import util.*;
 import view.FlagGameView;
-
-import java.sql.SQLException;
 import java.util.Random;
 
 public class FlagGameController {
@@ -22,7 +20,6 @@ public class FlagGameController {
 
     public void buildQuestion() {
         boolean b = true;
-        flagGameModel.connect();
         Country c = flagGameModel.getNextQuestionCountry();
         Country wrong1 = flagGameModel.getCountry();
         while (b) {
@@ -49,11 +46,6 @@ public class FlagGameController {
                 wrong3 = flagGameModel.getCountry();
                 b = true;
             }
-        }
-        try {
-            flagGameModel.getConnection().close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
         flagGameView.getImageView().setImage(c.getFlag());
         Random random = new Random();
@@ -114,7 +106,7 @@ public class FlagGameController {
                     break;
             }
         }
-        else{
+        else {
             switch (i) {
                 case 0:
                     flagGameView.getButton1().setText(c.getName_DE());
@@ -169,11 +161,6 @@ public class FlagGameController {
                     flagGameView.getButton4().setOnAction(_ -> correctAnswer());
                     break;
             }
-        }
-        try {
-            flagGameModel.getConnection().close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 
