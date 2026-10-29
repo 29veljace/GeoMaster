@@ -3,6 +3,7 @@ package model;
 import javafx.scene.image.Image;
 import util.DatabaseManager;
 
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,8 +41,8 @@ public class GameModel {
                         rs.getInt("avgTemperature"),
                         rs.getInt("gdpc"),
                         rs.getInt("passportStrength"),
-                        new Image((rs.getString("path1"))),
-                        new Image((rs.getString("path2")))
+                        loadImage((rs.getString("path1")), id),
+                        loadImage((rs.getString("path2")), id)
                 );
             }
         } catch (SQLException e) {
@@ -65,6 +66,14 @@ public class GameModel {
 
     public Country getNextQuestionCountry(){
         return getCountry(nextQuestionId());
+    }
+
+    private Image loadImage(String path, int id) {
+        InputStream is = (path == null) ? null : getClass().getResourceAsStream("/" + path);
+        if (is == null) {
+            throw new IllegalStateException("Image missing: id=" + id + ", path=" + path);
+        }
+        return new Image(is);
     }
 }
 
