@@ -2,33 +2,32 @@ package controller;
 
 import model.Country;
 import model.GameMode;
-import model.HigherLowerModel;
+import model.GameModel;
 import util.GameSession;
 import util.HighScoreManager;
 import util.SceneManager;
 import view.HigherLowerView;
 
-import java.sql.SQLException;
 import java.util.Random;
 
 public class HigherLowerController {
-    HigherLowerModel higherLowerModel;
+    GameModel gameModel;
     HigherLowerView higherLowerView;
     private int score;
 
-    public HigherLowerController(HigherLowerView view, HigherLowerModel model){
-        higherLowerModel = model;
+    public HigherLowerController(HigherLowerView view, GameModel model){
+        gameModel = model;
         higherLowerView = view;
         buildQuestion();
     }
     public void buildQuestion(){
         boolean b = true;
-        Country c1 = higherLowerModel.getCountry();
-        Country c2 = higherLowerModel.getCountry();
+        Country c1 = gameModel.getCountry();
+        Country c2 = gameModel.getCountry();
         while (b){
             b = false;
             if(c1.getId() == c2.getId()){
-                c2 = higherLowerModel.getCountry();
+                c2 = gameModel.getCountry();
                 b = true;
             }
         }

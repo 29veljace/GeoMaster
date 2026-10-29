@@ -28,7 +28,7 @@ public class SceneManager {
             }
             case FLAG_GAME -> {
                 FlagGameView view = new FlagGameView();
-                new FlagGameController(view, new FlagGameModel());
+                new FlagGameController(view, new GameModel());
                 root.getChildren().setAll(view.getBorderPane());
             }
             case FACTS_GAME -> {
@@ -38,17 +38,17 @@ public class SceneManager {
             }
             case HIGHER_LOWER -> {
                 HigherLowerView view = new HigherLowerView();
-                new HigherLowerController(view, new HigherLowerModel());
+                new HigherLowerController(view, new GameModel());
                 root.getChildren().setAll(view.getBorderPane());
             }
             case OUTLINE_GAME -> {
                 OutlineGameView view = new OutlineGameView();
-                new OutlineGameController(view, new OutlineGameModel());
+                new OutlineGameController(view, new GameModel());
                 root.getChildren().setAll(view.getBorderPane());
             }
             case CAPITAL_GAME -> {
                 CapitalGameView view = new CapitalGameView();
-                new CapitalGameController(view,new CapitalGameModel());
+                new CapitalGameController(view,new GameModel());
                 root.getChildren().setAll(view.getBorderPane());
             }
             case GAME_OVER -> {

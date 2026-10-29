@@ -11,7 +11,7 @@ import java.util.*;
 public class FactsGameModel {
 
     private final FactsGameView view = new FactsGameView();
-    private final FactsGameModelCountryData factsGameModelCountryData = new FactsGameModelCountryData();
+    private final GameModel gameModel = new GameModel();
     private Country c1;
     private Country c2;
     private Country c3;
@@ -23,15 +23,15 @@ public class FactsGameModel {
     public Set<Button> getSelectedButtons() { return selectedButtons; }
 
     public void setCountries() {
-        c1 = factsGameModelCountryData.getCountry();
+        c1 = gameModel.getCountry();
         do {
-            c2 = factsGameModelCountryData.getCountry();
+            c2 = gameModel.getCountry();
         } while (c1.getId() == c2.getId());
         do {
-            c3 = factsGameModelCountryData.getCountry();
+            c3 = gameModel.getCountry();
         } while (c1.getId() == c3.getId() || c2.getId() == c3.getId());
         do {
-            c4 = factsGameModelCountryData.getCountry();
+            c4 = gameModel.getCountry();
         } while (c1.getId() == c4.getId() || c2.getId() == c4.getId() || c3.getId() == c4.getId());
     }
 

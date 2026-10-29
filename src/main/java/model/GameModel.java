@@ -1,18 +1,19 @@
 package model;
 
 import javafx.scene.image.Image;
-import java.io.*;
-import java.sql.*;
+import util.DatabaseManager;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import util.DatabaseManager;
 
-
-public class CapitalGameModel {
-    private static final int COUNTRY_COUNT = 189;
-    private final Random random = new Random();
+public class GameModel {
+    static final int COUNTRY_COUNT = 189;
+    Random random = new Random();
     private final List<Integer> deck = new ArrayList<>();
 
 
@@ -48,6 +49,10 @@ public class CapitalGameModel {
         }
     }
 
+    public Country getCountry(){
+        return getCountry(random.nextInt(COUNTRY_COUNT));
+    }
+
     private int nextQuestionId(){
         if (deck.isEmpty()){
             for (int i = 0; i < COUNTRY_COUNT; i++){
@@ -58,11 +63,8 @@ public class CapitalGameModel {
         return deck.removeLast();
     }
 
-    public Country getCountry(){
-        return getCountry(random.nextInt(COUNTRY_COUNT));
-    }
-
     public Country getNextQuestionCountry(){
         return getCountry(nextQuestionId());
     }
 }
+

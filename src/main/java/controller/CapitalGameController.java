@@ -1,52 +1,52 @@
 package controller;
 
-import model.CapitalGameModel;
 import model.Country;
 import model.GameMode;
+import model.GameModel;
 import util.*;
 import view.CapitalGameView;
 import java.util.Random;
 
 public class CapitalGameController {
-    private final CapitalGameModel capitalGameModel;
+    private final GameModel gameModel;
     private final CapitalGameView capitalGameView;
     private int score = 0;
 
-    public CapitalGameController(CapitalGameView view,CapitalGameModel model){
-        capitalGameModel = model;
+    public CapitalGameController(CapitalGameView view, GameModel model){
+        gameModel = model;
         capitalGameView = view;
         buildQuestion();
     }
     public void buildQuestion(){
-        Country c = capitalGameModel.getNextQuestionCountry();
-        Country wrong1 = capitalGameModel.getCountry();
+        Country c = gameModel.getNextQuestionCountry();
+        Country wrong1 = gameModel.getCountry();
         boolean b = true;
         while (b) {
             b = false;
             if (wrong1.getId() == c.getId()) {
-                wrong1 = capitalGameModel.getCountry();
+                wrong1 = gameModel.getCountry();
                 b = true;
             }
         }
-        Country wrong2 = capitalGameModel.getCountry();
+        Country wrong2 = gameModel.getCountry();
         b = true;
         while (b) {
             b = false;
             if (wrong2.getId() == c.getId() || wrong1.getId() == wrong2.getId()) {
-                wrong2 = capitalGameModel.getCountry();
+                wrong2 = gameModel.getCountry();
                 b = true;
             }
         }
-        Country wrong3 = capitalGameModel.getCountry();
+        Country wrong3 = gameModel.getCountry();
         b = true;
         while (b){
             b = false;
             if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
-                wrong3 = capitalGameModel.getCountry();
+                wrong3 = gameModel.getCountry();
                 b = true;
             }
         }
-        if (util.LanguageManager.getLanguage().equals("en")){
+        if (LanguageManager.getLanguage().equals("en")){
             capitalGameView.getCapital().setText(c.getCapital_EN());
         }
         else{
@@ -55,7 +55,7 @@ public class CapitalGameController {
 
         Random random = new Random();
         int i = random.nextInt(4);
-        if (util.LanguageManager.getLanguage().equals("en")){
+        if (LanguageManager.getLanguage().equals("en")){
             switch (i) {
                 case 0:
                     capitalGameView.getButton1().setText(c.getName_EN());

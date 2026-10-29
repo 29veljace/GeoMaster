@@ -3,6 +3,7 @@ package controller;
 import model.*;
 import util.GameSession;
 import util.HighScoreManager;
+import util.LanguageManager;
 import util.SceneManager;
 import view.OutlineGameView;
 
@@ -10,48 +11,48 @@ import java.util.Random;
 
 public class OutlineGameController {
     private final OutlineGameView outlineGameView;
-    private final OutlineGameModel outlineGameModel;
+    private final GameModel gameModel;
     private int score;
 
-    public OutlineGameController(OutlineGameView view, OutlineGameModel model) {
+    public OutlineGameController(OutlineGameView view, GameModel model) {
         outlineGameView = view;
-        outlineGameModel = model;
+        gameModel = model;
         buildQuestion();
     }
 
     public void buildQuestion() {
         boolean b = true;
-        Country c = outlineGameModel.getNextQuestionCountry();
-        Country wrong1 = outlineGameModel.getCountry();
+        Country c = gameModel.getNextQuestionCountry();
+        Country wrong1 = gameModel.getCountry();
         while (b) {
             b = false;
             if (wrong1.getId() == c.getId()) {
-                wrong1 = outlineGameModel.getCountry();
+                wrong1 = gameModel.getCountry();
                 b = true;
             }
         }
-        Country wrong2 = outlineGameModel.getCountry();
+        Country wrong2 = gameModel.getCountry();
         b = true;
         while (b) {
             b = false;
             if (wrong2.getId() == c.getId() || wrong1.getId() == wrong2.getId()) {
-                wrong2 = outlineGameModel.getCountry();
+                wrong2 = gameModel.getCountry();
                 b = true;
             }
         }
-        Country wrong3 = outlineGameModel.getCountry();
+        Country wrong3 = gameModel.getCountry();
         b = true;
         while (b) {
             b = false;
             if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
-                wrong3 = outlineGameModel.getCountry();
+                wrong3 = gameModel.getCountry();
                 b = true;
             }
         }
         outlineGameView.getImageView().setImage(c.getOutline());
         Random random = new Random();
         int i = random.nextInt(4);
-        if (util.LanguageManager.getLanguage().equals("en")) {
+        if (LanguageManager.getLanguage().equals("en")) {
             switch (i) {
                 case 0:
                     outlineGameView.getButton1().setText(c.getName_EN());

@@ -1,49 +1,49 @@
 package controller;
 
 import model.Country;
-import model.FlagGameModel;
 import model.GameMode;
+import model.GameModel;
 import util.*;
 import view.FlagGameView;
 import java.util.Random;
 
 public class FlagGameController {
     private final FlagGameView flagGameView;
-    private final FlagGameModel flagGameModel;
+    private final GameModel gameModel;
     private int score = 0;
 
-    public FlagGameController(FlagGameView view, FlagGameModel model) {
+    public FlagGameController(FlagGameView view, GameModel model) {
         flagGameView = view;
-        flagGameModel = model;
+        gameModel = model;
         buildQuestion();
     }
 
     public void buildQuestion() {
         boolean b = true;
-        Country c = flagGameModel.getNextQuestionCountry();
-        Country wrong1 = flagGameModel.getCountry();
+        Country c = gameModel.getNextQuestionCountry();
+        Country wrong1 = gameModel.getCountry();
         while (b) {
             b = false;
             if (wrong1.getId() == c.getId()) {
-                wrong1 = flagGameModel.getCountry();
+                wrong1 = gameModel.getCountry();
                 b = true;
             }
         }
-        Country wrong2 = flagGameModel.getCountry();
+        Country wrong2 = gameModel.getCountry();
         b = true;
         while (b) {
             b = false;
             if (wrong2.getId() == c.getId() || wrong1.getId() == wrong2.getId()) {
-                wrong2 = flagGameModel.getCountry();
+                wrong2 = gameModel.getCountry();
                 b = true;
             }
         }
-        Country wrong3 = flagGameModel.getCountry();
+        Country wrong3 = gameModel.getCountry();
         b = true;
         while (b) {
             b = false;
             if (wrong3.getId() == c.getId() || wrong3.getId() == wrong2.getId() || wrong3.getId() == wrong1.getId()) {
-                wrong3 = flagGameModel.getCountry();
+                wrong3 = gameModel.getCountry();
                 b = true;
             }
         }
