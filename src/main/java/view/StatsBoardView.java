@@ -44,7 +44,7 @@ public class StatsBoardView {
 
         root = new HBox(content);
         root.setAlignment(Pos.CENTER);
-        root.setStyle("-fx-background-color: linear-gradient(to bottom, #5b9bd5, #3878b8);");
+        root.setStyle("-fx-background-color: #269463");
 
         refresh();
     }
