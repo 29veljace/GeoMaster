@@ -77,7 +77,7 @@ public class MainMenuView {
         statsIcon.setPreserveRatio(true);
         statsIcon.setPickOnBounds(true);
 
-        languageIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/globe.png")));
+        languageIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/globe-grn.png")));
         languageIcon.setFitWidth(60);
         languageIcon.setFitHeight(60);
         languageIcon.setPreserveRatio(true);

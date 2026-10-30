@@ -103,7 +103,7 @@ public class GameOverView {
                     loadSingleImage("/img/stats.png"), 0.05, 0.15);
             default -> applyTheme(
                     "linear-gradient(to bottom, #0d9488, #042f2e)",
-                    loadSingleImage("/img/globe.png"), 0.05, 0.15);
+                    loadSingleImage("/img/globe-grn.png"), 0.05, 0.15);
         }
     }
 
