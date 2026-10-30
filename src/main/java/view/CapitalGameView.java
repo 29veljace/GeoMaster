@@ -3,6 +3,7 @@ package view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -54,25 +55,54 @@ public class CapitalGameView {
         borderPane.setCenter(vBox);
         borderPane.getStyleClass().add("game-pane");
         borderPane.setId("capitalGameView");
+
+        Image globe = new Image(getClass().getResourceAsStream("/img/globe-wht.png"));
+
+
+        Region texture = new Region();
+        texture.setBackground(new Background(new BackgroundImage(
+                globe,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(120, 120, false, false, false, false) // Kachelgröße in px
+        )));
+        texture.setOpacity(0.08);
+        texture.setMouseTransparent(true);
+        texture.setManaged(false);
+
+        borderPane.widthProperty().addListener((o, a, w) ->
+                texture.resize(w.doubleValue(), borderPane.getHeight()));
+        borderPane.heightProperty().addListener((o, a, h) ->
+                texture.resize(borderPane.getWidth(), h.doubleValue()));
+        borderPane.getChildren().add(0, texture);
     }
 
     public Label getCapital() {
         return capital;
     }
+
     public BorderPane getBorderPane() {
         return borderPane;
     }
+
     public Button getButton1() {
         return button1;
     }
+
     public Button getButton2() {
         return button2;
     }
+
     public Button getButton3() {
         return button3;
     }
+
     public Button getButton4() {
         return button4;
     }
-    public Text getScoreNumber() {return scoreNumber;}
+
+    public Text getScoreNumber() {
+        return scoreNumber;
+    }
 }
