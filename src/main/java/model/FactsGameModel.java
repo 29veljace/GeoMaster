@@ -17,7 +17,6 @@ public class FactsGameModel {
     private Country c3;
     private Country c4;
 
-    NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
 
     public Button[] getButtons() { return buttons; }
     public Set<Button> getSelectedButtons() { return selectedButtons; }
@@ -121,17 +120,17 @@ public class FactsGameModel {
             case 0 -> en ? country.getName_EN() : country.getName_DE();
             case 1 -> country.getCode();
             case 2 -> en ? country.getCapital_EN() : country.getCapital_DE();
-            case 3 -> nf.format(country.getPopulation()) + (en ? " people" : " Einwohner");
-            case 4 -> nf.format(country.getArea()) + (en ? " km² area" : " km² Fläche");
-            case 5 -> nf.format(country.getAvgHeight()) + (en ? "cm ⌀ body height" : "cm ⌀ Körpergröße");
+            case 3 -> nf().format(country.getPopulation()) + (en ? " people" : " Einwohner");
+            case 4 -> nf().format(country.getArea()) + (en ? " km² area" : " km² Fläche");
+            case 5 -> nf().format(country.getAvgHeight()) + (en ? "cm ⌀ body height" : "cm ⌀ Körpergröße");
             case 6 -> gdpFormat(country.getGdp()) + " $";
-            case 7 -> nf.format(country.getAvgTemperature()) + " ⌀ °C";
+            case 7 -> nf().format(country.getAvgTemperature()) + " ⌀ °C";
             case 8 -> country.getFlag();
             case 9 -> country.getOutline();
-            case 10 -> nf.format(country.getPassportStrength()) + (en ? " visa-free destinations" : " visafreie Reiseziele");
-            case 11 -> nf.format(Math.round(country.getGdpc())) + " $"
+            case 10 -> nf().format(country.getPassportStrength()) + (en ? " visa-free destinations" : " visafreie Reiseziele");
+            case 11 -> nf().format(Math.round(country.getGdpc())) + " $"
                     + (en ? " GDP/capita" : " BIP pro Kopf");
-            case 12 -> nf.format(country.getPopulationDensity()) + (en ? " people/km²" : " Menschen/km²");
+            case 12 -> nf().format(country.getPopulationDensity()) + (en ? " people/km²" : " Menschen/km²");
             default -> throw new IllegalArgumentException("Unknown property: " + property);
         };
     }
@@ -229,5 +228,10 @@ public class FactsGameModel {
     public void reset() {
         selected.clear();
         selectedButtons.clear();
+    }
+
+    private NumberFormat nf() {
+        return NumberFormat.getInstance(
+                util.LanguageManager.getLanguage().equals("en") ? Locale.US : Locale.GERMAN);
     }
 }
