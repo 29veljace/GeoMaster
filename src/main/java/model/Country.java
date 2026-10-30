@@ -18,8 +18,12 @@ public class Country {
     private final int passportStrength;
     private final Image flag;
     private final Image outline;
+    private final int populationDensity;
 
-    public Country(int id, String name_EN, String name_DE, String code, String capital_EN, String capital_DE, long population, long area, double avgHeight, long gdp, double avgTemperature, int gdpc, int passportStrength, Image flag, Image outline) {
+    public Country(int id, String name_EN, String name_DE, String code, String capital_EN,
+                   String capital_DE, long population, long area, double avgHeight, long gdp,
+                   double avgTemperature, int gdpc, int passportStrength, Image flag,
+                   Image outline, int populationDensity) {
         this.id = id;
         this.name_EN = name_EN;
         this.name_DE = name_DE;
@@ -35,6 +39,7 @@ public class Country {
         this.passportStrength = passportStrength;
         this.flag = flag;
         this.outline = outline;
+        this.populationDensity = populationDensity;
     }
 
     public int getId() {
@@ -95,5 +100,9 @@ public class Country {
 
     public Image getOutline() {
         return outline;
+    }
+
+    public int getPopulationDensity() {
+        return populationDensity;
     }
 }
