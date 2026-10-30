@@ -4,10 +4,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import util.HighScoreManager;
 import util.LanguageManager;
 
@@ -45,6 +43,27 @@ public class StatsBoardView {
         root = new HBox(content);
         root.setAlignment(Pos.CENTER);
         root.setStyle("-fx-background-color: #269463");
+
+        Image globe = new Image(getClass().getResourceAsStream("/img/globe-wht.png"));
+
+
+        Region texture = new Region();
+        texture.setBackground(new Background(new BackgroundImage(
+                globe,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(120, 120, false, false, false, false) // Kachelgröße in px
+        )));
+        texture.setOpacity(0.08);
+        texture.setMouseTransparent(true);
+        texture.setManaged(false);
+
+        root.widthProperty().addListener((o, a, w) ->
+                texture.resize(w.doubleValue(), root.getHeight()));
+        root.heightProperty().addListener((o, a, h) ->
+                texture.resize(root.getWidth(), h.doubleValue()));
+        root.getChildren().addFirst(texture);
 
         refresh();
     }
