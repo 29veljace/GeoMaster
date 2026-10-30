@@ -2,6 +2,7 @@ package view;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 public class FactsGameView {
@@ -80,6 +81,27 @@ public class FactsGameView {
         hBox.setAlignment(Pos.CENTER);
         hBox.getStyleClass().add("game-pane");
         hBox.setId("factsGamePane");
+
+        Image globe = new Image(getClass().getResourceAsStream("/img/globe-wht.png"));
+
+
+        Region texture = new Region();
+        texture.setBackground(new Background(new BackgroundImage(
+                globe,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(120, 120, false, false, false, false) // Kachelgröße in px
+        )));
+        texture.setOpacity(0.08);
+        texture.setMouseTransparent(true);
+        texture.setManaged(false);
+
+        hBox.widthProperty().addListener((o, a, w) ->
+                texture.resize(w.doubleValue(), hBox.getHeight()));
+        hBox.heightProperty().addListener((o, a, h) ->
+                texture.resize(hBox.getWidth(), h.doubleValue()));
+        hBox.getChildren().addFirst(texture);
     }
 
     public void mark(Button btn) {

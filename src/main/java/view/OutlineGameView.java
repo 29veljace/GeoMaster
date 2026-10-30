@@ -61,6 +61,27 @@ public class OutlineGameView {
         borderPane.setCenter(vBox);
         borderPane.getStyleClass().add("game-pane");
         borderPane.setId("outlineGamePane");
+
+        Image globe = new Image(getClass().getResourceAsStream("/img/globe-wht.png"));
+
+
+        Region texture = new Region();
+        texture.setBackground(new Background(new BackgroundImage(
+                globe,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(120, 120, false, false, false, false) // Kachelgröße in px
+        )));
+        texture.setOpacity(0.08);
+        texture.setMouseTransparent(true);
+        texture.setManaged(false);
+
+        borderPane.widthProperty().addListener((o, a, w) ->
+                texture.resize(w.doubleValue(), borderPane.getHeight()));
+        borderPane.heightProperty().addListener((o, a, h) ->
+                texture.resize(borderPane.getWidth(), h.doubleValue()));
+        borderPane.getChildren().addFirst(texture);
     }
 
     public ImageView getImageView() {

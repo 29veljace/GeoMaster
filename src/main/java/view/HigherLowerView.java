@@ -2,10 +2,9 @@ package view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.*;
@@ -56,6 +55,27 @@ public class HigherLowerView {
         borderPane.setCenter(vBox);
         borderPane.getStyleClass().add("game-pane");
         borderPane.setId("HLPane");
+
+        Image globe = new Image(getClass().getResourceAsStream("/img/globe-wht.png"));
+
+
+        Region texture = new Region();
+        texture.setBackground(new Background(new BackgroundImage(
+                globe,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(120, 120, false, false, false, false) // Kachelgröße in px
+        )));
+        texture.setOpacity(0.08);
+        texture.setMouseTransparent(true);
+        texture.setManaged(false);
+
+        borderPane.widthProperty().addListener((o, a, w) ->
+                texture.resize(w.doubleValue(), borderPane.getHeight()));
+        borderPane.heightProperty().addListener((o, a, h) ->
+                texture.resize(borderPane.getWidth(), h.doubleValue()));
+        borderPane.getChildren().add(0, texture);
     }
 
     public BorderPane getBorderPane() {return borderPane;}
