@@ -13,7 +13,7 @@ public class FactsGameController {
 
     public FactsGameController(FactsGameModel model) {
         this.model = model;
-        lives = 3;
+        lives = 4;
         counter = 0;
         initEvents();
     }
