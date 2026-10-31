@@ -35,9 +35,16 @@ public class HighScoreManager {
             "higherLowerHighScore", HIGHER_LOWER
     );
 
+    // highscores
+    private static final String COL_HIGHSCORE = "highscore";
+    private static final String COL_PLAY_COUNT = "play_count";
+    private static final String COL_TOTAL_SCORE = "total_score";
+
+    // facts_stats
     private static final String COL_CURRENT_STREAK = "current_streak";
     private static final String COL_LONGEST_STREAK = "longest_streak";
     private static final String COL_WIN_COUNT = "win_count";
+    private static final String COL_GAMES_PLAYED = "games_played";
 
     static {
         init();
@@ -46,42 +53,75 @@ public class HighScoreManager {
     private HighScoreManager() {
     }
 
+    public static void saveFlagHighScore(int newScore) { recordGame(FLAGS, newScore); }
+    public static void saveCapitalHighScore(int newScore) { recordGame(CAPITALS, newScore); }
+    public static void saveOutlineHighScore(int newScore) { recordGame(OUTLINES, newScore); }
+    public static void saveHLHighScore(int newScore) { recordGame(HIGHER_LOWER, newScore); }
 
-    public static void saveFlagHighScore(int newScore) { saveHighScore(FLAGS, newScore); }
-    public static void saveCapitalHighScore(int newScore) { saveHighScore(CAPITALS, newScore); }
-    public static void saveOutlineHighScore(int newScore) { saveHighScore(OUTLINES, newScore); }
-    public static void saveHLHighScore(int newScore) { saveHighScore(HIGHER_LOWER, newScore); }
+    public static int getFlagHighScore() { return getModeValue(FLAGS, COL_HIGHSCORE); }
+    public static int getCapitalHighScore() { return getModeValue(CAPITALS, COL_HIGHSCORE); }
+    public static int getOutlineHighScore() { return getModeValue(OUTLINES, COL_HIGHSCORE); }
+    public static int getHLHighScore() { return getModeValue(HIGHER_LOWER, COL_HIGHSCORE); }
 
-    public static int getFlagHighScore() { return getHighScore(FLAGS); }
-    public static int getCapitalHighScore() { return getHighScore(CAPITALS); }
-    public static int getOutlineHighScore() { return getHighScore(OUTLINES); }
-    public static int getHLHighScore() { return getHighScore(HIGHER_LOWER); }
+    public static int getFlagPlayCount() { return getModeValue(FLAGS, COL_PLAY_COUNT); }
+    public static int getCapitalPlayCount() { return getModeValue(CAPITALS, COL_PLAY_COUNT); }
+    public static int getOutlinePlayCount() { return getModeValue(OUTLINES, COL_PLAY_COUNT); }
+    public static int getHLPlayCount() { return getModeValue(HIGHER_LOWER, COL_PLAY_COUNT); }
 
-    private static void saveHighScore(String mode, int newScore) {
-        String sql = "UPDATE highscores SET highscore = MAX(highscore, ?) WHERE mode = ?";
+    public static double getFlagAverageScore() { return getAverageScore(FLAGS); }
+    public static double getCapitalAverageScore() { return getAverageScore(CAPITALS); }
+    public static double getOutlineAverageScore() { return getAverageScore(OUTLINES); }
+    public static double getHLAverageScore() { return getAverageScore(HIGHER_LOWER); }
+
+    private static void recordGame(String mode, int newScore) {
+        int score = Math.max(0, newScore);
+        String sql = "UPDATE highscores SET "
+                + "highscore = MAX(highscore, ?), "
+                + "play_count = play_count + 1, "
+                + "total_score = total_score + ? "
+                + "WHERE mode = ?";
         try (Connection c = connect(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setInt(1, newScore);
-            ps.setString(2, mode);
+            ps.setInt(1, score);
+            ps.setInt(2, score);
+            ps.setString(3, mode);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving High Score for " + mode, e);
+            throw new RuntimeException("Error saving score for " + mode, e);
         }
     }
 
-    private static int getHighScore(String mode) {
-        String sql = "SELECT highscore FROM highscores WHERE mode = ?";
+    private static int getModeValue(String mode, String column) {
+        String sql = "SELECT " + column + " FROM highscores WHERE mode = ?";
         try (Connection c = connect(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, mode);
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next() ? rs.getInt(1) : 0;
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error loading High Score for " + mode, e);
+            throw new RuntimeException("Error loading " + column + " for " + mode, e);
+        }
+    }
+
+    private static double getAverageScore(String mode) {
+        String sql = "SELECT total_score, play_count FROM highscores WHERE mode = ?";
+        try (Connection c = connect(); PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1, mode);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return 0;
+                }
+                long total = rs.getLong(1);
+                int plays = rs.getInt(2);
+                return plays == 0 ? 0 : (double) total / plays;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error loading average score for " + mode, e);
         }
     }
 
     public static void recordFactsWin() {
         String sql = "UPDATE facts_stats SET "
+                + "games_played = games_played + 1, "
                 + "win_count = win_count + 1, "
                 + "current_streak = current_streak + 1, "
                 + "longest_streak = MAX(longest_streak, current_streak + 1) "
@@ -90,12 +130,22 @@ public class HighScoreManager {
     }
 
     public static void recordFactsLoss() {
-        executeFactsUpdate("UPDATE facts_stats SET current_streak = 0 WHERE id = 1");
+        executeFactsUpdate("UPDATE facts_stats SET "
+                + "games_played = games_played + 1, "
+                + "current_streak = 0 "
+                + "WHERE id = 1");
     }
 
     public static int getFactsCurrentStreak() { return getFactsValue(COL_CURRENT_STREAK); }
     public static int getFactsLongestStreak() { return getFactsValue(COL_LONGEST_STREAK); }
     public static int getFactsWinCount() { return getFactsValue(COL_WIN_COUNT); }
+    public static int getFactsPlayCount() { return getFactsValue(COL_GAMES_PLAYED); }
+
+    /** Win Percentage in Prozent (0.0 - 100.0), 0 wenn noch nie gespielt. */
+    public static double getFactsWinPercentage() {
+        int played = getFactsPlayCount();
+        return played == 0 ? 0 : 100.0 * getFactsWinCount() / played;
+    }
 
     private static void executeFactsUpdate(String sql) {
         try (Connection c = connect(); Statement st = c.createStatement()) {
@@ -125,20 +175,45 @@ public class HighScoreManager {
             try (Connection c = connect(); Statement st = c.createStatement()) {
                 st.execute("CREATE TABLE IF NOT EXISTS highscores ("
                         + "mode TEXT PRIMARY KEY, "
-                        + "highscore INTEGER NOT NULL DEFAULT 0)");
+                        + "highscore INTEGER NOT NULL DEFAULT 0, "
+                        + "play_count INTEGER NOT NULL DEFAULT 0, "
+                        + "total_score INTEGER NOT NULL DEFAULT 0)");
                 st.execute("CREATE TABLE IF NOT EXISTS facts_stats ("
                         + "id INTEGER PRIMARY KEY CHECK (id = 1), "
                         + "current_streak INTEGER NOT NULL DEFAULT 0, "
                         + "longest_streak INTEGER NOT NULL DEFAULT 0, "
-                        + "win_count INTEGER NOT NULL DEFAULT 0)");
+                        + "win_count INTEGER NOT NULL DEFAULT 0, "
+                        + "games_played INTEGER NOT NULL DEFAULT 0)");
+
+                addColumnIfMissing(c, "highscores", COL_PLAY_COUNT, "INTEGER NOT NULL DEFAULT 0");
+                addColumnIfMissing(c, "highscores", COL_TOTAL_SCORE, "INTEGER NOT NULL DEFAULT 0");
+                addColumnIfMissing(c, "facts_stats", COL_GAMES_PLAYED, "INTEGER NOT NULL DEFAULT 0");
+
                 st.execute("INSERT OR IGNORE INTO facts_stats (id) VALUES (1)");
                 st.execute("INSERT OR IGNORE INTO highscores (mode) VALUES "
                         + "('" + FLAGS + "'), ('" + CAPITALS + "'), "
                         + "('" + OUTLINES + "'), ('" + HIGHER_LOWER + "')");
+
+                st.execute("UPDATE facts_stats SET games_played = MAX(games_played, win_count) WHERE id = 1");
             }
             migrateOldProperties();
         } catch (IOException | SQLException e) {
             throw new RuntimeException("Error initializing user data", e);
+        }
+    }
+
+    private static void addColumnIfMissing(Connection c, String table, String column, String definition)
+            throws SQLException {
+        try (Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery("PRAGMA table_info(" + table + ")")) {
+            while (rs.next()) {
+                if (column.equalsIgnoreCase(rs.getString("name"))) {
+                    return;
+                }
+            }
+        }
+        try (Statement st = c.createStatement()) {
+            st.execute("ALTER TABLE " + table + " ADD COLUMN " + column + " " + definition);
         }
     }
 
