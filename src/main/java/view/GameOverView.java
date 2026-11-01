@@ -32,6 +32,7 @@ public class GameOverView {
     Text gameOverText;
     Text scoreText;
     Text highScoreText;
+    Text avgScoreText;
     Button returnMenu;
     BorderPane borderPane;
 
@@ -41,7 +42,7 @@ public class GameOverView {
     private double maxOpacity = 0.15;
     private long textureSeed = 42;
 
-    public GameOverView(Stage stage){
+    public GameOverView(Stage stage) {
         gameOverText = new Text("Game Over");
         gameOverText.setId("gameOverInfo");
         gameOverText.setFill(Color.WHITESMOKE);
@@ -54,15 +55,18 @@ public class GameOverView {
         highScoreText.setId("gameOverInfo");
         highScoreText.setFill(Color.WHITESMOKE);
 
+        avgScoreText = new Text("Average Score: 0");
+        avgScoreText.setId("gameOverInfo");
+        avgScoreText.setFill(Color.WHITESMOKE);
+
         if (util.LanguageManager.getLanguage().equals("en")) {
             returnMenu = new Button("Back to Main Menu");
-        }
-        else{
+        } else {
             returnMenu = new Button("Zurück zum Hauptmenü");
         }
 
         returnMenu.setId("gameOverButton");
-        VBox vBox = new VBox(gameOverText,scoreText,highScoreText,returnMenu);
+        VBox vBox = new VBox(gameOverText, scoreText, highScoreText, avgScoreText, returnMenu);
         vBox.setSpacing(30);
         vBox.setAlignment(Pos.CENTER);
         HBox hBox = new HBox(vBox);
@@ -204,7 +208,7 @@ public class GameOverView {
         }
     }
 
-    public BorderPane getBorderPane(){
+    public BorderPane getBorderPane() {
         return borderPane;
     }
 
@@ -222,5 +226,9 @@ public class GameOverView {
 
     public Button getReturnMenu() {
         return returnMenu;
+    }
+
+    public Text getAvgScoreText() {
+        return avgScoreText;
     }
 }

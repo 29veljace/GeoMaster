@@ -102,7 +102,7 @@ public class HighScoreManager {
         }
     }
 
-    private static double getAverageScore(String mode) {
+    public static double getAverageScore(String mode) {
         String sql = "SELECT total_score, play_count FROM highscores WHERE mode = ?";
         try (Connection c = connect(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, mode);
