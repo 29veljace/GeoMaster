@@ -21,6 +21,7 @@ public final class DatabaseManager {
             }
             return connection;
         } catch (SQLException e) {
+            ErrorDialog.show("SQLException in DatabaseManager.getConnection()", e);
             throw new RuntimeException(e);
         }
     }
@@ -30,6 +31,7 @@ public final class DatabaseManager {
             try {
                 connection.close();
             } catch (SQLException e) {
+                ErrorDialog.show("SQLException in DatabaseManager.close()", e);
                 e.printStackTrace();
             } finally {
                 connection = null;
@@ -51,6 +53,7 @@ public final class DatabaseManager {
                 }
                 is.transferTo(os);
             } catch (IOException e) {
+                ErrorDialog.show("Exception in DatabaseManager.getConnection()", e);
                 throw new RuntimeException(e);
             }
         }

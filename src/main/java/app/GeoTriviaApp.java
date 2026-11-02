@@ -30,6 +30,7 @@ public class GeoTriviaApp extends Application {
         stage.getIcons().add(
                 new Image(getClass().getResourceAsStream("/img/icon.png"))
         );
+        ErrorDialog.install();
         stage.show();
     }
 }

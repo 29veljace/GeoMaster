@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import model.GameMode;
+import util.ErrorDialog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -154,6 +155,7 @@ public class GameOverView {
             Image img = new Image(in, 100, 100, true, true);
             return img.isError() ? null : img;
         } catch (IOException e) {
+            ErrorDialog.show("IOException in GameOverView.loadImage()", e);
             e.printStackTrace();
             return null;
         }
@@ -188,6 +190,7 @@ public class GameOverView {
                 try {
                     fs = FileSystems.newFileSystem(uri, Map.of());
                 } catch (FileSystemAlreadyExistsException e) {
+                    ErrorDialog.show("Exception in listResourceFiles()", e);
                     fs = FileSystems.getFileSystem(uri);
                 }
                 collectImages(fs.getPath(folder), folder, result);
@@ -195,6 +198,7 @@ public class GameOverView {
                 collectImages(Path.of(uri), folder, result);
             }
         } catch (Exception e) {
+            ErrorDialog.show("IOException in GameOverView.listResourceFiles()", e);
             e.printStackTrace();
         }
         return result;

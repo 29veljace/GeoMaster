@@ -42,6 +42,7 @@ public class LanguageManager {
             }
 
         } catch (IOException e) {
+            ErrorDialog.show("IOException in LanguageManager.ensureSettingsFileExists()", e);
             throw new RuntimeException(
                     "Error creating settings", e
             );
@@ -55,7 +56,9 @@ public class LanguageManager {
 
         try (InputStream in = Files.newInputStream(SETTINGS_FILE)) {
             props.load(in);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
+            ErrorDialog.show("Exception in LanguageManager.load()", e);
             throw new RuntimeException(
                     "Error loading settings", e
             );
@@ -72,6 +75,7 @@ public class LanguageManager {
                 props.store(out, null);
             }
         } catch (IOException e) {
+            ErrorDialog.show("Exception in LanguageManager.save()", e);
             throw new RuntimeException(
                     "Error saving settings", e
             );

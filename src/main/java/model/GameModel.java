@@ -2,6 +2,7 @@ package model;
 
 import javafx.scene.image.Image;
 import util.DatabaseManager;
+import util.ErrorDialog;
 
 import java.io.InputStream;
 import java.sql.PreparedStatement;
@@ -47,6 +48,7 @@ public class GameModel {
                 );
             }
         } catch (SQLException e) {
+            ErrorDialog.show("SQLException in GameModel.java", e);
             throw new RuntimeException(e);
         }
     }
