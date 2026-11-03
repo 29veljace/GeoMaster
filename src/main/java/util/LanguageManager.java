@@ -58,7 +58,7 @@ public class LanguageManager {
             props.load(in);
         }
         catch (IOException e) {
-            ErrorDialog.show("Exception in LanguageManager.load()", e);
+            ErrorDialog.show("Error loading settings", e);
             throw new RuntimeException(
                     "Error loading settings", e
             );
@@ -75,7 +75,7 @@ public class LanguageManager {
                 props.store(out, null);
             }
         } catch (IOException e) {
-            ErrorDialog.show("Exception in LanguageManager.save()", e);
+            ErrorDialog.show("Error saving settings", e);
             throw new RuntimeException(
                     "Error saving settings", e
             );

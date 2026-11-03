@@ -21,7 +21,7 @@ public final class DatabaseManager {
             }
             return connection;
         } catch (SQLException e) {
-            ErrorDialog.show("SQLException in DatabaseManager.getConnection()", e);
+            ErrorDialog.show("Failed to connect to database", e);
             throw new RuntimeException(e);
         }
     }
@@ -31,7 +31,7 @@ public final class DatabaseManager {
             try {
                 connection.close();
             } catch (SQLException e) {
-                ErrorDialog.show("SQLException in DatabaseManager.close()", e);
+                ErrorDialog.show("Failed to close database connection", e);
                 e.printStackTrace();
             } finally {
                 connection = null;
@@ -53,7 +53,7 @@ public final class DatabaseManager {
                 }
                 is.transferTo(os);
             } catch (IOException e) {
-                ErrorDialog.show("Exception in DatabaseManager.getConnection()", e);
+                ErrorDialog.show("Couldn't copy countrydata.db to .geomaster", e);
                 throw new RuntimeException(e);
             }
         }

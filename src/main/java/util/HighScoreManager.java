@@ -86,7 +86,7 @@ public class HighScoreManager {
             ps.setString(3, mode);
             ps.executeUpdate();
         } catch (SQLException e) {
-            ErrorDialog.show("SQLException in HighScoreManager.recordGame()", e);
+            ErrorDialog.show("Failed to save game stats in database", e);
             throw new RuntimeException("Error saving score for " + mode, e);
         }
     }
@@ -99,7 +99,7 @@ public class HighScoreManager {
                 return rs.next() ? rs.getInt(1) : 0;
             }
         } catch (SQLException e) {
-            ErrorDialog.show("SQLException in HighScoreManager.getModeValue()", e);
+            ErrorDialog.show("Error loading scores from database", e);
             throw new RuntimeException("Error loading " + column + " for " + mode, e);
         }
     }
@@ -117,7 +117,7 @@ public class HighScoreManager {
                 return plays == 0 ? 0 : (double) total / plays;
             }
         } catch (SQLException e) {
-            ErrorDialog.show("SQLException in HighScoreManager.getAverageScore()", e);
+            ErrorDialog.show("Error getting average scores from database", e);
             throw new RuntimeException("Error loading average score for " + mode, e);
         }
     }
@@ -144,7 +144,6 @@ public class HighScoreManager {
     public static int getFactsWinCount() { return getFactsValue(COL_WIN_COUNT); }
     public static int getFactsPlayCount() { return getFactsValue(COL_GAMES_PLAYED); }
 
-    /** Win Percentage in Prozent (0.0 - 100.0), 0 wenn noch nie gespielt. */
     public static double getFactsWinPercentage() {
         int played = getFactsPlayCount();
         return played == 0 ? 0 : 100.0 * getFactsWinCount() / played;
@@ -154,7 +153,7 @@ public class HighScoreManager {
         try (Connection c = connect(); Statement st = c.createStatement()) {
             st.executeUpdate(sql);
         } catch (SQLException e) {
-            ErrorDialog.show("SQLException in HighScoreManager.executeFactsUpdate()", e);
+            ErrorDialog.show("Error saving facts game stats in database", e);
             throw new RuntimeException("Error saving Facts stats", e);
         }
     }
@@ -164,7 +163,7 @@ public class HighScoreManager {
         try (Connection c = connect(); Statement st = c.createStatement(); ResultSet rs = st.executeQuery(sql)) {
             return rs.next() ? rs.getInt(1) : 0;
         } catch (SQLException e) {
-            ErrorDialog.show("SQLException in HighScoreManager.getFactsValue()", e);
+            ErrorDialog.show("Error getting facts game stats from database", e);
             throw new RuntimeException("Error loading Facts stats", e);
         }
     }
@@ -203,7 +202,7 @@ public class HighScoreManager {
             }
             migrateOldProperties();
         } catch (IOException | SQLException e) {
-            ErrorDialog.show("Exception in HighScoreManager.init()", e);
+            ErrorDialog.show("Error initializing user stats database", e);
             throw new RuntimeException("Error initializing user data", e);
         }
     }
@@ -232,7 +231,7 @@ public class HighScoreManager {
         try (InputStream in = Files.newInputStream(OLD_FILE)) {
             props.load(in);
         } catch (IOException e) {
-            ErrorDialog.show("IOException in HighScoreManager.migrateOldProperties()", e);
+            ErrorDialog.show("Error loading highscores.properties ", e);
             e.printStackTrace();
             return;
         }
@@ -248,13 +247,13 @@ public class HighScoreManager {
                 }
                 c.commit();
             } catch (SQLException e) {
-                ErrorDialog.show("SQLException in HighScoreManager.migrateOldProperties()", e);
+                ErrorDialog.show("Database error while migrating old stats (highscores.properties) to database", e);
                 c.rollback();
                 throw e;
             }
             Files.move(OLD_FILE, MIGRATED_FILE, StandardCopyOption.REPLACE_EXISTING);
         } catch (SQLException | IOException e) {
-            ErrorDialog.show("Exception in HighScoreManager.migrateOldProperties()", e);
+            ErrorDialog.show("Error migrating old propertise", e);
             e.printStackTrace();
         }
     }

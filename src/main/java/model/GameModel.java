@@ -48,7 +48,7 @@ public class GameModel {
                 );
             }
         } catch (SQLException e) {
-            ErrorDialog.show("SQLException in GameModel.java", e);
+            ErrorDialog.show("Failed to get country data from database", e);
             throw new RuntimeException(e);
         }
     }
