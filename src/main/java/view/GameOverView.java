@@ -149,13 +149,13 @@ public class GameOverView {
     private static Image loadImage(String path) {
         try (InputStream in = GameOverView.class.getResourceAsStream(path)) {
             if (in == null) {
-                System.err.println("Bild nicht gefunden: " + path);
+                System.err.println("Image not found: " + path);
                 return null;
             }
             Image img = new Image(in, 100, 100, true, true);
             return img.isError() ? null : img;
         } catch (IOException e) {
-            ErrorDialog.show("IOException in GameOverView.loadImage()", e);
+            ErrorDialog.show("Failed to load image", e);
             e.printStackTrace();
             return null;
         }
@@ -181,7 +181,7 @@ public class GameOverView {
         try {
             URL url = GameOverView.class.getResource(folder);
             if (url == null) {
-                System.err.println("Resource-Ordner nicht gefunden: " + folder);
+                System.err.println("Resource folder not found: " + folder);
                 return result;
             }
             URI uri = url.toURI();
@@ -190,7 +190,7 @@ public class GameOverView {
                 try {
                     fs = FileSystems.newFileSystem(uri, Map.of());
                 } catch (FileSystemAlreadyExistsException e) {
-                    ErrorDialog.show("Exception in listResourceFiles()", e);
+                    ErrorDialog.show("File system already exists", e);
                     fs = FileSystems.getFileSystem(uri);
                 }
                 collectImages(fs.getPath(folder), folder, result);
@@ -198,7 +198,7 @@ public class GameOverView {
                 collectImages(Path.of(uri), folder, result);
             }
         } catch (Exception e) {
-            ErrorDialog.show("IOException in GameOverView.listResourceFiles()", e);
+            ErrorDialog.show("Failed to get resource files", e);
             e.printStackTrace();
         }
         return result;
