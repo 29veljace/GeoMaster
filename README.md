@@ -41,3 +41,66 @@ A capital city is shown, and you pick the matching country from four options. On
 2. Download the latest release.
 3. Run the installer and follow the on-screen steps.
 4. Launch GeoMaster from your Start Menu and start playing.
+
+## Building from Source
+
+### Prerequisites
+
+- **JDK 24** (e.g. [Azul Zulu 24](https://www.azul.com/downloads/?version=java-24&package=jdk-fx) with JavaFX). `JAVA_HOME` must point to it.
+- **Git**
+- Maven is **not** required, the repository ships with the Maven Wrapper.
+- For the Windows installer only: [WiX Toolset](https://wixtoolset.org/) on your `PATH`.
+
+Check your Java version first:
+
+```
+java -version
+```
+
+### Clone the repository
+
+```
+git clone https://github.com/29veljace/GeoMaster.git
+cd GeoMaster
+```
+
+The default branch is `master`.
+
+### Run from the command line
+
+Windows:
+
+```
+mvnw.cmd clean javafx:run
+```
+
+Linux:
+
+```
+chmod +x mvnw
+./mvnw clean javafx:run
+```
+
+The first run downloads all dependencies, so it can take a moment.
+
+### Run from IntelliJ IDEA
+
+1. Choose **File > Open** and select the `pom.xml`. Open it as a project.
+2. Set the project SDK to JDK 24 under **File > Project Structure > Project**.
+3. Wait until Maven has finished importing the dependencies.
+4. Open `src/main/java/app/Launcher.java` and run its `main` method.
+
+Always start the game through `Launcher`, not `GeoTriviaApp`, otherwise JavaFX may complain about missing runtime components.
+
+### Where GeoMaster stores its data
+
+On first launch the bundled `countrydata.db` is copied to a `.geomaster` folder in your user directory (for example `C:\Users\<name>\.geomaster` on Windows). Settings, progress and high scores are stored there as well. Delete the folder to reset the game to its initial state.
+
+### Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `invalid target release: 24` | Maven is using an older JDK. Check `java -version` and `JAVA_HOME`. |
+| `JAVA_HOME is not defined correctly` | Point `JAVA_HOME` at the JDK folder, not at its `bin` subfolder. |
+| `Permission denied: ./mvnw` (Linux) | Run `chmod +x mvnw`. |
+| Outdated game data after an update | Delete the `.geomaster` folder and start the game again. |
