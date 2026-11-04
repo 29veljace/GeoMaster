@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import model.FactsGameModel;
 import model.GameMode;
 import util.HighScoreManager;
@@ -23,6 +25,13 @@ public class FactsGameController {
             btn.setOnAction(_ -> handle(btn));
         }
         model.getView().getSubmitBtn().setOnAction(_ -> submit());
+        model.getView().getGridPane().addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+            if (event.getButton() == MouseButton.SECONDARY) {
+                for (Button btn : model.getButtons()) {
+                    model.getView().unmark(btn);
+                }
+            }
+        });
     }
 
     private void handle(Button btn) {
