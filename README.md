@@ -49,7 +49,6 @@ A capital city is shown, and you pick the matching country from four options. On
 - **JDK 24** (e.g. [Azul Zulu 24](https://www.azul.com/downloads/?version=java-24&package=jdk-fx) with JavaFX). `JAVA_HOME` must point to it.
 - **Git**
 - Maven is **not** required, the repository ships with the Maven Wrapper.
-- For the Windows installer only: [WiX Toolset](https://wixtoolset.org/) on your `PATH`.
 
 Check your Java version first:
 
