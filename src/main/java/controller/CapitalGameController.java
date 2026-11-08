@@ -182,7 +182,7 @@ public class CapitalGameController {
     }
 
     public void saveHighScore() {
-        HighScoreManager.saveCapitalHighScore(score);
+        ScoreManager.saveCapitalHighScore(score);
         score = 0;
     }
 }

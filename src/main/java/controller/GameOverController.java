@@ -2,7 +2,7 @@ package controller;
 
 import util.LanguageManager;
 import view.GameOverView;
-import util.HighScoreManager;
+import util.ScoreManager;
 import util.SceneManager;
 import util.GameSession;
 import model.GameMode;
@@ -32,20 +32,20 @@ public class GameOverController {
 
     private int getHighScoreForMode(GameMode mode) {
         return switch (mode) {
-            case FLAG_GAME -> HighScoreManager.getFlagHighScore();
-            case CAPITAL_GAME -> HighScoreManager.getCapitalHighScore();
-            case HIGHER_LOWER -> HighScoreManager.getHLHighScore();
-            case OUTLINE_GAME -> HighScoreManager.getOutlineHighScore();
+            case FLAG_GAME -> ScoreManager.getFlagHighScore();
+            case CAPITAL_GAME -> ScoreManager.getCapitalHighScore();
+            case HIGHER_LOWER -> ScoreManager.getHLHighScore();
+            case OUTLINE_GAME -> ScoreManager.getOutlineHighScore();
             default -> 0;
         };
     }
 
     private double getAverageScoreForMode(GameMode mode) {
         return switch (mode) {
-            case FLAG_GAME -> HighScoreManager.getFlagAverageScore();
-            case CAPITAL_GAME -> HighScoreManager.getCapitalAverageScore();
-            case HIGHER_LOWER -> HighScoreManager.getHLAverageScore();
-            case OUTLINE_GAME -> HighScoreManager.getOutlineAverageScore();
+            case FLAG_GAME -> ScoreManager.getFlagAverageScore();
+            case CAPITAL_GAME -> ScoreManager.getCapitalAverageScore();
+            case HIGHER_LOWER -> ScoreManager.getHLAverageScore();
+            case OUTLINE_GAME -> ScoreManager.getOutlineAverageScore();
             default -> 0;
         };
     }

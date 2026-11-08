@@ -4,7 +4,7 @@ import model.Country;
 import model.GameMode;
 import model.GameModel;
 import util.GameSession;
-import util.HighScoreManager;
+import util.ScoreManager;
 import util.SceneManager;
 import view.HigherLowerView;
 
@@ -298,7 +298,7 @@ public class HigherLowerController {
     }
 
     public void saveHighScore() {
-        HighScoreManager.saveHLHighScore(score);
+        ScoreManager.saveHLHighScore(score);
         score = 0;
     }
 }

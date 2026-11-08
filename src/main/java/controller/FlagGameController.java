@@ -177,7 +177,7 @@ public class FlagGameController {
     }
 
     public void saveHighScore() {
-        HighScoreManager.saveFlagHighScore(score);
+        ScoreManager.saveFlagHighScore(score);
         score = 0;
     }
 }

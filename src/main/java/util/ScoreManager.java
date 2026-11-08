@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Properties;
 
 
-public class HighScoreManager {
+public class ScoreManager {
 
     private static final Path CONFIG_DIR = Paths.get(System.getProperty("user.home"), ".geomaster");
     private static final Path OLD_FILE = CONFIG_DIR.resolve("highscores.properties");
@@ -50,7 +50,7 @@ public class HighScoreManager {
         init();
     }
 
-    private HighScoreManager() {
+    private ScoreManager() {
     }
 
     public static void saveFlagHighScore(int newScore) { recordGame(FLAGS, newScore); }

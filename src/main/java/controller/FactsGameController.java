@@ -5,7 +5,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import model.FactsGameModel;
 import model.GameMode;
-import util.HighScoreManager;
+import util.ScoreManager;
 import util.SceneManager;
 
 public class FactsGameController {
@@ -65,7 +65,7 @@ public class FactsGameController {
 
             counter++;
             if (counter == 4) {
-                HighScoreManager.recordFactsWin();
+                ScoreManager.recordFactsWin();
                 SceneManager.switchView(GameMode.FACTS_GAME_STREAK);
             }
             return;
@@ -80,7 +80,7 @@ public class FactsGameController {
         model.getView().getStatus().setText(errorMessage(result.mistakes(), lives));
 
         if (lives == 0) {
-            HighScoreManager.recordFactsLoss();
+            ScoreManager.recordFactsLoss();
             SceneManager.switchView(GameMode.FACTS_GAME_STREAK);
         }
     }

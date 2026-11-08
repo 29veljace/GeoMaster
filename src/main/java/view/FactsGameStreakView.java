@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import util.HighScoreManager;
+import util.ScoreManager;
 
 public class FactsGameStreakView {
     private final Label label;
@@ -14,9 +14,9 @@ public class FactsGameStreakView {
     private final HBox hBox;
 
     public FactsGameStreakView() {
-        int wins = HighScoreManager.getFactsWinCount();
-        int currentStreak = HighScoreManager.getFactsCurrentStreak();
-        int longestStreak = HighScoreManager.getFactsLongestStreak();
+        int wins = ScoreManager.getFactsWinCount();
+        int currentStreak = ScoreManager.getFactsCurrentStreak();
+        int longestStreak = ScoreManager.getFactsLongestStreak();
 
         if (util.LanguageManager.getLanguage().equals("en")) {
             label = new Label("You won this mode "

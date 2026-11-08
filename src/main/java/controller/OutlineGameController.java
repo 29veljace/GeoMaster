@@ -2,7 +2,7 @@ package controller;
 
 import model.*;
 import util.GameSession;
-import util.HighScoreManager;
+import util.ScoreManager;
 import util.LanguageManager;
 import util.SceneManager;
 import view.OutlineGameView;
@@ -179,7 +179,7 @@ public class OutlineGameController {
     }
 
     public void saveHighScore() {
-        HighScoreManager.saveOutlineHighScore(score);
+        ScoreManager.saveOutlineHighScore(score);
         score = 0;
     }
 }

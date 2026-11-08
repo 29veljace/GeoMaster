@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import util.HighScoreManager;
+import util.ScoreManager;
 import util.LanguageManager;
 
 import java.util.Locale;
@@ -152,22 +152,22 @@ public class StatsBoardView {
                 ? new String[]{"Guess the Flag", "Guess the Capital", "Guess the Outline", "Higher or Lower"}
                 : new String[]{"Flaggen erraten", "Hauptstädte erraten", "Länderumrisse erraten", "Higher or Lower"};
         int[] highscores = {
-                HighScoreManager.getFlagHighScore(),
-                HighScoreManager.getCapitalHighScore(),
-                HighScoreManager.getOutlineHighScore(),
-                HighScoreManager.getHLHighScore()
+                ScoreManager.getFlagHighScore(),
+                ScoreManager.getCapitalHighScore(),
+                ScoreManager.getOutlineHighScore(),
+                ScoreManager.getHLHighScore()
         };
         double[] averages = {
-                HighScoreManager.getFlagAverageScore(),
-                HighScoreManager.getCapitalAverageScore(),
-                HighScoreManager.getOutlineAverageScore(),
-                HighScoreManager.getHLAverageScore()
+                ScoreManager.getFlagAverageScore(),
+                ScoreManager.getCapitalAverageScore(),
+                ScoreManager.getOutlineAverageScore(),
+                ScoreManager.getHLAverageScore()
         };
         int[] plays = {
-                HighScoreManager.getFlagPlayCount(),
-                HighScoreManager.getCapitalPlayCount(),
-                HighScoreManager.getOutlinePlayCount(),
-                HighScoreManager.getHLPlayCount()
+                ScoreManager.getFlagPlayCount(),
+                ScoreManager.getCapitalPlayCount(),
+                ScoreManager.getOutlinePlayCount(),
+                ScoreManager.getHLPlayCount()
         };
         for (int i = 0; i < modeNames.length; i++) {
             modeNames[i].setText(modeLabels[i]);
@@ -176,16 +176,16 @@ public class StatsBoardView {
             modeValues[i][2].setText(String.valueOf(plays[i]));
         }
 
-        int factsPlayed = HighScoreManager.getFactsPlayCount();
+        int factsPlayed = ScoreManager.getFactsPlayCount();
         String[] factsLabels = en
                 ? new String[]{"Games played", "Wins", "Win percentage", "Current streak", "Longest streak"}
                 : new String[]{"Gespielt", "Siege", "Siegquote", "Aktuelle Serie", "Längste Serie"};
         String[] factsData = {
                 String.valueOf(factsPlayed),
-                String.valueOf(HighScoreManager.getFactsWinCount()),
-                factsPlayed == 0 ? NO_DATA : String.format(locale, "%.1f %%", HighScoreManager.getFactsWinPercentage()),
-                String.valueOf(HighScoreManager.getFactsCurrentStreak()),
-                String.valueOf(HighScoreManager.getFactsLongestStreak())
+                String.valueOf(ScoreManager.getFactsWinCount()),
+                factsPlayed == 0 ? NO_DATA : String.format(locale, "%.1f %%", ScoreManager.getFactsWinPercentage()),
+                String.valueOf(ScoreManager.getFactsCurrentStreak()),
+                String.valueOf(ScoreManager.getFactsLongestStreak())
         };
         for (int i = 0; i < factsNames.length; i++) {
             factsNames[i].setText(factsLabels[i]);
