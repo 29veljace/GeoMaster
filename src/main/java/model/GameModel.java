@@ -44,7 +44,8 @@ public class GameModel {
                         rs.getInt("passportStrength"),
                         loadImage((rs.getString("path1")), id),
                         loadImage((rs.getString("path2")), id),
-                        rs.getInt("populationDensity")
+                        rs.getInt("populationDensity"),
+                        rs.getDouble("medianAge")
                 );
             }
         } catch (SQLException e) {

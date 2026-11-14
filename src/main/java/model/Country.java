@@ -19,11 +19,12 @@ public class Country {
     private final Image flag;
     private final Image outline;
     private final int populationDensity;
+    private final double medianAge;
 
     public Country(int id, String name_EN, String name_DE, String code, String capital_EN,
                    String capital_DE, long population, long area, double avgHeight, long gdp,
                    double avgTemperature, int gdpc, int passportStrength, Image flag,
-                   Image outline, int populationDensity) {
+                   Image outline, int populationDensity, double medianAge) {
         this.id = id;
         this.name_EN = name_EN;
         this.name_DE = name_DE;
@@ -40,6 +41,7 @@ public class Country {
         this.flag = flag;
         this.outline = outline;
         this.populationDensity = populationDensity;
+        this.medianAge = medianAge;
     }
 
     public int getId() {
@@ -104,5 +106,9 @@ public class Country {
 
     public int getPopulationDensity() {
         return populationDensity;
+    }
+
+    public double getMedianAge() {
+        return medianAge;
     }
 }
