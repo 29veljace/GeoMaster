@@ -19,6 +19,7 @@ public class MainMenuView {
     public ImageView exit;
     public ImageView languageIcon;
     public ImageView statsIcon;
+    public ImageView settingsIcon;
     private final ContextMenu languageMenu;
     private final RadioMenuItem englishItem;
     private final RadioMenuItem germanItem;
@@ -86,6 +87,15 @@ public class MainMenuView {
         languageIcon.setPickOnBounds(true);
         languageIcon.setId("languageIcon");
 
+        settingsIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/cog.png")));
+        settingsIcon.setFitWidth(60);
+        settingsIcon.setFitHeight(60);
+        settingsIcon.setPreserveRatio(true);
+        settingsIcon.setSmooth(true);
+        settingsIcon.setCursor(javafx.scene.Cursor.HAND);
+        settingsIcon.setPickOnBounds(true);
+        settingsIcon.setId("settingsIcon");
+
         englishItem = new RadioMenuItem("English");
         germanItem = new RadioMenuItem("Deutsch");
         ToggleGroup languageGroup = new ToggleGroup();
@@ -106,7 +116,7 @@ public class MainMenuView {
         hBox1.setSpacing(30);
         hBox2.setSpacing(30);
 
-        HBox topBar = new HBox(25, statsIcon, languageIcon, exit);
+        HBox topBar = new HBox(25, settingsIcon, statsIcon, languageIcon, exit);
         topBar.setAlignment(Pos.CENTER_RIGHT);
         topBar.setPadding(new Insets(15, 25, 0, 0));
 
