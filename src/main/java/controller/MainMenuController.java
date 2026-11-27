@@ -12,13 +12,13 @@ import util.LanguageManager;
 
 
 public class MainMenuController {
-    private MainMenuView mainMenuView;
+    private final MainMenuView mainMenuView;
 
     public MainMenuController(MainMenuView menuView) {
         mainMenuView = menuView;
         initEvents();
     }
-    public void initEvents(){
+    private void initEvents(){
         mainMenuView.getExit().setOnMouseClicked(_ -> {
             DatabaseManager.close();
             Platform.exit();
