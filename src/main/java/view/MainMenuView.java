@@ -7,15 +7,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import util.LanguageManager;
+
+import java.util.Objects;
 
 public class MainMenuView {
-    private final Button flagGuessing;
-    private final Button outlineGuessing;
-    private final Button factsGame;
-    private final Button higherLower;
-    private final Button capitalGame;
+    private static final double ICON_SIZE = 60;
+
+    private final Button flagGuessing = new Button();
+    private final Button outlineGuessing = new Button();
+    private final Button factsGame = new Button();
+    private final Button higherLower = new Button();
+    private final Button capitalGame = new Button();
     private final Text welcome;
-    private final Text info;
+    private final Text info = new Text();
     private final ImageView exit;
     private final ImageView languageIcon;
     private final ImageView statsIcon;
@@ -26,20 +31,6 @@ public class MainMenuView {
     private final BorderPane borderPane = new BorderPane();
 
     public MainMenuView() {
-        if (util.LanguageManager.getLanguage().equals("en")) {
-            flagGuessing = new Button("Guess the Flag");
-            outlineGuessing = new Button("Guess the Outline");
-            factsGame = new Button("Many Facts → One Country");
-            higherLower = new Button("Higher or Lower");
-            capitalGame = new Button("Guess the Capital");
-        } else {
-            flagGuessing = new Button("Flaggen erraten");
-            outlineGuessing = new Button("Länderumrisse erraten");
-            factsGame = new Button("Viele Fakten → Ein Land");
-            higherLower = new Button("Higher or Lower");
-            capitalGame = new Button("Hauptstädte erraten");
-        }
-
         flagGuessing.setId("btnFlags");
         outlineGuessing.setId("btnOutline");
         factsGame.setId("btnFacts");
@@ -50,11 +41,7 @@ public class MainMenuView {
         welcome.setFill(Color.WHITESMOKE);
         welcome.setId("willkommen");
 
-        if (util.LanguageManager.getLanguage().equals("en")) {
-            info = new Text("Choose one of the game modes");
-        } else {
-            info = new Text("Wählen Sie einen der Spielmodi");
-        }
+        applyTexts();
 
         info.setFill(Color.WHITESMOKE);
         info.setId("info");
@@ -64,37 +51,10 @@ public class MainMenuView {
         HBox hBox2 = new HBox(higherLower, factsGame, capitalGame);
         hBox2.setAlignment(Pos.CENTER);
 
-        exit = new ImageView(new Image(getClass().getResourceAsStream("/img/exit.png")));
-        exit.setFitWidth(60);
-        exit.setFitHeight(60);
-        exit.setCursor(javafx.scene.Cursor.HAND);
-        exit.setPickOnBounds(true);
-        exit.setPreserveRatio(true);
-
-        statsIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/stats.png")));
-        statsIcon.setFitWidth(60);
-        statsIcon.setFitHeight(60);
-        statsIcon.setCursor(javafx.scene.Cursor.HAND);
-        statsIcon.setPreserveRatio(true);
-        statsIcon.setPickOnBounds(true);
-
-        languageIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/globe-grn.png")));
-        languageIcon.setFitWidth(60);
-        languageIcon.setFitHeight(60);
-        languageIcon.setPreserveRatio(true);
-        languageIcon.setSmooth(true);
-        languageIcon.setCursor(javafx.scene.Cursor.HAND);
-        languageIcon.setPickOnBounds(true);
-        languageIcon.setId("languageIcon");
-
-        settingsIcon = new ImageView(new Image(getClass().getResourceAsStream("/img/cog.png")));
-        settingsIcon.setFitWidth(60);
-        settingsIcon.setFitHeight(60);
-        settingsIcon.setPreserveRatio(true);
-        settingsIcon.setSmooth(true);
-        settingsIcon.setCursor(javafx.scene.Cursor.HAND);
-        settingsIcon.setPickOnBounds(true);
-        settingsIcon.setId("settingsIcon");
+        exit = createIcon("/img/exit.png", null);
+        statsIcon = createIcon("/img/stats.png", null);
+        languageIcon = createIcon("/img/globe-grn.png", "languageIcon");
+        settingsIcon = createIcon("/img/cog.png", "settingsIcon");
 
         englishItem = new RadioMenuItem("English");
         germanItem = new RadioMenuItem("Deutsch");
@@ -125,23 +85,33 @@ public class MainMenuView {
         borderPane.setId("borderpane");
     }
 
-
     public void reload() {
-        if (util.LanguageManager.getLanguage().equals("en")) {
-            flagGuessing.setText("Guess the Flag");
-            outlineGuessing.setText("Guess the Outline");
-            factsGame.setText("Many Facts → One Country");
-            higherLower.setText("Higher or Lower");
-            capitalGame.setText("Guess the Capital");
-            info.setText("Choose one of the game modes");
-        } else {
-            flagGuessing.setText("Flaggen erraten");
-            outlineGuessing.setText("Länderumrisse erraten");
-            factsGame.setText("Viele Fakten → Ein Land");
-            higherLower.setText("Higher or Lower");
-            capitalGame.setText("Hauptstädte erraten");
-            info.setText("Wählen sie einen der Spielmodi");
+        applyTexts();
+    }
+
+
+    private void applyTexts() {
+        flagGuessing.setText(localized("Guess the Flag", "Flaggen erraten"));
+        outlineGuessing.setText(localized("Guess the Outline", "Länderumrisse erraten"));
+        factsGame.setText(localized("Many Facts → One Country", "Viele Fakten → Ein Land"));
+        higherLower.setText("Higher or Lower");
+        capitalGame.setText(localized("Guess the Capital", "Hauptstädte erraten"));
+        info.setText(localized("Choose one of the game modes", "Wählen Sie einen der Spielmodi"));
+    }
+
+    private ImageView createIcon(String resourcePath, String id) {
+        String url = Objects.requireNonNull(getClass().getResource(resourcePath)).toExternalForm();
+        ImageView icon = new ImageView(new Image(url));
+        icon.setFitWidth(ICON_SIZE);
+        icon.setFitHeight(ICON_SIZE);
+        icon.setPreserveRatio(true);
+        icon.setSmooth(true);
+        icon.setPickOnBounds(true);
+        icon.setCursor(javafx.scene.Cursor.HAND);
+        if (id != null) {
+            icon.setId(id);
         }
+        return icon;
     }
 
     public Text getWelcome() {
@@ -202,5 +172,13 @@ public class MainMenuView {
 
     public RadioMenuItem getGermanItem() {
         return germanItem;
+    }
+
+    private static String localized(String english, String german) {
+        return isEnglish() ? english : german;
+    }
+
+    private static boolean isEnglish() {
+        return LanguageManager.getLanguage().equals("en");
     }
 }
