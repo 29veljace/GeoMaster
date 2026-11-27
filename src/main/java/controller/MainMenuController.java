@@ -19,7 +19,7 @@ public class MainMenuController {
         initEvents();
     }
     public void initEvents(){
-        mainMenuView.exit.setOnMouseClicked(_ -> {
+        mainMenuView.getExit().setOnMouseClicked(_ -> {
             DatabaseManager.close();
             Platform.exit();
             System.exit(0);
@@ -38,6 +38,6 @@ public class MainMenuController {
 
     private void changeLanguage(String langCode) {
         LanguageManager.setLanguage(langCode);
-        MainMenuView.reload();
+        mainMenuView.reload();
     }
 }

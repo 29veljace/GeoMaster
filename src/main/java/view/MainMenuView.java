@@ -9,17 +9,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 
 public class MainMenuView {
-    public static Button flagGuessing;
-    public static Button outlineGuessing;
-    public static Button factsGame;
-    public static Button higherLower;
-    public static Button capitalGame;
-    public static Text welcome;
-    public static Text info;
-    public ImageView exit;
-    public ImageView languageIcon;
-    public ImageView statsIcon;
-    public ImageView settingsIcon;
+    private final Button flagGuessing;
+    private final Button outlineGuessing;
+    private final Button factsGame;
+    private final Button higherLower;
+    private final Button capitalGame;
+    private final Text welcome;
+    private final Text info;
+    private final ImageView exit;
+    private final ImageView languageIcon;
+    private final ImageView statsIcon;
+    private final ImageView settingsIcon;
     private final ContextMenu languageMenu;
     private final RadioMenuItem englishItem;
     private final RadioMenuItem germanItem;
@@ -125,6 +125,41 @@ public class MainMenuView {
         borderPane.setId("borderpane");
     }
 
+
+    public void reload() {
+        if (util.LanguageManager.getLanguage().equals("en")) {
+            flagGuessing.setText("Guess the Flag");
+            outlineGuessing.setText("Guess the Outline");
+            factsGame.setText("Many Facts → One Country");
+            higherLower.setText("Higher or Lower");
+            capitalGame.setText("Guess the Capital");
+            info.setText("Choose one of the game modes");
+        } else {
+            flagGuessing.setText("Flaggen erraten");
+            outlineGuessing.setText("Länderumrisse erraten");
+            factsGame.setText("Viele Fakten → Ein Land");
+            higherLower.setText("Higher or Lower");
+            capitalGame.setText("Hauptstädte erraten");
+            info.setText("Wählen sie einen der Spielmodi");
+        }
+    }
+
+    public Text getWelcome() {
+        return welcome;
+    }
+
+    public ImageView getSettingsIcon() {
+        return settingsIcon;
+    }
+
+    public ImageView getExit() {
+        return exit;
+    }
+
+    public Text getInfo() {
+        return info;
+    }
+
     public Button getFlagGuessing() {
         return flagGuessing;
     }
@@ -167,23 +202,5 @@ public class MainMenuView {
 
     public RadioMenuItem getGermanItem() {
         return germanItem;
-    }
-
-    public static void reload() {
-        if (util.LanguageManager.getLanguage().equals("en")) {
-            flagGuessing.setText("Guess the Flag");
-            outlineGuessing.setText("Guess the Outline");
-            factsGame.setText("Many Facts → One Country");
-            higherLower.setText("Higher or Lower");
-            capitalGame.setText("Guess the Capital");
-            info.setText("Choose one of the game modes");
-        } else {
-            flagGuessing.setText("Flaggen erraten");
-            outlineGuessing.setText("Länderumrisse erraten");
-            factsGame.setText("Viele Fakten → Ein Land");
-            higherLower.setText("Higher or Lower");
-            capitalGame.setText("Hauptstädte erraten");
-            info.setText("Wählen sie einen der Spielmodi");
-        }
     }
 }
