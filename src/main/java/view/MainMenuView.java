@@ -53,7 +53,7 @@ public class MainMenuView {
         if (util.LanguageManager.getLanguage().equals("en")) {
             info = new Text("Choose one of the game modes");
         } else {
-            info = new Text("Wählen sie einen der Spielmodi");
+            info = new Text("Wählen Sie einen der Spielmodi");
         }
 
         info.setFill(Color.WHITESMOKE);
