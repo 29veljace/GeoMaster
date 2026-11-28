@@ -29,6 +29,7 @@ public class FactsGameController {
             if (event.getButton() == MouseButton.SECONDARY) {
                 for (Button btn : model.getButtons()) {
                     model.getView().unmark(btn);
+                    model.reset();
                 }
             }
         });
@@ -41,11 +42,11 @@ public class FactsGameController {
         } else {
             model.getView().unmark(btn);
         }
-        model.getView().getSubmitBtn().setDisable(model.canSubmit());
+        model.getView().getSubmitBtn().setDisable(!model.canSubmit());
     }
 
     private void submit() {
-        if (model.canSubmit()) {
+        if (!model.canSubmit()) {
             return;
         }
         FactsGameModel.SubmitResult result = model.submit();

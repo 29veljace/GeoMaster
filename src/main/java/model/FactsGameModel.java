@@ -208,7 +208,7 @@ public class FactsGameModel {
     }
 
     public boolean canSubmit() {
-        return selectedButtons.size() != 4;
+        return selectedButtons.size() == 4;
     }
 
     public SubmitResult submit() {
